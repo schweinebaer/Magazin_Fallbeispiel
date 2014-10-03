@@ -86,7 +86,11 @@ public class Spiel {
 						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
 						break;
 					} else {
-						simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+						if(splitAktuelleEingabe[1].equals("")){
+							simulieren(splitAktuelleEingabe[0], 0);
+						} else {
+							simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+						}
 					}
 					
 					aktuelleEingabe = reader.readLine().toUpperCase();
