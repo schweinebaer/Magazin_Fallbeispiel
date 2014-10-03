@@ -108,13 +108,17 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
 			
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-			if(splitAktuelleEingabe[1].equals("") ||
-			   splitAktuelleEingabe[1].equals("") ||	
-			   splitAktuelleEingabe[1].equals("")){
-				//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
-				//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
+			if(aktuellerSpieler.getMagazin() != null){
+				if(splitAktuelleEingabe[1].equals("") ||
+						splitAktuelleEingabe[1].equals("") ||	
+						splitAktuelleEingabe[1].equals("")){
+					//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+					//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
+				} else {
+					writer.println("Invalide Standortwahl.");
+				}
 			} else {
-				writer.println("Invalide Standortwahl.");
+				writer.println("Mehrere Standorte nicht erlaubt.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
