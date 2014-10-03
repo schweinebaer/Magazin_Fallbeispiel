@@ -109,9 +109,9 @@ public class Spiel {
 			
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
 			if(aktuellerSpieler.getMagazin() == null){
-				if(splitAktuelleEingabe[1].equals("") ||
-						splitAktuelleEingabe[1].equals("") ||	
-						splitAktuelleEingabe[1].equals("")){
+				if(splitAktuelleEingabe[1].equals("München") ||
+						splitAktuelleEingabe[1].equals("Berlin") ||	
+						splitAktuelleEingabe[1].equals("Walldorf")){
 					//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
 					//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
 				} else {
