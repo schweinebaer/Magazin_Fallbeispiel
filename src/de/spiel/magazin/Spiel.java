@@ -97,16 +97,25 @@ public class Spiel {
 	private static void simulieren(String art, double Betrag){
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe[1].equals("")){
-				
-			} else{
-				
+				//aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe();
+			} else if(isNumeric(splitAktuelleEingabe[1]) && Integer.parseInt(splitAktuelleEingabe[1]) > 0){
+				//aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe();
+			} else if(!isNumeric(splitAktuelleEingabe[1])){
+				writer.println("Falsche Eingabe der Zahl.");
+			} else {
+				writer.println("Falsche Eingabe.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
 			
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-			
-		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-			
+			if(splitAktuelleEingabe[1].equals("") ||
+			   splitAktuelleEingabe[1].equals("") ||	
+			   splitAktuelleEingabe[1].equals("")){
+				//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+				//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
+			} else {
+				writer.println("Invalide Standortwahl.");
+			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
 				
