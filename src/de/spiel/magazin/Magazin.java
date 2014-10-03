@@ -1,5 +1,10 @@
 package de.spiel.magazin;
 
+import de.planspiel.cafe.Standort;
+
+/*
+ * Organisation des Magazins
+ */
 
 public class Magazin {
 	
@@ -15,12 +20,34 @@ public class Magazin {
 	private double gesamtkostenAuflage;
 	private double einnahmenAuflage;
 	private double gewinnAuflage;
-	
 	private int mitarbeiter;
+	private int mitarbeiterbeginn;
+	private int mitarbeiterfrei;
 
-	public void Magazin(Standort s, Marktanteil m) {
-		// TODO Auto-generated constructor stub
+	public void Magazin(Standort standort, Marktanteil marktanteil) {
+		this.standort = standort;
+		setmitarbeiter(0);
+		aktuellerMitarbeiterstand();
 	}
+
+	private void aktuellerMitarbeiterstand() {
+		this.setmitarbeiter(this.getStandort().getMaxMitarbeiter(this.getMitarbeiter()));
+		mitarbeiterbeginn = mitarbeiterfrei;
+	}
+
+	private void setmitarbeiter(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Standort getStandort() {
+		return this.standort;
+	}
+	
+	public int getMitarbeiter(){
+		return this.mitarbeiter;
+	}
+
 	
 
 }
