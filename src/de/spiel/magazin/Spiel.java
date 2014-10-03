@@ -32,7 +32,8 @@ public class Spiel {
 			
 			if(aktuelleEingabe.equals("BEENDEN")){
 				System.exit(0);
-			}
+			}//
+			
 			
 			writer.println("Eingabe keine gültige Zahl. Bitte neu eingeben.");
 			aktuelleEingabe = reader.readLine();
