@@ -21,6 +21,7 @@ public class Spiel {
 	public static void main(String[] args) throws IOException {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		writer = new PrintWriter(System.out, true);
+		int i = 1;
 		
 		writer.println("Willkommen beim Planspiel!");
 		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein!");
