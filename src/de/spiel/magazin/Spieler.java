@@ -10,4 +10,9 @@ public class Spieler {
 	public String getName(){
 		return name;
 	}
+
+	public Object getMagazin() {
+		if
+		return null;
+	}
 }
