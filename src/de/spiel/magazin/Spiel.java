@@ -3,8 +3,6 @@ package de.spiel.magazin;
 import java.io.*;
 import java.util.Vector;
 
-import meineApplets.Spieler;
-
 public class Spiel {
 	/*
 	 * @author Pascal Pronobis
