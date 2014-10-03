@@ -43,8 +43,7 @@ public class Spiel {
 		maxRunde = Integer.parseInt(aktuelleEingabe);
 		writer.println("Die maximale Rundenanzahl für das Spiel beträgt " + maxRunde + " Runden.");
 		
-		aktuelleEingabe = reader.readLine();
-		aktuelleEingabe.toUpperCase();
+		aktuelleEingabe = reader.readLine().toUpperCase();
 		splitAktuelleEingabe = aktuelleEingabe.split(" ");
 		
 		while(true){
@@ -66,8 +65,7 @@ public class Spiel {
 				writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 			}
 			
-			aktuelleEingabe = reader.readLine();
-			aktuelleEingabe.toUpperCase();
+			aktuelleEingabe = reader.readLine().toUpperCase();
 			splitAktuelleEingabe = aktuelleEingabe.split(" ");
 		}
 		
@@ -79,14 +77,20 @@ public class Spiel {
 				aktuelleEingabe = reader.readLine().toUpperCase();
 				splitAktuelleEingabe = aktuelleEingabe.split(" ");
 				
-				if(aktuelleEingabe.equals("HILFE")){
-					hilfe(1);
-				} else if(aktuelleEingabe.equals("BEENDEN")){
-					System.exit(0);
-				} else if(aktuelleEingabe.equals("FERTIG")){
-					writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
-				} else {
-					simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				while(!aktuelleEingabe.equals("FERTIG")){					
+					if(aktuelleEingabe.equals("HILFE")){
+						hilfe(1);
+					} else if(aktuelleEingabe.equals("BEENDEN")){
+						System.exit(0);
+					} else if(aktuelleEingabe.equals("FERTIG")){
+						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
+						break;
+					} else {
+						simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+					}
+					
+					aktuelleEingabe = reader.readLine().toUpperCase();
+					splitAktuelleEingabe = aktuelleEingabe.split(" ");
 				}
 			}
 
