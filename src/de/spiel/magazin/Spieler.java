@@ -2,6 +2,10 @@ package de.spiel.magazin;
 
 import java.util.Vector;
 
+import de.spiel.magazin.Bericht;
+import de.spiel.magazin.Kredit;
+import de.spiel.magazin.Magazin;
+
 public class Spieler {
 	private String name;
 	private Magazin magazin;
@@ -17,7 +21,7 @@ public class Spieler {
 	public String getName(){
 		return name;
 	}
-	
+
 	public Magazin getMagazin() {
 		return null;
 	}
