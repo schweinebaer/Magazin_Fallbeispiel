@@ -187,6 +187,7 @@ public class Spiel {
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
 			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
 			writer.println("FERTIG ------------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
+			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else {
 			//ignore
 		}
