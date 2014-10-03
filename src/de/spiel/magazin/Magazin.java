@@ -1,6 +1,5 @@
 package de.spiel.magazin;
 
-import de.planspiel.cafe.Standort;
 
 /*
  * Organisation des Magazins
@@ -33,6 +32,9 @@ public class Magazin {
 	private void aktuellerMitarbeiterstand() {
 		this.setmitarbeiter(this.getStandort().getMaxMitarbeiter(this.getMitarbeiter()));
 		mitarbeiterbeginn = mitarbeiterfrei;
+		System.out.println(mitarbeiter);
+		System.out.println(mitarbeiterbeginn);
+		System.out.println(mitarbeiterfrei);
 	}
 
 	private void setmitarbeiter(int i) {
