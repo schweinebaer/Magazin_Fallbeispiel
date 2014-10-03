@@ -19,6 +19,8 @@ public class Spiel {
 	private static String[] splitAktuelleEingabe;
 	
 	public static void main(String[] args) throws IOException {
+		spieler = new Vector();
+		
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		writer = new PrintWriter(System.out, true);
 		
@@ -49,6 +51,7 @@ public class Spiel {
 			if(splitAktuelleEingabe[0].equals("SPIELER_HINZUFUEGEN")){
 				Spieler einzelnerSpieler = new Spieler(splitAktuelleEingabe[1]);
 				spieler.add(einzelnerSpieler);
+				writer.println("Spieler " + splitAktuelleEingabe[1] + " hinzugefügt.");
 			} else if(aktuelleEingabe.equals("SPIELER_FERTIG")){
 				if(spieler.capacity() < 2){
 					writer.println("Bitte geben Sie mindestend zwei Spieler an.");
