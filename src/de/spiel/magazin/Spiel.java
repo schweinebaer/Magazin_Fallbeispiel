@@ -108,7 +108,7 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
 			
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-			if(aktuellerSpieler.getMagazin() != null){
+			if(aktuellerSpieler.getMagazin() == null){
 				if(splitAktuelleEingabe[1].equals("") ||
 						splitAktuelleEingabe[1].equals("") ||	
 						splitAktuelleEingabe[1].equals("")){
