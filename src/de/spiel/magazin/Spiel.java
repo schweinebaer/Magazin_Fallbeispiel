@@ -6,6 +6,7 @@ import java.util.Vector;
 public class Spiel {
 	/*
 	 * @author Pascal Pronobis
+	 * @description Allgemeine Koordination des Spieles auf der Konsole
 	 */
 	
 	private static Vector<Spieler> spieler;
