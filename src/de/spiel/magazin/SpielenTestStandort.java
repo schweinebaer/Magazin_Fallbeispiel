@@ -1,8 +1,10 @@
 package de.spiel.magazin;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 
-public class SpielenTestStandort {
+public class SpielenTestStandort{
 	public static void main(String[] args) {
 		new SpielenTestStandort(5).spielen();
 	}
@@ -16,15 +18,17 @@ public class SpielenTestStandort {
 
 	private void spielen() {
 		
-		//Standorte erzeugen
+		//Standort erzeugen
 		Standorttyp[] standorte = Standorttyp.values();
+		System.out.println("Bitte geben sie ihre Standortwahl ein");
 		for (int i = 0; i < standorte.length; i++) {
-			System.out.println(i);
 			hinzufuegenStandort(new Standort(standorte[i]));
 			System.out.println(standorte[i]);
+		}
+		
 	}
 
-}
+
 
 	private void hinzufuegenStandort(Standort standort) {
 		if (standort != null) {
