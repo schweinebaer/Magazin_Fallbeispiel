@@ -39,17 +39,24 @@ public class Spiel {
 		}
 		
 		maxRunde = Integer.parseInt(aktuelleEingabe);
+		writer.println("Die maximale Rundenanzahl für das Spiel beträgt " + maxRunde + " Runden.");
 		
 		aktuelleEingabe = reader.readLine();
 		aktuelleEingabe.toUpperCase();
 		splitAktuelleEingabe = aktuelleEingabe.split(" ");
 		
-		while(!aktuelleEingabe.equals("SPIELER_FERTIG")){
+		while(true){
 			if(splitAktuelleEingabe[0].equals("SPIELER_HINZUFUEGEN")){
 				Spieler einzelnerSpieler = new Spieler(splitAktuelleEingabe[1]);
 				spieler.add(einzelnerSpieler);
+			} else if(aktuelleEingabe.equals("SPIELER_FERTIG")){
+				if(spieler.capacity() < 2){
+					writer.println("Bitte geben Sie mindestend zwei Spieler an.");
+				} else {
+					break;
+				}
 			} else if(aktuelleEingabe.equals("HILFE")){
-				
+				hilfe(0);
 			} else if(aktuelleEingabe.equals("BEENDEN")){
 				System.exit(0);
 			} else {
@@ -70,9 +77,11 @@ public class Spiel {
 				splitAktuelleEingabe = aktuelleEingabe.split(" ");
 				
 				if(aktuelleEingabe.equals("HILFE")){
-					
+					hilfe(1);
 				} else if(aktuelleEingabe.equals("BEENDEN")){
 					System.exit(0);
+				} else if(aktuelleEingabe.equals("FERTIG")){
+					writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
 				} else {
 					simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 				}
@@ -86,7 +95,77 @@ public class Spiel {
 	}
 	
 	private static void simulieren(String art, double Betrag){
-		
+		if(splitAktuelleEingabe[0].equals("BERICHT")){
+			if(splitAktuelleEingabe[1].equals("")){
+				
+			} else{
+				
+			}
+		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
+			
+		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
+			
+		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
+			
+		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
+				
+			} else {
+				writer.println("Es kann kein Kredit in der Höhe von 0€ aufgenommen werden.");
+			}
+		} else if(splitAktuelleEingabe[0].equals("KREDIT_TILGEN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
+				
+			} else {
+				writer.println("Es kann kein Kredit mit einem Betrag von 0€ getilgt werden.");
+			}			
+		} else if(splitAktuelleEingabe[0].equals("WERBUNG SCHALTEN")){
+			
+		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
+				
+			} else {
+				writer.println("Es können keine 0 Mitarbeiter eingestellt werden.");
+			}
+		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_ENTLASSEN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
+				
+			} else {
+				writer.println("Es können keine 0 Mitarbeiter entlassen werden.");
+			}
+		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
+			
+		} else {
+			//ignore
+		}
+	}
+	
+	private static void hilfe(int art){
+		if(art == 0){
+			writer.println("---------- HILFE ----------");
+			writer.println("Es stehen folgende Kommandos zur Verfügung (Kommandos in Großbuchstaben, Parameter in Kamelschreibweise)");
+			writer.println("HILFE ------------------------------------------------- Zeigt eine Liste aller Kommandos an");
+			writer.println("SPIELER_HINZUFUEGEN nameDesSpielers ------------------- Fügt einen neuen Spieler mit dem entsprechenden Namen hinzu");
+			writer.println("SPIELER_FERTIG ---------------------------------------- Beendet die Eingabe der Spieler");
+		} else if (art == 1){
+			writer.println("---------- HILFE ----------");
+			writer.println("Es stehen folgende Kommandos zur Verfügung (Kommandos in Großbuchstaben, Parameter in Kamelschreibweise)");
+			writer.println("HILFE ------------------------------------------------- Zeigt eine Liste aller Kommandos an");
+			writer.println("BERICHT ----------------------------------------------- Zeigt den aktuellen Bericht des Spielers mit allen Informationen an");
+			writer.println("BERICHT rundenNummer ---------------------------------- Zeigt den  Bericht des Spielers mit allen Informationen an zur Runde rundenNummer an");
+			writer.println("STANDORT ---------------------------------------------- Zeigt eine Liste aller Standorte an");
+			writer.println("MAGAZIN_EROEFFNEN standortName ------------------------ Erzeugt ein Magazin am angegebenen Standort mit der entsprechend Mitarbeiteranzahl");
+			writer.println("KREDIT_AUFNEHMEN betrag ------------------------------- Nimmt einen Kredit in der angegebenen Höhe auf");
+			writer.println("KREDIT_TILGEN betrag ---------------------------------- Tilgt einen Kredit in der angegebenen Höhe");
+			writer.println("WERBUNG SCHALTEN betrag ------------------------------- Schaltet Werbung für das Magazin");
+			writer.println("MITARBEITER_EINSTELLEN mitarbeiterAnzahl -------------- Stellt mitarbeiterAnzahl Mitarbeiter im Magazin ein");
+			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
+			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
+			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
+			writer.println("FERTIG ------------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
+		} else {
+			//ignore
+		}
 	}
 	
 	private static boolean isNumeric(String z){
