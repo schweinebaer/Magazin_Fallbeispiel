@@ -19,7 +19,7 @@ public class Magazin {
 	private Kosten kosten;
 	private Gewinn gewinn;
 
-	public void Magazin(Standort standort, Marktanteil marktanteil) {
+	public Magazin(Standort standort, Marktanteil marktanteil) {
 		this.standort = standort;
 		setMitarbeiter(0);
 		aktuellerMitarbeiterstand();

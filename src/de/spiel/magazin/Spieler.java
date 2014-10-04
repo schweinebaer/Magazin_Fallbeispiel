@@ -27,8 +27,21 @@ public class Spieler {
 		return null;
 	}
 	
-	public void setMagazin(String standort){
+	public void setMagazin(String standort, Marktanteil marktanteil){
+		Object[] o;
 		
+		if(standort.equals("München")){
+			o = Standort.getStandort(1);
+			this.standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 200);
+		} else if(standort.equals("Berlin")){
+			o = Standort.getStandort(2);
+			this.standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 100);
+		} else if(standort.equals("Walldorf")){
+			o = Standort.getStandort(3);
+			this.standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 50);
+		}
+		
+		magazin = new Magazin(this.standort, marktanteil);
 	}
 	
 	public Kredit getKredit(){
@@ -68,18 +81,11 @@ public class Spieler {
 	}
 
 	public void setStandort(String name) {
-		Object[] o;
 		
-		if(name.equals("München")){
-			o = Standort.getStandort(1);
-			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 200);
-		} else if(name.equals("Berlin")){
-			o = Standort.getStandort(2);
-			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 100);
-		} else if(name.equals("Walldorf")){
-			o = Standort.getStandort(3);
-			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 50);
-		}
+	}
+	
+	public Standort getStandort(){
+		return standort;
 	}
 	
 	public void minimiereKapitalUm(double kapitalMinimierung){

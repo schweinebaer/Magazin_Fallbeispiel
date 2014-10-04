@@ -102,6 +102,7 @@ public class Spiel {
 										   splitAktuelleEingabe[1].equals("Berlin") ||	
 										   splitAktuelleEingabe[1].equals("Walldorf")){
 											aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+											writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
 										} else {
 											writer.println("Invalide Standortwahl.");
 										}
@@ -120,7 +121,7 @@ public class Spiel {
 					}
 					
 					if(splitAktuelleEingabe[0].equals("FERTIG")){
-						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
+						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
 						aktuellerSpieler.addBericht();
 					}
 				}
@@ -167,7 +168,7 @@ public class Spiel {
 				if(splitAktuelleEingabe[1].equals("München") ||
 				   splitAktuelleEingabe[1].equals("Berlin") ||	
 				   splitAktuelleEingabe[1].equals("Walldorf")){
-					aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+					aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
 				} else {
 					writer.println("Invalide Standortwahl.");
 				}
