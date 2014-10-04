@@ -45,30 +45,32 @@ public class Spiel {
 		maxRunde = Integer.parseInt(aktuelleEingabe);
 		writer.println("Die maximale Rundenanzahl für das Spiel beträgt " + maxRunde + " Runden.");
 		
-		aktuelleEingabe = reader.readLine().toUpperCase();
+		aktuelleEingabe = reader.readLine();
 		splitAktuelleEingabe = aktuelleEingabe.split(" ");
+		splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 		
 		while(true){
 			if(splitAktuelleEingabe[0].equals("SPIELER_HINZUFUEGEN")){
 				Spieler einzelnerSpieler = new Spieler(splitAktuelleEingabe[1]);
 				spieler.add(einzelnerSpieler);
 				writer.println("Spieler " + splitAktuelleEingabe[1] + " hinzugefügt.");
-			} else if(aktuelleEingabe.equals("SPIELER_FERTIG")){
-				if(spieler.capacity() < 2){
+			} else if(splitAktuelleEingabe[0].equals("SPIELER_FERTIG")){
+				if(spieler.size() < 2){
 					writer.println("Bitte geben Sie mindestend zwei Spieler an.");
 				} else {
 					break;
 				}
-			} else if(aktuelleEingabe.equals("HILFE")){
+			} else if(splitAktuelleEingabe[0].equals("HILFE")){
 				hilfe(0);
-			} else if(aktuelleEingabe.equals("BEENDEN")){
+			} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
 				System.exit(0);
 			} else {
 				writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 			}
 			
-			aktuelleEingabe = reader.readLine().toUpperCase();
+			aktuelleEingabe = reader.readLine();
 			splitAktuelleEingabe = aktuelleEingabe.split(" ");
+			splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 		}
 		
 		while(aktuelleRunde < maxRunde){
@@ -76,15 +78,16 @@ public class Spiel {
 				aktuellerSpieler = spieler.elementAt(i);
 				writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 				
-				aktuelleEingabe = reader.readLine().toUpperCase();
+				aktuelleEingabe = reader.readLine();
 				splitAktuelleEingabe = aktuelleEingabe.split(" ");
+				splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 				
-				while(!aktuelleEingabe.equals("FERTIG")){					
-					if(aktuelleEingabe.equals("HILFE")){
+				while(!splitAktuelleEingabe[0].equals("FERTIG")){					
+					if(splitAktuelleEingabe[0].equals("HILFE")){
 						hilfe(1);
-					} else if(aktuelleEingabe.equals("BEENDEN")){
+					} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
 						System.exit(0);
-					} else if(aktuelleEingabe.equals("FERTIG")){
+					} else if(splitAktuelleEingabe[0].equals("FERTIG")){
 						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
 						break;
 					} else {
@@ -95,8 +98,9 @@ public class Spiel {
 						}
 					}
 					
-					aktuelleEingabe = reader.readLine().toUpperCase();
+					aktuelleEingabe = reader.readLine();
 					splitAktuelleEingabe = aktuelleEingabe.split(" ");
+					splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 				}
 			}
 
@@ -173,6 +177,7 @@ public class Spiel {
 			writer.println("HILFE ------------------------------------------------- Zeigt eine Liste aller Kommandos an");
 			writer.println("SPIELER_HINZUFUEGEN nameDesSpielers ------------------- Fügt einen neuen Spieler mit dem entsprechenden Namen hinzu");
 			writer.println("SPIELER_FERTIG ---------------------------------------- Beendet die Eingabe der Spieler");
+			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else if (art == 1){
 			writer.println("---------- HILFE ----------");
 			writer.println("Es stehen folgende Kommandos zur Verfügung (Kommandos in Großbuchstaben, Parameter in Kamelschreibweise)");
