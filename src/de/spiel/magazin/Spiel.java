@@ -134,9 +134,9 @@ public class Spiel {
 	private static void simulieren(String art, double Betrag){
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){
-				//aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe();
+				aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe(writer);
 			} else if(isNumeric(splitAktuelleEingabe[1]) && Integer.parseInt(splitAktuelleEingabe[1]) > 0){
-				//aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe();
+				aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe(writer);
 			} else if(!isNumeric(splitAktuelleEingabe[1])){
 				writer.println("Falsche Eingabe der Zahl.");
 			} else {
@@ -165,30 +165,35 @@ public class Spiel {
 				writer.println("Mehrere Standorte nicht erlaubt.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
-			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
-				
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
-				writer.println("Es kann kein Kredit in der Höhe von 0€ aufgenommen werden.");
+				writer.println("Es kann kein Kredit in der Höhe von 0€ oder weniger aufgenommen werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_TILGEN")){
-			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
-				
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
-				writer.println("Es kann kein Kredit mit einem Betrag von 0€ getilgt werden.");
+				writer.println("Es kann kein Kredit mit einem negativen oder 0€ - Betrag getilgt werden.");
 			}			
 		} else if(splitAktuelleEingabe[0].equals("WERBUNG SCHALTEN")){
-			
-		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
-			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
-				
+			//nochmal überprüfen!
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
-				writer.println("Es können keine 0 Mitarbeiter eingestellt werden.");
+				writer.println("Es darf keine Werbung mit einem Betrag von 0€ oder weniger geschaltet werden.");
+			}
+		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+			} else {
+				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter eingestellt werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_ENTLASSEN")){
-			if(Double.parseDouble(splitAktuelleEingabe[1]) != 0){
-				
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
-				writer.println("Es können keine 0 Mitarbeiter entlassen werden.");
+				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter entlassen werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
 			

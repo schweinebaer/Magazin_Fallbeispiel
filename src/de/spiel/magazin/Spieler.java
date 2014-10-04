@@ -39,6 +39,10 @@ public class Spieler {
 		
 	}
 	
+	public Bericht getBericht(int berichtnummer){
+		return berichte.elementAt(berichtnummer);
+	}
+	
 	public double getKapital(){
 		return kapital;
 	}
