@@ -135,7 +135,6 @@ public class Spiel {
 				   splitAktuelleEingabe[1].equals("Berlin") ||	
 				   splitAktuelleEingabe[1].equals("Walldorf")){
 					aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
-					aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
 				} else {
 					writer.println("Invalide Standortwahl.");
 				}
