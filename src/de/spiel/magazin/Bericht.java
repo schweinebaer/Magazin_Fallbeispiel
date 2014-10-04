@@ -12,7 +12,13 @@ public class Bericht {
 	private double fremdkapital;
 
 	public Bericht(Spieler s){
-		
+		spieler = s;
+		magazin = spieler.getMagazin();
+		standort = magazin.getStandort();
+		anzahlMitarbeiter = standort.getMitarbeiter()[1];
+		//umsatz
+		eigenkapital = spieler.getEK();
+		//fremdkapital = spieler.getFK();
 	}
 	
 	public void generiereAusgabe(PrintWriter writer){
@@ -23,6 +29,8 @@ public class Bericht {
 		writer.println("Anzahl Mitarbeiter Bereich B: " + standort.getMitarbeiter()[2]);
 		writer.println("Anzahl Mitarbeiter Bereich C: " + standort.getMitarbeiter()[3]);
 		writer.println("Umsatz:                       ");
+		writer.println("-> davon Gewinn:              ");
+		writer.println("-> davon Kosten:              ");
 		writer.println("Kapital:                      ");
 		writer.println("-> davon EK:                  ");
 		writer.println("-> davon FK:                  ");
