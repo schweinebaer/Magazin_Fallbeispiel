@@ -56,12 +56,15 @@ public class Spieler {
 	}
 
 	public void setStandort(String name) {
-		if(){
-			
-		} else if(){
-			
-		} else if(){
-			
+		Object[] o;
+		
+		if(name.equals("München")){
+			o = Standort.getStandort(1);
+			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 200);
+		} else if(name.equals("Berlin")){
+			o = Standort.getStandort(2);			
+		} else if(name.equals("Walldorf")){
+			o = Standort.getStandort(3);
 		}
 	}
 	
