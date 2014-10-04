@@ -91,9 +91,6 @@ public class Spiel {
 							hilfe(1);
 						} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
 							System.exit(0);
-						} else if(splitAktuelleEingabe[0].equals("FERTIG")){
-							writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
-							break;
 						} else {
 							if(splitAktuelleEingabe.length < 2){
 								simulieren(splitAktuelleEingabe[0], 0);
@@ -121,6 +118,11 @@ public class Spiel {
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 					}
+					
+					if(splitAktuelleEingabe[0].equals("FERTIG")){
+						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
+						aktuellerSpieler.addBericht();
+					}
 				}
 			}
 
@@ -134,9 +136,17 @@ public class Spiel {
 	private static void simulieren(String art, double Betrag){
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){
-				aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe(writer);
+				if(aktuellerSpieler.getBericht(aktuelleRunde - 1) != null){
+					aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe(writer);
+				} else {
+					writer.println("Es sind noch keine Berichte vorhanden.");
+				}
 			} else if(isNumeric(splitAktuelleEingabe[1]) && Integer.parseInt(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe(writer);
+				if(aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1) != null){
+					aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe(writer);
+				} else {
+					writer.println("Bericht mit der Nummer " + splitAktuelleEingabe[1] + " nicht vorhanden.");
+				}
 			} else if(!isNumeric(splitAktuelleEingabe[1])){
 				writer.println("Falsche Eingabe der Zahl.");
 			} else {
@@ -198,7 +208,7 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
 			
 		} else {
-			//ignore
+			writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 		}
 	}
 	

@@ -39,8 +39,16 @@ public class Spieler {
 		
 	}
 	
+	public void addBericht(){
+		berichte.add(new Bericht(this));
+	}
+	
 	public Bericht getBericht(int berichtnummer){
-		return berichte.elementAt(berichtnummer);
+		if(!berichte.isEmpty()){
+			return berichte.elementAt(berichtnummer);
+		} else {
+			return null;
+		}
 	}
 	
 	public double getKapital(){
