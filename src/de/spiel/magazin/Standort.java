@@ -39,9 +39,9 @@ public abstract class Standort {
 			o[1] = magazinkosten2;
 			o[2] = maxMitarbeiter2;			
 		} else if(i == 3){
-			o[0] = standort2;
-			o[1] = magazinkosten2;
-			o[2] = maxMitarbeiter2;
+			o[0] = standort3;
+			o[1] = magazinkosten3;
+			o[2] = maxMitarbeiter3;
 		} else {
 			//falscher Standort
 			return null;
