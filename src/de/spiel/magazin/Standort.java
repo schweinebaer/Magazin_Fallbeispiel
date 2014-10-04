@@ -3,7 +3,7 @@ package de.spiel.magazin;
 import java.util.Vector;
 
 
-public abstract class Standort {
+public class Standort {
 	private final static String standort1 = "München";
 	private final static double preis1 = 500000.0;
 	private final static double magazinkosten1 = 5000.0;
@@ -26,7 +26,6 @@ public abstract class Standort {
 	private int mitarbeiter;
 	private Angestellte angestellte;
 
-	
 	public Standort(String name, double preis, double kosten, int maxMitarbeiter, int mitarbeiter) {
 		this.name = name;
 		this.preis = preis;

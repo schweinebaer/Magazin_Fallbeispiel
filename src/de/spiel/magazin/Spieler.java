@@ -62,9 +62,11 @@ public class Spieler {
 			o = Standort.getStandort(1);
 			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 200);
 		} else if(name.equals("Berlin")){
-			o = Standort.getStandort(2);			
+			o = Standort.getStandort(2);
+			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 100);
 		} else if(name.equals("Walldorf")){
 			o = Standort.getStandort(3);
+			standort = new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 50);
 		}
 	}
 	
