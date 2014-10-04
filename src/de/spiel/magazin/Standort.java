@@ -19,15 +19,21 @@ public abstract class Standort {
 	private final static double magazinkosten3 = 500.0;
 	private final static int maxMitarbeiter3 = 20;
 	
-	private Standorttyp name;
+	private String name;
+	private double preis;
 	private double magazinkosten;
 	private int maxMitarbeiter;
+	private int mitarbeiter;
+	private Angestellte angestellte;
 
 	
-	public Standort(Standorttyp name) {
+	public Standort(String name, double preis, double kosten, int maxMitarbeiter, int mitarbeiter) {
 		this.name = name;
-		setMagazinkosten(name.getMagazinkosten());
-		setMaxMitarbeiter(name.getMaxMitarbeiter());
+		this.preis = preis;
+		this.magazinkosten = kosten;
+		this.maxMitarbeiter = maxMitarbeiter;
+		this.mitarbeiter = mitarbeiter;
+		//Angestellte noch initilisieren
 	}
 	
 	public static Object[] getStandort(int i){
@@ -67,16 +73,20 @@ public abstract class Standort {
 		
 		return 0;
 	}
-
-	private void setMagazinkosten(double magazinkosten) {
-		this.magazinkosten = magazinkosten;
+	
+	public String getOrt(){
+		return name;
 	}
-
-	private void setMaxMitarbeiter(int maxMitarbeiten) {
-		this.maxMitarbeiter = maxMitarbeiten;
-	}	
+	
+	public void simulieren(String art, double betrag){
+		//einstellen, entlassen, schulen etc.
+	}
 
 	public int getMaxMitarbeiter(int maxMitabeiter) {
 		return maxMitarbeiter;
+	}
+	
+	public int[] getMitarbeiter(){
+		return angestellte.getBereichsZahlen();
 	}
 }
