@@ -3,8 +3,6 @@ package de.spiel.magazin;
 import java.io.*;
 import java.util.Vector;
 
-import de.planspiel.cafe.Standort;
-
 public class Spiel {
 	/*
 	 * @author Pascal Pronobis
@@ -76,31 +74,38 @@ public class Spiel {
 		while(aktuelleRunde < maxRunde){
 			for(int i = 0; i < spieler.capacity(); i++){
 				aktuellerSpieler = spieler.elementAt(i);
-				writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 				
-				aktuelleEingabe = reader.readLine();
-				splitAktuelleEingabe = aktuelleEingabe.split(" ");
-				splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
-				
-				while(!splitAktuelleEingabe[0].equals("FERTIG")){					
-					if(splitAktuelleEingabe[0].equals("HILFE")){
-						hilfe(1);
-					} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
-						System.exit(0);
-					} else if(splitAktuelleEingabe[0].equals("FERTIG")){
-						writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
-						break;
-					} else {
-						if(splitAktuelleEingabe[1].equals("")){
-							simulieren(splitAktuelleEingabe[0], 0);
-						} else {
-							simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
-						}
-					}
+				if(aktuellerSpieler.getKapital() < 0.0){
+					writer.println(aktuellerSpieler.getName() + " hat leider nicht mehr genügend Geld.");
+					//hinten an Ergebnisliste anhängen
+					spieler.remove(aktuellerSpieler);
+				} else {
+					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 					
 					aktuelleEingabe = reader.readLine();
 					splitAktuelleEingabe = aktuelleEingabe.split(" ");
 					splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+					
+					while(!splitAktuelleEingabe[0].equals("FERTIG")){					
+						if(splitAktuelleEingabe[0].equals("HILFE")){
+							hilfe(1);
+						} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
+							System.exit(0);
+						} else if(splitAktuelleEingabe[0].equals("FERTIG")){
+							writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
+							break;
+						} else {
+							if(splitAktuelleEingabe[1].equals("")){
+								simulieren(splitAktuelleEingabe[0], 0);
+							} else {
+								simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+							}
+						}
+						
+						aktuelleEingabe = reader.readLine();
+						splitAktuelleEingabe = aktuelleEingabe.split(" ");
+						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+					}
 				}
 			}
 
@@ -127,9 +132,9 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
 			if(aktuellerSpieler.getMagazin() == null){
 				if(splitAktuelleEingabe[1].equals("München") ||
-						splitAktuelleEingabe[1].equals("Berlin") ||	
-						splitAktuelleEingabe[1].equals("Walldorf")){
-					aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+				   splitAktuelleEingabe[1].equals("Berlin") ||	
+				   splitAktuelleEingabe[1].equals("Walldorf")){
+					//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
 					//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
 				} else {
 					writer.println("Invalide Standortwahl.");
