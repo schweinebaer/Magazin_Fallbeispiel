@@ -95,7 +95,7 @@ public class Spiel {
 							writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
 							break;
 						} else {
-							if(splitAktuelleEingabe[1] == null){
+							if(splitAktuelleEingabe.length < 2){
 								simulieren(splitAktuelleEingabe[0], 0);
 							} else {
 								if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
@@ -133,7 +133,7 @@ public class Spiel {
 	
 	private static void simulieren(String art, double Betrag){
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
-			if(splitAktuelleEingabe[1].equals("")){
+			if(splitAktuelleEingabe.length < 2){
 				//aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe();
 			} else if(isNumeric(splitAktuelleEingabe[1]) && Integer.parseInt(splitAktuelleEingabe[1]) > 0){
 				//aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe();
