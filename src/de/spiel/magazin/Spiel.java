@@ -216,13 +216,5 @@ public class Spiel {
 		return true;
 	}
 
-	private Standort findenStandort(String name) throws Exception {
-		for (int i = 0; i < spieler.holeStandortListe().size(); i++) {
-			Standort s = spieler.holeStandortListe().get(i);
-			if (s.holeName().toUpperCase().equals(name.toUpperCase())) {
-				return s;
-			}
-		}
-		throw new Exception();
-	}
+
 }
