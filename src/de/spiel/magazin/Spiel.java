@@ -3,6 +3,8 @@ package de.spiel.magazin;
 import java.io.*;
 import java.util.Vector;
 
+import de.planspiel.cafe.Standort;
+
 public class Spiel {
 	/*
 	 * @author Pascal Pronobis
@@ -123,7 +125,7 @@ public class Spiel {
 				if(splitAktuelleEingabe[1].equals("München") ||
 						splitAktuelleEingabe[1].equals("Berlin") ||	
 						splitAktuelleEingabe[1].equals("Walldorf")){
-					//aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+					aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
 					//aktuellerSpieler.minimiereKapitalUm(Standort.getPreis(splitAktuelleEingabe[1]));
 				} else {
 					writer.println("Invalide Standortwahl.");
@@ -203,5 +205,15 @@ public class Spiel {
 		}
 		
 		return true;
+	}
+
+	private Standort findenStandort(String name) throws Exception {
+		for (int i = 0; i < spieler.holeStandortListe().size(); i++) {
+			Standort s = spieler.holeStandortListe().get(i);
+			if (s.holeName().toUpperCase().equals(name.toUpperCase())) {
+				return s;
+			}
+		}
+		throw new Exception();
 	}
 }
