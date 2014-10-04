@@ -55,9 +55,17 @@ public class Spieler {
 		
 	}
 
-	public void setStandort(Standort standort) {
-		this.standort = standort;
-		
-		
+	public void setStandort(String name) {
+		if(){
+			
+		} else if(){
+			
+		} else if(){
+			
+		}
+	}
+	
+	public void minimiereKapitalUm(double kapitalMinimierung){
+		kapital -= kapitalMinimierung;
 	}
 }

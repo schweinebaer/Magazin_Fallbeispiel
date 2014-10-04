@@ -19,7 +19,7 @@ public enum Standorttyp {
 	
 	private Standorttyp(double Magazinkosten,  int maxMitarbeiter){ 
 
-		this.magazinkosten = magazinkosten;;
+		this.magazinkosten = magazinkosten;
 		this.maxMitarbeiter = maxMitarbeiter;
 	}
 	

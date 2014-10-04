@@ -49,6 +49,18 @@ public abstract class Standort {
 		
 		return o;
 	}
+	
+	public static double getPreis(String name){
+		if(name.equals("München")){
+			return magazinkosten1;
+		} else if(name.equals("Berlin")){
+			return magazinkosten2;
+		} else if(name.equals("Walldorf")){
+			return magazinkosten3;
+		}
+		
+		return 0;
+	}
 
 	private void setMagazinkosten(double magazinkosten) {
 		this.magazinkosten = magazinkosten;
