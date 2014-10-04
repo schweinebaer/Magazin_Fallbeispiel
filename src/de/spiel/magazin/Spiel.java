@@ -98,7 +98,22 @@ public class Spiel {
 							if(splitAktuelleEingabe[1].equals("")){
 								simulieren(splitAktuelleEingabe[0], 0);
 							} else {
-								simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+								if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
+									//richtig machen!!!
+									if(aktuellerSpieler.getMagazin() == null){
+										if(splitAktuelleEingabe[1].equals("München") ||
+										   splitAktuelleEingabe[1].equals("Berlin") ||	
+										   splitAktuelleEingabe[1].equals("Walldorf")){
+											aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+										} else {
+											writer.println("Invalide Standortwahl.");
+										}
+									} else {
+										writer.println("Mehrere Standorte nicht erlaubt.");
+									}
+								} else {
+									simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+								}
 							}
 						}
 						
