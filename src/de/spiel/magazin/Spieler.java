@@ -2,11 +2,14 @@ package de.spiel.magazin;
 
 import java.util.Vector;
 
+import de.planspiel.cafe.Standort;
 import de.spiel.magazin.Bericht;
 import de.spiel.magazin.Kredit;
 import de.spiel.magazin.Magazin;
 
 public class Spieler {
+	private Standort standort;
+	private int mitarbeiter;
 	private String name;
 	private Magazin magazin;
 	private Vector<Kredit> kredite;
@@ -47,6 +50,12 @@ public class Spieler {
 	}
 	
 	public void simulieren(String art, double betrag){
+		
+	}
+
+	public void setStandort(Standort standort) {
+		this.standort = standort;
+		
 		
 	}
 }
