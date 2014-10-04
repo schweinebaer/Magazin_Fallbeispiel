@@ -72,7 +72,7 @@ public class Spiel {
 		}
 		
 		while(aktuelleRunde < maxRunde){
-			for(int i = 0; i < spieler.capacity(); i++){
+			for(int i = 0; i < spieler.size(); i++){
 				aktuellerSpieler = spieler.elementAt(i);
 				
 				if(aktuellerSpieler.getKapital() < 0.0){
@@ -254,6 +254,4 @@ public class Spiel {
 		
 		return true;
 	}
-
-
 }
