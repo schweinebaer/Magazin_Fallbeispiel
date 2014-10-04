@@ -1,8 +1,6 @@
 package de.spiel.magazin;
 
 import java.util.Vector;
-
-import de.planspiel.cafe.Standort;
 import de.spiel.magazin.Bericht;
 import de.spiel.magazin.Kredit;
 import de.spiel.magazin.Magazin;
