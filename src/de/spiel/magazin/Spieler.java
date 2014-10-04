@@ -39,6 +39,10 @@ public class Spieler {
 		
 	}
 	
+	public double getKapital(){
+		return kapital;
+	}
+	
 	public void ermittleEK(){
 		
 	}
