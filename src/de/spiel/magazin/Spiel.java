@@ -95,7 +95,7 @@ public class Spiel {
 							writer.println("Runde von " + aktuellerSpieler.getName() + "beendet.");
 							break;
 						} else {
-							if(splitAktuelleEingabe[1].equals("")){
+							if(splitAktuelleEingabe[1] == null){
 								simulieren(splitAktuelleEingabe[0], 0);
 							} else {
 								if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
@@ -143,7 +143,15 @@ public class Spiel {
 				writer.println("Falsche Eingabe.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
-			
+			for(int i = 1; i <= 3; i++){
+				Object[] o = Standort.getStandort(i);
+				writer.println("----- Standort " + i + " -----");
+				writer.println("Standort:               " + o[0]);
+				writer.println("Preis:                  " + o[1]);
+				writer.println("Kosten pro Runde:       " + o[2]);
+				writer.println("Max. Mitarbeiteranzahl: " + o[3]);
+				writer.println("-------------------------------");
+			}
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
 			if(aktuellerSpieler.getMagazin() == null){
 				if(splitAktuelleEingabe[1].equals("München") ||
