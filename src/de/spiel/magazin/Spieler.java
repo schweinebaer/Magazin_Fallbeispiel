@@ -1,6 +1,8 @@
 package de.spiel.magazin;
 
+import java.io.PrintWriter;
 import java.util.Vector;
+
 import de.spiel.magazin.Bericht;
 import de.spiel.magazin.Kredit;
 import de.spiel.magazin.Magazin;
@@ -14,9 +16,13 @@ public class Spieler {
 	private Vector<Bericht> berichte;
 	private double kapital;
 	private double ek;
+	private PrintWriter writer;
 	
-	public Spieler(String name){
+	public Spieler(String name, PrintWriter writer){
 		this.name = name;
+		this.writer = writer;
+		kredite = new Vector();
+		berichte = new Vector();
 	}
 	
 	public String getName(){
@@ -24,7 +30,11 @@ public class Spieler {
 	}
 
 	public Magazin getMagazin() {
-		return null;
+		if(magazin == null){
+			return null;
+		} else {
+			return magazin;
+		}
 	}
 	
 	public void setMagazin(String standort, Marktanteil marktanteil){
@@ -52,8 +62,8 @@ public class Spieler {
 		
 	}
 	
-	public void addBericht(){
-		berichte.add(new Bericht(this));
+	public void addBericht(Spieler s){
+		berichte.add(new Bericht(s, writer));
 	}
 	
 	public Bericht getBericht(int berichtnummer){

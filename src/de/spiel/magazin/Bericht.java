@@ -10,12 +10,20 @@ public class Bericht {
 	private double umsatz;
 	private double eigenkapital;
 	private double fremdkapital;
+	private PrintWriter writer;
 
-	public Bericht(Spieler s){
+	public Bericht(Spieler s, PrintWriter writer){
+		this.writer = writer;
 		spieler = s;
-		magazin = spieler.getMagazin();
-		standort = magazin.getStandort();
-		anzahlMitarbeiter = standort.getMitarbeiter()[1];
+		
+		try {
+			magazin = spieler.getMagazin();
+			standort = magazin.getStandort();
+			anzahlMitarbeiter = standort.getMitarbeiter()[1];
+		} catch (NullPointerException e){
+			this.writer.println("Noch kein Magazin eröffnet.");
+		}
+		
 		//umsatz
 		eigenkapital = spieler.getEK();
 		//fremdkapital = spieler.getFK();
@@ -36,6 +44,6 @@ public class Bericht {
 		writer.println("-> davon FK:                  ");
 		writer.println("Eigenwerbung:                 ");
 		writer.println("Fremdwerbung:                 ");
-		writer.println("------------------------------------");
+		writer.println("-----------------------------------------------");
 	}
 }

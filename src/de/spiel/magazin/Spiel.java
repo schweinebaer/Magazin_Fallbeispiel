@@ -49,7 +49,7 @@ public class Spiel {
 		
 		while(true){
 			if(splitAktuelleEingabe[0].equals("SPIELER_HINZUFUEGEN")){
-				Spieler einzelnerSpieler = new Spieler(splitAktuelleEingabe[1]);
+				Spieler einzelnerSpieler = new Spieler(splitAktuelleEingabe[1], writer);
 				spieler.add(einzelnerSpieler);
 				writer.println("Spieler " + splitAktuelleEingabe[1] + " hinzugefügt.");
 			} else if(splitAktuelleEingabe[0].equals("SPIELER_FERTIG")){
@@ -101,7 +101,7 @@ public class Spiel {
 										if(splitAktuelleEingabe[1].equals("München") ||
 										   splitAktuelleEingabe[1].equals("Berlin") ||	
 										   splitAktuelleEingabe[1].equals("Walldorf")){
-											aktuellerSpieler.setStandort(splitAktuelleEingabe[1]);
+											aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
 											writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
 										} else {
 											writer.println("Invalide Standortwahl.");
@@ -122,7 +122,7 @@ public class Spiel {
 					
 					if(splitAktuelleEingabe[0].equals("FERTIG")){
 						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
-						aktuellerSpieler.addBericht();
+						aktuellerSpieler.addBericht(aktuellerSpieler);
 					}
 				}
 			}
