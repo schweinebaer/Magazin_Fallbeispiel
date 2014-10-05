@@ -24,6 +24,9 @@ public class Spiel {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		writer = new PrintWriter(System.out, true);
 		
+		spieler.add(new Spieler("Pascal", writer));
+		spieler.add(new Spieler("Benni", writer));
+		
 		writer.println("Willkommen beim Planspiel!");
 		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein!");
 		
@@ -121,8 +124,10 @@ public class Spiel {
 					}
 					
 					if(splitAktuelleEingabe[0].equals("FERTIG")){
-						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
 						aktuellerSpieler.addBericht(aktuellerSpieler);
+						aktuellerSpieler.getBericht(aktuelleRunde).generiereAusgabe();
+						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
+						writer.println("-----------------------------------------------");
 					}
 				}
 			}
@@ -138,13 +143,13 @@ public class Spiel {
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){
 				if(aktuellerSpieler.getBericht(aktuelleRunde - 1) != null){
-					aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe(writer);
+					aktuellerSpieler.getBericht(aktuelleRunde - 1).generiereAusgabe();
 				} else {
 					writer.println("Es sind noch keine Berichte vorhanden.");
 				}
 			} else if(isNumeric(splitAktuelleEingabe[1]) && Integer.parseInt(splitAktuelleEingabe[1]) > 0){
 				if(aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1) != null){
-					aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe(writer);
+					aktuellerSpieler.getBericht(Integer.parseInt(splitAktuelleEingabe[1]) - 1).generiereAusgabe();
 				} else {
 					writer.println("Bericht mit der Nummer " + splitAktuelleEingabe[1] + " nicht vorhanden.");
 				}

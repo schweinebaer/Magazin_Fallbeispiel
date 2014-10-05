@@ -32,7 +32,8 @@ public class Standort {
 		this.magazinkosten = kosten;
 		this.maxMitarbeiter = maxMitarbeiter;
 		this.mitarbeiter = mitarbeiter;
-		//Angestellte noch initilisieren
+		//Angestellte noch richtig initilisieren --> Gehalt und Qualität ggf. schon in Standortpkt mit einbauen
+		angestellte = new Angestellte(mitarbeiter, 3000.0, 50.0);
 	}
 	
 	public static Object[] getStandort(int i){

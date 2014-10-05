@@ -6,7 +6,7 @@ public class Bericht {
 	private Spieler spieler;
 	private Magazin magazin;
 	private Standort standort;
-	private int anzahlMitarbeiter;
+	private int[] anzahlMitarbeiter;
 	private double umsatz;
 	private double eigenkapital;
 	private double fremdkapital;
@@ -19,7 +19,7 @@ public class Bericht {
 		try {
 			magazin = spieler.getMagazin();
 			standort = magazin.getStandort();
-			anzahlMitarbeiter = standort.getMitarbeiter()[1];
+			anzahlMitarbeiter = standort.getMitarbeiter();
 		} catch (NullPointerException e){
 			this.writer.println("Noch kein Magazin eröffnet.");
 		}
@@ -29,13 +29,13 @@ public class Bericht {
 		//fremdkapital = spieler.getFK();
 	}
 	
-	public void generiereAusgabe(PrintWriter writer){
+	public void generiereAusgabe(){
 		writer.println("------ Bericht für " + spieler.getName() + " ------");
 		writer.println("Standort:           	   	  " + standort.getOrt());
-		writer.println("Anzahl Mitarbeiter gesamt:    " + standort.getMitarbeiter()[0]);
-		writer.println("Anzahl Mitarbeiter Bereich A: " + standort.getMitarbeiter()[1]);
-		writer.println("Anzahl Mitarbeiter Bereich B: " + standort.getMitarbeiter()[2]);
-		writer.println("Anzahl Mitarbeiter Bereich C: " + standort.getMitarbeiter()[3]);
+		writer.println("Anzahl Mitarbeiter gesamt:    " + (anzahlMitarbeiter[0] + anzahlMitarbeiter[1] + anzahlMitarbeiter[2]));
+		writer.println("Anzahl Mitarbeiter Bereich A: " + anzahlMitarbeiter[0]);
+		writer.println("Anzahl Mitarbeiter Bereich B: " + anzahlMitarbeiter[1]);
+		writer.println("Anzahl Mitarbeiter Bereich C: " + anzahlMitarbeiter[2]);
 		writer.println("Umsatz:                       ");
 		writer.println("-> davon Gewinn:              ");
 		writer.println("-> davon Kosten:              ");
