@@ -121,6 +121,8 @@ public class Spiel {
 						aktuelleEingabe = reader.readLine();
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+						
+						//falls fertig und noch kein Magazin eröffnet --> Fehlerhandling
 					}
 					
 					if(splitAktuelleEingabe[0].equals("FERTIG")){
