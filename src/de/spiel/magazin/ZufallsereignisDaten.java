@@ -65,12 +65,12 @@ public class ZufallsereignisDaten {
 	public Object[] getEreignis(int random){
 		Object[] ereignis = new Object[4];
 		
-		if(random == 10){
+		if((random - 1) == 9){
 			ereignis[0] = daten[random - 1][0];
 			ereignis[1] = daten[random - 1][1];
 			ereignis[2] = daten[random - 1][2];
 			ereignis[3] = daten[random - 1][3];
-		} else if((random > 0 && random < 10) || (random > 10 && random < 15)){
+		} else if(((random - 1) > 0 && (random - 1) < 9) || ((random - 1) > 9 && (random - 1) < 14)){
 			ereignis[0] = daten[random - 1][0];
 			ereignis[1] = daten[random - 1][1];
 			ereignis[2] = daten[random - 1][2];

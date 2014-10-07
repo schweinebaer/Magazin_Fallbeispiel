@@ -4,7 +4,7 @@ public class Zufallsereignis {
 	private static ZufallsereignisDaten daten = new ZufallsereignisDaten(); 
 		
 	public static Object[] berechneZufallsEreignis(){
-		int ereignisRandomZahl = (int) (Math.random() * 14);
+		int ereignisRandomZahl = (int) (Math.random() * (14 - 1) + 1);
 		
 		return daten.getEreignis(ereignisRandomZahl);
 	}

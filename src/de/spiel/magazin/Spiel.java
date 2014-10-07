@@ -89,7 +89,9 @@ public class Spiel {
 				Kredit.updateZinsatz(-1 * (double) zufallsereignis[2]);
 			}
 			
-			if(aktuelleRunde >= 1 && (zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN"))){
+			if(aktuelleRunde >= 1){
+				//evtl. noch folgende Nebenbedingung
+				// && (zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN"))
 				writer.println("Der derzeitige Zinssatz für Kredite für alle Spieler liegt bei " + Kredit.getZinsatzNeuaufnahme() + "%.");
 				writer.println("--------------------------------------------------");				
 			}
@@ -235,7 +237,7 @@ public class Spiel {
 			} else {
 				writer.println("Es kann kein Kredit mit einem negativen oder 0€ - Betrag getilgt werden.");
 			}			
-		} else if(splitAktuelleEingabe[0].equals("WERBUNG SCHALTEN")){
+		} else if(splitAktuelleEingabe[0].equals("WERBUNG_SCHALTEN")){
 			//nochmal überprüfen!
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
 				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
