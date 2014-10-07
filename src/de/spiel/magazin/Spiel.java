@@ -96,12 +96,13 @@ public class Spiel {
 			
 			for(int i = 0; i < spieler.size(); i++){
 				//genaue Berechnungen durchführen!!
-				zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
-				writer.println(zufallsereignis[0]);
-				
-				while(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
+				if(aktuelleRunde > 1){
 					zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
-					writer.println(zufallsereignis[0]);
+					
+					while(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
+						zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
+						writer.println(zufallsereignis[0]);
+					}
 				}
 				
 				aktuellerSpieler = spieler.elementAt(i);
