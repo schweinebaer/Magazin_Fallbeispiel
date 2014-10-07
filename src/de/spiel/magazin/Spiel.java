@@ -75,11 +75,34 @@ public class Spiel {
 			splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 		}
 		
+		writer.println("Der derzeitige Zinssatz für Kredite für alle Spieler liegt bei " + Kredit.getZinsatzNeuaufnahme() + "%.");
+		writer.println("--------------------------------------------------");		
+		
 		while(aktuelleRunde < maxRunde){
+			zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
+			
+			if(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN")){
+				writer.println(zufallsereignis[0]);
+				Kredit.updateZinsatz((double) zufallsereignis[2]);
+			} else if(zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
+				writer.println(zufallsereignis[0]);
+				Kredit.updateZinsatz(-1 * (double) zufallsereignis[2]);
+			}
+			
+			if(aktuelleRunde >= 1 && (zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN"))){
+				writer.println("Der derzeitige Zinssatz für Kredite für alle Spieler liegt bei " + Kredit.getZinsatzNeuaufnahme() + "%.");
+				writer.println("--------------------------------------------------");				
+			}
+			
 			for(int i = 0; i < spieler.size(); i++){
 				//genaue Berechnungen durchführen!!
 				zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
 				writer.println(zufallsereignis[0]);
+				
+				while(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
+					zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
+					writer.println(zufallsereignis[0]);
+				}
 				
 				aktuellerSpieler = spieler.elementAt(i);
 				
@@ -93,6 +116,13 @@ public class Spiel {
 					aktuelleEingabe = reader.readLine();
 					splitAktuelleEingabe = aktuelleEingabe.split(" ");
 					splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+					
+					while(splitAktuelleEingabe[0].equals("FERTIG") && aktuellerSpieler.getMagazin() == null){
+						writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
+						aktuelleEingabe = reader.readLine();
+						splitAktuelleEingabe = aktuelleEingabe.split(" ");
+						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+					}
 					
 					while(!splitAktuelleEingabe[0].equals("FERTIG")){					
 						if(splitAktuelleEingabe[0].equals("HILFE")){
@@ -127,7 +157,12 @@ public class Spiel {
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 						
-						//falls fertig und noch kein Magazin eröffnet --> Fehlerhandling
+						while(splitAktuelleEingabe[0].equals("FERTIG") && aktuellerSpieler.getMagazin() == null){
+							writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
+							aktuelleEingabe = reader.readLine();
+							splitAktuelleEingabe = aktuelleEingabe.split(" ");
+							splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
+						}
 					}
 					
 					if(splitAktuelleEingabe[0].equals("FERTIG")){

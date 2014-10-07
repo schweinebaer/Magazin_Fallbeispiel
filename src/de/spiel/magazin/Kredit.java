@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 public class Kredit {
 	private double kreditbetrag;
 	private double zinssatz;
+	private static double zinssatzNeuaufnahme = 5.0;
 	
 	public Kredit(double betrag, double zinssatz){
 		
@@ -25,5 +26,13 @@ public class Kredit {
 	
 	public double getBetrag(){
 		return kreditbetrag;
+	}
+	
+	public static void updateZinsatz(double update){
+		zinssatzNeuaufnahme += update;
+	}
+	
+	public static double getZinsatzNeuaufnahme(){
+		return zinssatzNeuaufnahme;
 	}
 }
