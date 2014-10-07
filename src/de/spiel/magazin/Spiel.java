@@ -17,6 +17,7 @@ public class Spiel {
 	private static PrintWriter writer;
 	private static String aktuelleEingabe;
 	private static String[] splitAktuelleEingabe;
+	private static Object[] zufallsereignis;
 	
 	public static void main(String[] args) throws IOException {
 		spieler = new Vector();
@@ -76,6 +77,9 @@ public class Spiel {
 		
 		while(aktuelleRunde < maxRunde){
 			for(int i = 0; i < spieler.size(); i++){
+				zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
+				writer.println(zufallsereignis[0]);
+				
 				aktuellerSpieler = spieler.elementAt(i);
 				
 				if(aktuellerSpieler.getKapital() < 0.0){
