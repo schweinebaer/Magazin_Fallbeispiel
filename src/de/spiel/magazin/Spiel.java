@@ -77,6 +77,7 @@ public class Spiel {
 		
 		while(aktuelleRunde < maxRunde){
 			for(int i = 0; i < spieler.size(); i++){
+				//genaue Berechnungen durchführen!!
 				zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
 				writer.println(zufallsereignis[0]);
 				
