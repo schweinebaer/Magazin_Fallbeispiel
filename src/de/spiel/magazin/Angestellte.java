@@ -6,6 +6,7 @@ public class Angestellte {
 	 */
 	
 	private int anzahlGesamt;
+	//HR und Journalisten --> Benni nochmal wegen genauer Aufspaltung nachfragen
 	private int anzahlBereichA;
 	private int anzahlBereichB;
 	private int anzahlBereichC;

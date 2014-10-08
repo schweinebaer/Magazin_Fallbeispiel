@@ -1,6 +1,34 @@
 package de.spiel.magazin;
 
 public class StandortDaten {
+	/*
+	 * Was ist was (genau diese Reihenfolge):
+	 * String standort
+	 * double preis
+	 * double magazinkosten
+	 * int maxMitarbeiter
+	 * int startMitarbeiter
+	 * double startGehaltMitarbeiter
+	 * double startKostenMitarbeiter
+	 * int maxAuflage
+	 * int gedruckteMagazine
+	 * int abgesetzteMagazine
+	 * double kostenDruck
+	 * int fwInSeitenProHeft
+	 * int maxSeitenFW
+	 * int ewInAktionen
+	 * double kostenEW
+	 * int maxEWAktionen
+	 * double preisProHeft
+	 * double maxPreisProHeft
+	 * double kostenGesamt
+	 * double erloesVerkauf
+	 * double erloesFW
+	 * double erloesGesamt
+	 * double umsatz
+	 * double kapital
+	 */
+	
 	private final Object[][] daten = new Object[4][24];
 
 	public StandortDaten(){
@@ -105,16 +133,20 @@ public class StandortDaten {
 		daten[3][23] = 3600000.0;
 	}
 	
-	public Object[] getStandorte(String ort){
+	public Object[] getStandorte(int i){
 		Object[] standort = new Standort[24];
 		
-		if(ort.equals("München")){
+		if(i == 1){
+			//München
 			standort = daten[0];
-		} else if(ort.equals("Berlin")){
+		} else if(i == 2){
+			//Berlin
 			standort = daten[1];
-		} else if(ort.equals("Walldorf")){
+		} else if(i == 3){
+			//Walldorf
 			standort = daten[2];
-		} else if(ort.equals("Bonn")){
+		} else if(i == 3){
+			//Bonn
 			standort = daten[3];
 		} else {
 			//ignore
