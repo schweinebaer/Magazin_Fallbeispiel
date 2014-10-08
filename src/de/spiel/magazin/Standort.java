@@ -18,7 +18,7 @@ public class Standort {
 	private final static int fwInSeitenProHeft1 = 30;
 	private final static int maxSeitenFW1 = 150;
 	private final static int ewInAktionen1 = 7;
-	private final static double kostenEW1 = 70000;
+	private final static double kostenEW1 = 70000.0;
 	private final static int maxEWAktionen1 = 20;
 	private final static double preisProHeft1 = 4.0;
 	private final static double maxPreisProHeft1 = 8.0;
