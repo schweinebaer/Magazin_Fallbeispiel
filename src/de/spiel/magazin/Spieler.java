@@ -98,7 +98,7 @@ public class Spieler {
 		return standort;
 	}
 	
-	public void minimiereKapitalUm(double kapitalMinimierung){
-		kapital -= kapitalMinimierung;
+	public void minimiereKapitalUm(double kapitalMinderung){
+		kapital -= kapitalMinderung;
 	}
 }
