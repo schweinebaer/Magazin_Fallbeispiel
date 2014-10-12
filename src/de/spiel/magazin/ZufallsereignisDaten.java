@@ -76,6 +76,7 @@ public class ZufallsereignisDaten {
 			ereignis[2] = daten[random - 1][2];
 		} else {
 			//ignore
+			ereignis[0] = "WRONG_RANDOM";
 		}
 		
 		return ereignis;
