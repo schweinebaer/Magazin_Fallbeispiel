@@ -7,8 +7,9 @@ public class Kredit {
 	private double zinssatz;
 	private static double zinssatzNeuaufnahme = 5.0;
 	
-	public Kredit(double betrag, double zinssatz){
-		
+	public Kredit(double betrag){
+		kreditbetrag = betrag;
+		zinssatz = zinssatzNeuaufnahme;
 	}
 	
 	public void ausgabeKonditionen(PrintWriter writer){

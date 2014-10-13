@@ -26,7 +26,7 @@ public class Angestellte {
 		
 	}
 	
-	public void einstellten(int anzahl){
+	public void einstellen(int anzahl){
 		anzahlGesamt += anzahl;
 		anzahlBereichA += (int) anzahl * 2/4;
 		anzahlBereichB += (int) anzahl * 1/4;

@@ -73,6 +73,13 @@ public class Standort {
 	
 	public void simulieren(String art, double betrag){
 		//einstellen, entlassen, schulen etc.
+		if(art.equals("MITARBEITER_EINSTELLEN")){
+			angestellte.einstellen((int) betrag);
+		} else if(art.equals("MITARBEITER_ENTLASSEN")){
+			angestellte.entlassen((int) betrag); 
+		} else {
+			//ignore
+		}
 	}
 
 	public int getMaxMitarbeiter(int maxMitabeiter) {

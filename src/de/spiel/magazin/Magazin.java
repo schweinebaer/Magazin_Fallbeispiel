@@ -12,29 +12,13 @@ public class Magazin {
 	private Werbung fremdwerbung;
 	private Marktanteil marktanteil;
 	private int auflage;
-	private int mitarbeiter;
-	private int mitarbeiterbeginn;
-	private int mitarbeiterfrei;
 	private Erlös erlös;
 	private Kosten kosten;
 	private Gewinn gewinn;
 
 	public Magazin(Standort standort, Marktanteil marktanteil) {
 		this.standort = standort;
-		setMitarbeiter(0);
-		aktuellerMitarbeiterstand();
-	}
-
-	private void aktuellerMitarbeiterstand() {
-		this.setMitarbeiter(this.getStandort().getMaxMitarbeiter(this.getMitarbeiter()));
-		mitarbeiterbeginn = mitarbeiterfrei;
-		System.out.println(mitarbeiter);
-		System.out.println(mitarbeiterbeginn);
-		System.out.println(mitarbeiterfrei);
-	}
-
-	private void setMitarbeiter(int i) {
-		
+		this.marktanteil = marktanteil;
 	}
 	
 	public Standort getStandort() {
@@ -57,11 +41,21 @@ public class Magazin {
 		
 	}
 	
-	public int getMitarbeiter(){
-		return mitarbeiter;
-	}
-
-	public void simulieren(String art, double Betrag){
+	private void aktualisiereWerte(){
 		
+	}
+	
+	public void simulieren(String art, double betrag){
+		if(art.equals("WERBUNG_SCHALTEN")){
+			
+		} else if(art.equals("MITARBEITER_EINSTELLEN")){
+			standort.simulieren(art, betrag);
+		} else if(art.equals("MITARBEITER_ENTLASSEN")){
+			standort.simulieren(art, betrag);
+		} else if(art.equals("VERKAUFSPREIS_SETZEN")){
+			
+		} else {
+			//ignore
+		}
 	}
 }

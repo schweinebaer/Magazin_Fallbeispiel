@@ -33,7 +33,7 @@ public class Spiel {
 		
 		aktuelleEingabe = reader.readLine();
 		
-		while(!isNumeric(aktuelleEingabe)){
+		while(!isNumeric(aktuelleEingabe) || Integer.parseInt(aktuelleEingabe) < 5){
 			aktuelleEingabe.toUpperCase();
 			
 			if(aktuelleEingabe.equals("BEENDEN")){
@@ -81,10 +81,10 @@ public class Spiel {
 		while(aktuelleRunde < maxRunde){
 			zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
 			
-			if(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN")){
+			if(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 1){
 				writer.println(zufallsereignis[0]);
 				Kredit.updateZinsatz((double) zufallsereignis[2]);
-			} else if(zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
+			} else if(zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN") && aktuelleRunde > 1){
 				writer.println(zufallsereignis[0]);
 				Kredit.updateZinsatz(-1 * (double) zufallsereignis[2]);
 			}
@@ -103,8 +103,10 @@ public class Spiel {
 					
 					while(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
 						zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
-						writer.println(zufallsereignis[0]);
 					}
+					
+					writer.println(zufallsereignis[0]);
+					simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2]);
 				}
 				
 				aktuellerSpieler = spieler.elementAt(i);
@@ -184,7 +186,35 @@ public class Spiel {
 		writer.close();
 	}
 	
+	private static void simulierenZufall(String art, double Betrag){
+		//Zufallsereignisse
+		if(art.equals("ABSATZPLUS_EINMALIG")){
+			
+		} else if(art.equals("ABSATZMINUS_EINMALIG")){
+			
+		} else if(art.equals("ROHSTOFFPREISE_ERHOEHEN")){
+			
+		} else if(art.equals("ROHSTOFFPREISE_SENKEN")){
+			
+		} else if(art.equals("SPENDE_BEKOMMEN")){
+			
+		} else if(art.equals("RECHTSSTREIT")){
+		
+		} else if(art.equals("TARIFVERHANDLUNG")){
+			
+		} else if(art.equals("QUALITAETSEINBRUCH")){
+			
+		} else if(art.equals("JOURNALISTENPREIS")){
+			
+		} else if(art.equals("WERBEEINNAHMEN_MINDERUNG")){
+			
+		} else {
+			//ignore
+		}
+	}
+	
 	private static void simulieren(String art, double Betrag){
+		//normale Spielereignisse durch Eingabe des Spielers
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){
 				if(aktuellerSpieler.getBericht(aktuelleRunde - 1) != null){
@@ -240,24 +270,24 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("WERBUNG_SCHALTEN")){
 			//nochmal überprüfen!
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
 				writer.println("Es darf keine Werbung mit einem Betrag von 0€ oder weniger geschaltet werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
 				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter eingestellt werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_ENTLASSEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 			} else {
 				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter entlassen werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
-			
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 		} else {
 			writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 		}
