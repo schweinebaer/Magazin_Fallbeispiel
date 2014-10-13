@@ -61,7 +61,7 @@ public class StandortDaten {
 		daten[1][1] = 200000.0;
 		daten[1][2] = 2000.0;
 		daten[1][3] = 2000;
-		daten[1][4] = 400;
+		daten[1][4] = 500;
 		daten[1][5] = 3100.0;
 		daten[1][6] = 1240000.0;
 		daten[1][7] = 400000;
@@ -86,7 +86,7 @@ public class StandortDaten {
 		daten[2][1] = 500000.0;
 		daten[2][2] = 500.0;
 		daten[2][3] = 2000;
-		daten[2][4] = 600;
+		daten[2][4] = 500;
 		daten[2][5] = 3100.0;
 		daten[2][6] = 1860000.0;
 		daten[2][7] = 600000;
