@@ -29,7 +29,7 @@ public class StandortDaten {
 	 * 23: double kapital
 	 */
 	
-	private final Object[][] daten = new Object[4][24];
+	private final static Object[][] daten = new Object[4][24];
 
 	public StandortDaten(){
 		daten[0][0] = "München";
@@ -145,7 +145,7 @@ public class StandortDaten {
 		} else if(i == 3){
 			//Walldorf
 			standort = daten[2];
-		} else if(i == 3){
+		} else if(i == 4){
 			//Bonn
 			standort = daten[3];
 		} else {

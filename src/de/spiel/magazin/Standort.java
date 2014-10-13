@@ -29,10 +29,9 @@ public class Standort {
 	private double erloesGesamt;
 	private double umsatz;
 	private double kapital;
-	private static StandortDaten anfangswerteStandorte;
+	private static StandortDaten anfangswerteStandorte = new StandortDaten();
 	
 	public Standort(String name, double preis, double kosten, int maxMitarbeiter, int mitarbeiter) {
-		anfangswerteStandorte = new StandortDaten();
 		maxPreisProHeft = 8.0;
 		
 		this.name = name;

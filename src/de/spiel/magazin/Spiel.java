@@ -234,7 +234,7 @@ public class Spiel {
 				writer.println("Falsche Eingabe.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
-			for(int i = 1; i <= 3; i++){
+			for(int i = 1; i <= 4; i++){
 				Object[] o = Standort.getStandort(i);
 				writer.println("----- Standort " + i + " -----");
 				writer.println("Standort:               " + o[0]);

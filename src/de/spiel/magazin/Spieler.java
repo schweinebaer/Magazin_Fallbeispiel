@@ -39,6 +39,8 @@ public class Spieler {
 	
 	public void setMagazin(String standort, Marktanteil marktanteil){
 		Object[] o;
+		//Standort Daten durch Standortklasse abfragen und dort richtig einpflegen
+		//nicht schon hier Daten abfragen und übergeben
 		
 		if(standort.equals("München")){
 			o = Standort.getStandort(1);
