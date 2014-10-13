@@ -3,30 +3,30 @@ package de.spiel.magazin;
 public class StandortDaten {
 	/*
 	 * Was ist was (genau diese Reihenfolge):
-	 * String standort
-	 * double preis
-	 * double magazinkosten
-	 * int maxMitarbeiter
-	 * int startMitarbeiter
-	 * double startGehaltMitarbeiter
-	 * double startKostenMitarbeiter
-	 * int maxAuflage
-	 * int gedruckteMagazine
-	 * int abgesetzteMagazine
-	 * double kostenDruck
-	 * int fwInSeitenProHeft
-	 * int maxSeitenFW
-	 * int ewInAktionen
-	 * double kostenEW
-	 * int maxEWAktionen
-	 * double preisProHeft
-	 * double maxPreisProHeft
-	 * double kostenGesamt
-	 * double erloesVerkauf
-	 * double erloesFW
-	 * double erloesGesamt
-	 * double umsatz
-	 * double kapital
+	 * 0: String standort
+	 * 1: double preis
+	 * 2: double magazinkosten
+	 * 3: int maxMitarbeiter
+	 * 4: int startMitarbeiter
+	 * 5: double startGehaltMitarbeiter
+	 * 6: double startKostenMitarbeiter
+	 * 7: int maxAuflage
+	 * 8: int gedruckteMagazine
+	 * 9: int abgesetzteMagazine
+	 * 10: double kostenDruck
+	 * 11: int fwInSeitenProHeft
+	 * 12: int maxSeitenFW
+	 * 13: int ewInAktionen
+	 * 14: double kostenEW
+	 * 15: int maxEWAktionen
+	 * 16: double preisProHeft
+	 * 17: double maxPreisProHeft
+	 * 18: double kostenGesamt
+	 * 19: double erloesVerkauf
+	 * 20: double erloesFW
+	 * 21: double erloesGesamt
+	 * 22: double umsatz
+	 * 23: double kapital
 	 */
 	
 	private final Object[][] daten = new Object[4][24];
@@ -37,14 +37,14 @@ public class StandortDaten {
 		daten[0][2] = 5000.0;
 		daten[0][3] = 2000;
 		daten[0][4] = 500;
-		daten[0][5] = 3100.0;
-		daten[0][6] = 1550000.0;
+		daten[0][5] = 3200.0;
+		daten[0][6] = 1600000.0;
 		daten[0][7] = 500000;
 		daten[0][8] = 500000;
 		daten[0][9] = 125000;
 		daten[0][10] = 65000.0;
-		daten[0][11] = 30;
-		daten[0][12] = 150;
+		daten[0][11] = 16;
+		daten[0][12] = 60;
 		daten[0][13] = 7;
 		daten[0][14] = 70000.0;
 		daten[0][15] = 20;
@@ -62,14 +62,14 @@ public class StandortDaten {
 		daten[1][2] = 2000.0;
 		daten[1][3] = 2000;
 		daten[1][4] = 500;
-		daten[1][5] = 3100.0;
-		daten[1][6] = 1240000.0;
+		daten[1][5] = 3150.0;
+		daten[1][6] = 1575000.0;
 		daten[1][7] = 400000;
 		daten[1][8] = 400000;
 		daten[1][9] = 2566666;
 		daten[1][10] = 51333.2;
-		daten[1][11] = 100;
-		daten[1][12] = 150;
+		daten[1][11] = 16;
+		daten[1][12] = 60;
 		daten[1][13] = 5;
 		daten[1][14] = 50000.0;
 		daten[1][15] = 20;
@@ -88,13 +88,13 @@ public class StandortDaten {
 		daten[2][3] = 2000;
 		daten[2][4] = 500;
 		daten[2][5] = 3100.0;
-		daten[2][6] = 1860000.0;
+		daten[2][6] = 1550000.0;
 		daten[2][7] = 600000;
 		daten[2][8] = 600000;
 		daten[2][9] = 430000;
 		daten[2][10] = 86000.0;
-		daten[2][11] = 50;
-		daten[2][12] = 150;
+		daten[2][11] = 17;
+		daten[2][12] = 60;
 		daten[2][13] = 6;
 		daten[2][14] = 60000.0;
 		daten[2][15] = 20;
@@ -112,14 +112,14 @@ public class StandortDaten {
 		daten[3][2] = 500.0;
 		daten[3][3] = 2000;
 		daten[3][4] = 500;
-		daten[3][5] = 3100.0;
-		daten[3][6] = 1550000.0;
+		daten[3][5] = 3000.0;
+		daten[3][6] = 1500000.0;
 		daten[3][7] = 500000;
 		daten[3][8] = 500000;
 		daten[3][9] = 387500;
 		daten[3][10] = 775000;
-		daten[3][11] = 60;
-		daten[3][12] = 150;
+		daten[3][11] = 16;
+		daten[3][12] = 60;
 		daten[3][13] = 8;
 		daten[3][14] = 80000.0;
 		daten[3][15] = 20;
