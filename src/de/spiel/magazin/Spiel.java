@@ -288,6 +288,8 @@ public class Spiel {
 			}
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
 			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+		} else if(splitAktuelleEingabe[0].equals("AUFLAGE_SETZEN")){
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 		} else {
 			writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 		}

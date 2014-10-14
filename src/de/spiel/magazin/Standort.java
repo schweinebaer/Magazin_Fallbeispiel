@@ -30,6 +30,7 @@ public class Standort {
 	private double umsatz;
 	private double kapital;
 	private static StandortDaten anfangswerteStandorte = new StandortDaten();
+	private static Magazin magazin;
 	
 	public Standort(String name, double preis, double kosten, int maxMitarbeiter, int mitarbeiter) {
 		maxPreisProHeft = 8.0;
@@ -41,6 +42,15 @@ public class Standort {
 		this.mitarbeiter = mitarbeiter;
 		//Angestellte noch richtig initilisieren --> Gehalt und Qualität ggf. schon in Standortpkt mit einbauen
 		angestellte = new Angestellte(mitarbeiter, 3000.0, 50.0);
+	}
+	
+	public Standort(int standort, Magazin m){
+		maxPreisProHeft = 8.0;
+		magazin = m;
+		
+		Object[] o = anfangswerteStandorte.getStandorte(standort);
+		magazin.setStartwerte(o);
+		
 	}
 	
 	public static Object[] getStandort(int i){

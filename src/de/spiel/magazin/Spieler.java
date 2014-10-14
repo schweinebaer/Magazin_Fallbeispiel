@@ -23,6 +23,7 @@ public class Spieler {
 		this.writer = writer;
 		kredite = new Vector();
 		berichte = new Vector();
+		kapital = 5000000.0;
 	}
 	
 	public String getName(){
