@@ -55,4 +55,16 @@ public class Angestellte {
 	public double getQualitaet(){
 		return qualitaet;
 	}
+	
+	public void simulieren(String art, double betrag){
+		if(art.equals("MITARBEITER_EINSTELLEN")){
+			
+		} else if(art.equals("MITARBEITER_ENTLASSEN")){
+			
+		} else if(art.equals("MITARBEITER_SCHULEN")){
+			
+		} else {
+			
+		}
+	}
 }

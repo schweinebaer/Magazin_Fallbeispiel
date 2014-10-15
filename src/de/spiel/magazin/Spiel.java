@@ -236,12 +236,7 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("STANDORT")){
 			for(int i = 1; i <= 4; i++){
 				Object[] o = Standort.getStandort(i);
-				writer.println("----- Standort " + i + " -----");
-				writer.println("Standort:               " + o[0]);
-				writer.println("Preis:                  " + o[1]);
-				writer.println("Kosten pro Runde:       " + o[2]);
-				writer.println("Max. Mitarbeiteranzahl: " + o[3]);
-				writer.println("-------------------------------");
+				StandortAusgabe.ausgabeStandortStartwerte(o, i, writer);
 			}
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
 			if(aktuellerSpieler.getMagazin() == null){
@@ -313,7 +308,7 @@ public class Spiel {
 			writer.println("MAGAZIN_EROEFFNEN standortName ------------------------ Erzeugt ein Magazin am angegebenen Standort mit der entsprechend Mitarbeiteranzahl");
 			writer.println("KREDIT_AUFNEHMEN betrag ------------------------------- Nimmt einen Kredit in der angegebenen Höhe auf");
 			writer.println("KREDIT_TILGEN betrag ---------------------------------- Tilgt einen Kredit in der angegebenen Höhe");
-			writer.println("WERBUNG SCHALTEN betrag ------------------------------- Schaltet Werbung für das Magazin");
+			writer.println("WERBUNG_SCHALTEN betrag ------------------------------- Schaltet Werbung für das Magazin");
 			writer.println("MITARBEITER_EINSTELLEN mitarbeiterAnzahl -------------- Stellt mitarbeiterAnzahl Mitarbeiter im Magazin ein");
 			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");

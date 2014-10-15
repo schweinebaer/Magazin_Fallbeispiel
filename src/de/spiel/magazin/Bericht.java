@@ -19,7 +19,7 @@ public class Bericht {
 		try {
 			magazin = spieler.getMagazin();
 			standort = magazin.getStandort();
-			anzahlMitarbeiter = standort.getMitarbeiter();
+			anzahlMitarbeiter = magazin.getMitarbeiter();
 		} catch (NullPointerException e){
 			this.writer.println("Noch kein Magazin eröffnet.");
 		}
@@ -30,6 +30,8 @@ public class Bericht {
 	}
 	
 	public void generiereAusgabe(){
+		Object[] o = magazin.getAktuelleDaten();
+		
 		writer.println("------ Bericht für " + spieler.getName() + " ------");
 		writer.println("Standort:           	   	  " + standort.getOrt());
 		writer.println("Anzahl Mitarbeiter gesamt:    " + (anzahlMitarbeiter[0] + anzahlMitarbeiter[1] + anzahlMitarbeiter[2]));

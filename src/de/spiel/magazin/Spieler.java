@@ -40,18 +40,19 @@ public class Spieler {
 	
 	public void setMagazin(String standort, Marktanteil marktanteil){
 		Object[] o;
-		//Standort Daten durch Standortklasse abfragen und dort richtig einpflegen
-		//nicht schon hier Daten abfragen und übergeben
 		
 		if(standort.equals("München")){
 			o = Standort.getStandort(1);
-			magazin = new Magazin(new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 200), marktanteil);
+			magazin = new Magazin(new Standort(1), o, marktanteil);
 		} else if(standort.equals("Berlin")){
 			o = Standort.getStandort(2);
-			magazin = new Magazin(new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 100), marktanteil);
+			magazin = new Magazin(new Standort(2), o, marktanteil);
 		} else if(standort.equals("Walldorf")){
 			o = Standort.getStandort(3);
-			magazin = new Magazin(new Standort((String) o[0], (double) o[1], (double) o[2], (int) o[3], 50), marktanteil);
+			magazin = new Magazin(new Standort(3), o, marktanteil);
+		} else if(standort.equals("Bonn")){
+			o = Standort.getStandort(4);
+			magazin = new Magazin(new Standort(4), o, marktanteil);
 		}
 	}
 	

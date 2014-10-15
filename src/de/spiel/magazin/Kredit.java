@@ -3,6 +3,7 @@ package de.spiel.magazin;
 import java.io.PrintWriter;
 
 public class Kredit {
+	// noch einbauen: FK nicht mehr als 300% des EK sein
 	private double kreditbetrag;
 	private double zinssatz;
 	private static double zinssatzNeuaufnahme = 5.0;
