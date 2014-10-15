@@ -309,8 +309,10 @@ public class Spiel {
 			writer.println("KREDIT_AUFNEHMEN betrag ------------------------------- Nimmt einen Kredit in der angegebenen Höhe auf");
 			writer.println("KREDIT_TILGEN betrag ---------------------------------- Tilgt einen Kredit in der angegebenen Höhe");
 			writer.println("WERBUNG_SCHALTEN betrag ------------------------------- Schaltet Werbung für das Magazin");
+			writer.println("WERBUNG_MAGAZIN anteil -------------------------------- Der Werbeanteil im Magazin wird auf anteil Seiten gesetzt");
 			writer.println("MITARBEITER_EINSTELLEN mitarbeiterAnzahl -------------- Stellt mitarbeiterAnzahl Mitarbeiter im Magazin ein");
 			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
+			writer.println("MITARBEITER_SCHULEN investitionsBetrag ---------------- Gegebener Investitionbetrag wird in Schulungen des Personals gesteckt");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
 			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
 			writer.println("FERTIG ------------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
