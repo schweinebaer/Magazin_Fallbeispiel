@@ -13,13 +13,13 @@ public class Angestellte {
 	private double gehalt;
 	private double qualitaet;
 	
-	public Angestellte(int ag, double g, double q){
-		anzahlGesamt = ag;
-		anzahlBereichA = (int) ag * 2/4;
-		anzahlBereichB = (int) ag * 1/4;
-		anzahlBereichC = (int) ag * 1/4;
-		gehalt = g;
-		qualitaet = q;
+	public Angestellte(int anzahlGesamt, double gehalt, double qualitaet){
+		this.anzahlGesamt = anzahlGesamt;
+		anzahlBereichA = (int) anzahlGesamt * 2/4;
+		anzahlBereichB = (int) anzahlGesamt * 1/4;
+		anzahlBereichC = (int) anzahlGesamt * 1/4;
+		this.gehalt = gehalt;
+		this.qualitaet = qualitaet;
 	}
 	
 	public void schulen(double investition){

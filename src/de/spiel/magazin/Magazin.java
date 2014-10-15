@@ -12,27 +12,28 @@ public class Magazin {
 	private Werbung fremdwerbung;
 	private Marktanteil marktanteil;
 	private int auflage;
-	private Erlös erlös;
+	private Erlös erloes;
 	private Kosten kosten;
 	private Gewinn gewinn;
+	private Umsatz umsatzMagazin;
 	
 	private double magazinkosten;
-	private int maxMitarbeiter;
+	private final int maxMitarbeiter;
 	private int mitarbeiter;
 	private double gehalt;
 	private double kostenMitarbeiter;
 	private Angestellte angestellte;
-	private int maxAuflage;
+	private final int maxAuflage;
 	private int gedruckteMagazine;
 	private int abgesetzteMenge;
 	private double kostenDruck;
 	private int fwInSeitenProHeft;
-	private int maxSeitenFW;
+	private final int maxSeitenFW;
 	private int ewInAktionen;
 	private double kostenEW;
-	private int maxEWAktionen;
+	private final int maxEWAktionen;
 	private double preisProHeft;
-	private double maxPreisProHeft;
+	private final double maxPreisProHeft;
 	private double kostenGesamt;
 	private double erloesVerkauf;
 	private double erloesFW;
@@ -46,21 +47,39 @@ public class Magazin {
 		
 		Object[] o = standortDaten;
 		
-		/*
-		if(standort.getOrt().equals("München")){
-			o = standort.getStandort(1);
-		} else if(standort.getOrt().equals("Berlin")){
-			o = standort.getStandort(2);
-		} else if(standort.getOrt().equals("Walldorf")){
-			o = standort.getStandort(3);
-		} else if(standort.getOrt().equals("Bonn")){
-			o = standort.getStandort(4);
-		} else {
-			//ignore;
-		}
-		*/
+		magazinkosten = (double) o[2];
+		maxMitarbeiter = (int) o[3];
+		mitarbeiter = (int) o[4];
+		gehalt = (double) o[5];
+		kostenMitarbeiter = (double) o[6];
+		maxAuflage = (int) o[7];
+		gedruckteMagazine = (int) o[8];
+		abgesetzteMenge = (int) o[9];
+		kostenDruck = (double) o[10];
+		fwInSeitenProHeft = (int) o[11];
+		maxSeitenFW = (int) o[12];
+		ewInAktionen = (int) o[13];
+		kostenEW = (double) o[14];
+		maxEWAktionen = (int) o[15];
+		preisProHeft = (double) o[16];
+		maxPreisProHeft = (double) o[17];
+		kostenGesamt = (double) o[18];
+		erloesVerkauf = (double) o[19];
+		erloesFW = (double) o[20];
+		erloesGesamt = (double) o[21];
+		umsatz = (double) o[22];
+		kapital = (double) o[23];
 		
-		//erhaltene Werte einpflegen
+		double qualitaet;
+		qualitaet = (ewInAktionen/maxEWAktionen + fwInSeitenProHeft/maxSeitenFW + mitarbeiter/maxMitarbeiter + preisProHeft/maxPreisProHeft) / 4;
+		angestellte = new Angestellte((int) o[4], (double) o[5], qualitaet);
+		
+		erloes = new Erlös((double) o[19], (double) o[20], (double) o[21]);
+		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
+		umsatzMagazin = new Umsatz(erloes.getGesamtErloes(), kosten.getGesamtKosten());
+		
+		eigenwerbung = new Werbung();
+		fremdwerbung = new Werbung();
 	}
 	
 	public Standort getStandort() {
