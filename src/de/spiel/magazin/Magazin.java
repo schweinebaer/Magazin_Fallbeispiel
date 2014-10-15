@@ -42,10 +42,10 @@ public class Magazin {
 	private double kapital;
 
 	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil) {
+		Object[] o = standortDaten;
+		
 		this.standort = standort;
 		this.marktanteil = marktanteil;
-		
-		Object[] o = standortDaten;
 		
 		magazinkosten = (double) o[2];
 		maxMitarbeiter = (int) o[3];
@@ -78,8 +78,8 @@ public class Magazin {
 		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
 		umsatzMagazin = new Umsatz(erloes.getGesamtErloes(), kosten.getGesamtKosten());
 		
-		eigenwerbung = new Werbung();
-		fremdwerbung = new Werbung();
+		eigenwerbung = new Werbung(0, (int) o[13], (int) o[15], 0);
+		fremdwerbung = new Werbung(1, (int) o[11], (int) o[12], (int) o[8]);
 	}
 	
 	public Standort getStandort() {
