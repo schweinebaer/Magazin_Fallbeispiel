@@ -1,12 +1,13 @@
 package de.spiel.magazin;
 
+import java.io.PrintWriter;
+
 
 /*
  * Organisation des Magazins
  */
 
 public class Magazin {
-	
 	private Standort standort;
 	private Werbung eigenwerbung;
 	private Werbung fremdwerbung;
@@ -16,6 +17,13 @@ public class Magazin {
 	private Kosten kosten;
 	private Gewinn gewinn;
 	private Umsatz umsatzMagazin;
+	private double qualitaet;
+	private PrintWriter writer;
+	
+	private double prozentsatzFW;
+	private double prozentsatzEW;
+	private double prozentsatzAngestellte;
+	private double prozentsatzPreis;
 	
 	private double magazinkosten;
 	private final int maxMitarbeiter;
@@ -41,11 +49,12 @@ public class Magazin {
 	private double umsatz;
 	private double kapital;
 
-	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil) {
+	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil, PrintWriter writer) {
 		Object[] o = standortDaten;
 		
 		this.standort = standort;
 		this.marktanteil = marktanteil;
+		this.writer = writer;
 		
 		magazinkosten = (double) o[2];
 		maxMitarbeiter = (int) o[3];
@@ -70,11 +79,11 @@ public class Magazin {
 		umsatz = (double) o[22];
 		kapital = (double) o[23];
 		
-		double qualitaet;
-		qualitaet = (ewInAktionen/maxEWAktionen + fwInSeitenProHeft/maxSeitenFW + mitarbeiter/maxMitarbeiter + preisProHeft/maxPreisProHeft) / 4;
+		updateQualitaet();
+		
 		angestellte = new Angestellte((int) o[4], (double) o[5], qualitaet);
 		
-		erloes = new Erlös((double) o[19], (double) o[20], (double) o[21]);
+		erloes = new Erlös((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
 		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
 		umsatzMagazin = new Umsatz(erloes.getGesamtErloes(), kosten.getGesamtKosten());
 		
@@ -86,31 +95,71 @@ public class Magazin {
 		return standort;
 	}
 	
-	public void setStartwerte(Object[] o){
-		//Daten auf Standortklasse übergeben bekommen
+	public void updateQualitaet(){
+		if(ewInAktionen == 10){
+			prozentsatzEW = 100.0;
+		} else if(ewInAktionen < 10 && ewInAktionen > 0){
+			prozentsatzEW = ewInAktionen / 10;
+		} else if(ewInAktionen > 10){
+			prozentsatzEW = (10 - (ewInAktionen - 10)) / 10;
+		}
+		
+		if(fwInSeitenProHeft == 30){
+			prozentsatzFW = 100.0;
+		} else if(fwInSeitenProHeft < 30 && fwInSeitenProHeft > 0){
+			prozentsatzFW = fwInSeitenProHeft / 30;
+		} else if(fwInSeitenProHeft > 30){
+			prozentsatzFW = (30 - (fwInSeitenProHeft - 30)) / 30;
+		}
+		
+		if(mitarbeiter == 1000){
+			prozentsatzAngestellte = 100.0;
+		} else if(mitarbeiter < 1000 && mitarbeiter > 0){
+			prozentsatzAngestellte = mitarbeiter / 1000;
+		} else if(mitarbeiter > 1000){
+			prozentsatzAngestellte = (1000 - (mitarbeiter - 1000)) / 1000;
+		}
+		
+		if(preisProHeft >= 3.8 && preisProHeft <= 4.2){
+			prozentsatzPreis = 100.0;
+		} else if(preisProHeft < 3.8 && preisProHeft > 0){
+			prozentsatzPreis = preisProHeft / 3.8;
+		} else if(preisProHeft > 4.2){
+			prozentsatzPreis = (4.2 - (preisProHeft - 4.2)) / 4.2;
+		}
+		
+		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
+	}
+	
+	public void updateEW(int ewAktionen){
+		eigenwerbung.updateEW(writer, ewAktionen);
+		kosten.updateEWKosten(eigenwerbung.getKosten());
+		updateQualitaet();
 	}
 	
 	public Werbung getEW(){
 		return eigenwerbung;
 	}
-
-	public Werbung getFW(){
-		return fremdwerbung;
+	
+	public void updateFW(int fwInSeiten){
+		fremdwerbung.updateFW(writer, fwInSeiten, auflage);
+		erloes.updateFWErloes(fremdwerbung.getEinnahmen());
+		updateQualitaet();
 	}
 	
-	public void updateWerbung(double betrag, String art, double anteil){
-		
+	public Werbung getFW(){
+		return fremdwerbung;
 	}
 	
 	public void updateAuflage(int auflage){
 		this.auflage = auflage;
 		//Erlös, Gewinn und Kosten und weitere notwenidge Daten updaten
 	}
-	
+
 	private void aktualisiereWerte(){
 		
 	}
-
+	
 	public int getMaxMitarbeiter(int maxMitabeiter) {
 		return maxMitarbeiter;
 	}
@@ -131,8 +180,11 @@ public class Magazin {
 				  art.equals("MITARBEITER_ENTLASSEN") ||
 				  art.equals("MITARBEITER_SCHULEN")){
 			angestellte.simulieren(art, betrag);
+			updateQualitaet();
+			//genauer nachschauen, wie genau mit Angestellten in Qualität handeln!
 		} else if(art.equals("VERKAUFSPREIS_SETZEN")){
-			
+			//noch genauer schauen, was genau gemacht werden muss!!!
+			updateQualitaet();
 		} else if(art.equals("AUFLAGE_SETZEN")){
 			updateAuflage((int) betrag);
 		} else {
