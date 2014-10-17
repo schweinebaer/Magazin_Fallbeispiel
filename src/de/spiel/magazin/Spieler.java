@@ -16,6 +16,7 @@ public class Spieler {
 	private Vector<Bericht> berichte;
 	private double kapital;
 	private double ek;
+	private double fk;
 	private PrintWriter writer;
 	
 	public Spieler(String name, PrintWriter writer){
@@ -77,13 +78,33 @@ public class Spieler {
 	}
 	
 	public double getEK(){
-		return 0;
+		ermittleEK();
+		return ek;
+	}
+	
+	public void ermittleFK(){
+		//nochmal überprüfen, da IndexOutOfBounds Exception
+		Kredit k = kredite.firstElement();
+		fk = 0;
+		
+		for(int i = 0; k != null; i++){
+			fk += k.getBetrag();
+			k = kredite.elementAt(i);
+			writer.println(fk);
+		}
+	}
+	
+	public double getFK(){
+		ermittleFK();
+		return fk;
 	}
 	
 	public void simulieren(String art, double betrag){
 		if(art.equals("KREDIT_AUFNEHMEN")){
+			//überprüfen, ob der FK mehr als 300% EK
 			Kredit k = new Kredit(betrag);
 			kredite.add(k);
+			writer.println("Kredit über " + betrag + "€ zu " + k.getZinsatzNeuaufnahme() + "% aufgenommen.");
 		} else if(art.equals("KREDIT_TILGEN")){
 			for(int i = 0; betrag > 0 && !kredite.isEmpty(); i++){
 				double betragSchleifeKredit = kredite.get(i).getBetrag();

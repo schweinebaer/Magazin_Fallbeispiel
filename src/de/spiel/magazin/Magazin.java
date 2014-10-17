@@ -79,7 +79,7 @@ public class Magazin {
 		umsatz = (double) o[22];
 		kapital = (double) o[23];
 		
-		updateQualitaet();
+		qualitaetInit();
 		
 		angestellte = new Angestellte((int) o[4], (double) o[5], qualitaet);
 		
@@ -90,12 +90,12 @@ public class Magazin {
 		eigenwerbung = new Werbung(0, (int) o[13], (int) o[15], 0);
 		fremdwerbung = new Werbung(1, (int) o[11], (int) o[12], (int) o[8]);
 	}
-	
-	public Standort getStandort() {
+
+	public Standort getStandort(){
 		return standort;
 	}
 	
-	public void updateQualitaet(){
+	private void qualitaetInit(){
 		if(ewInAktionen == 10){
 			prozentsatzEW = 100.0;
 		} else if(ewInAktionen < 10 && ewInAktionen > 0){
@@ -118,6 +118,42 @@ public class Magazin {
 			prozentsatzAngestellte = mitarbeiter / 1000;
 		} else if(mitarbeiter > 1000){
 			prozentsatzAngestellte = (1000 - (mitarbeiter - 1000)) / 1000;
+		}
+		
+		if(preisProHeft >= 3.8 && preisProHeft <= 4.2){
+			prozentsatzPreis = 100.0;
+		} else if(preisProHeft < 3.8 && preisProHeft > 0){
+			prozentsatzPreis = preisProHeft / 3.8;
+		} else if(preisProHeft > 4.2){
+			prozentsatzPreis = (4.2 - (preisProHeft - 4.2)) / 4.2;
+		}
+		
+		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
+	}
+	
+	public void updateQualitaet(){
+		if(ewInAktionen == 10){
+			prozentsatzEW = 100.0;
+		} else if(ewInAktionen < 10 && ewInAktionen > 0){
+			prozentsatzEW = ewInAktionen / 10;
+		} else if(ewInAktionen > 10){
+			prozentsatzEW = (10 - (ewInAktionen - 10)) / 10;
+		}
+		
+		if(fwInSeitenProHeft == 30){
+			prozentsatzFW = 100.0;
+		} else if(fwInSeitenProHeft < 30 && fwInSeitenProHeft > 0){
+			prozentsatzFW = fwInSeitenProHeft / 30;
+		} else if(fwInSeitenProHeft > 30){
+			prozentsatzFW = (30 - (fwInSeitenProHeft - 30)) / 30;
+		}
+		
+		if(angestellte.getAnzahlAngestellte() == 1000){
+			prozentsatzAngestellte = 100.0;
+		} else if(angestellte.getAnzahlAngestellte() < 1000 && angestellte.getAnzahlAngestellte() > 0){
+			prozentsatzAngestellte = angestellte.getAnzahlAngestellte() / 1000;
+		} else if(angestellte.getAnzahlAngestellte() > 1000){
+			prozentsatzAngestellte = (1000 - (angestellte.getAnzahlAngestellte() - 1000)) / 1000;
 		}
 		
 		if(preisProHeft >= 3.8 && preisProHeft <= 4.2){
@@ -169,7 +205,17 @@ public class Magazin {
 	}
 	
 	public Object[] getAktuelleDaten(){
-		return null;
+		Object[] o = new Object[8];
+		o[0] = standort;
+		o[1] = angestellte;
+		o[2] = eigenwerbung;
+		o[3] = fremdwerbung;
+		o[4] = erloes;
+		o[5] = kosten;
+		o[6] = umsatzMagazin;
+		o[7] = qualitaet;
+		
+		return o;
 	}
 	
 	public void simulieren(String art, double betrag){

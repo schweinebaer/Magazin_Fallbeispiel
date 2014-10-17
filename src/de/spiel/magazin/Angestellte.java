@@ -48,6 +48,10 @@ public class Angestellte {
 		return tmp;
 	}
 	
+	public int getAnzahlAngestellte(){
+		return anzahlGesamt;
+	}
+	
 	public double getGehalt(){
 		return gehalt;
 	}

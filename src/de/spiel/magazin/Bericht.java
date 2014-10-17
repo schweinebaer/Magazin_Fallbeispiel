@@ -16,36 +16,28 @@ public class Bericht {
 		this.writer = writer;
 		spieler = s;
 		
-		try {
-			magazin = spieler.getMagazin();
-			standort = magazin.getStandort();
-			anzahlMitarbeiter = magazin.getMitarbeiter();
-		} catch (NullPointerException e){
+		if(spieler.getMagazin() == null){
 			this.writer.println("Noch kein Magazin eröffnet.");
 		}
-		
-		//umsatz
-		eigenkapital = spieler.getEK();
-		//fremdkapital = spieler.getFK();
 	}
 	
 	public void generiereAusgabe(){
-		Object[] o = magazin.getAktuelleDaten();
+		Object[] o = spieler.getMagazin().getAktuelleDaten();
 		
 		writer.println("------ Bericht für " + spieler.getName() + " ------");
-		writer.println("Standort:           	   	  " + standort.getOrt());
-		writer.println("Anzahl Mitarbeiter gesamt:    " + (anzahlMitarbeiter[0] + anzahlMitarbeiter[1] + anzahlMitarbeiter[2]));
-		writer.println("Anzahl Mitarbeiter Bereich A: " + anzahlMitarbeiter[0]);
-		writer.println("Anzahl Mitarbeiter Bereich B: " + anzahlMitarbeiter[1]);
-		writer.println("Anzahl Mitarbeiter Bereich C: " + anzahlMitarbeiter[2]);
-		writer.println("Umsatz:                       ");
-		writer.println("-> davon Gewinn:              ");
-		writer.println("-> davon Kosten:              ");
-		writer.println("Kapital:                      ");
-		writer.println("-> davon EK:                  ");
-		writer.println("-> davon FK:                  ");
-		writer.println("Eigenwerbung:                 ");
-		writer.println("Fremdwerbung:                 ");
+		writer.println("Standort:           	   	  " + ((Standort) o[0]).getOrt());
+		writer.println("Anzahl Mitarbeiter gesamt:    " + ((Angestellte) o[1]).getAnzahlAngestellte());
+		writer.println("Anzahl Mitarbeiter Bereich A: " + ((Angestellte) o[1]).getBereichsZahlen()[0]);
+		writer.println("Anzahl Mitarbeiter Bereich B: " + ((Angestellte) o[1]).getBereichsZahlen()[1]);
+		writer.println("Anzahl Mitarbeiter Bereich C: " + ((Angestellte) o[1]).getBereichsZahlen()[2]);
+		writer.println("Umsatz:                       " + ((Umsatz) o[6]).getUmsatz());
+		writer.println("-> davon Erlös:               " + ((Erlös) o[4]).getGesamtErloes());
+		writer.println("-> davon Kosten:              " + ((Kosten) o[5]).getGesamtKosten());
+		writer.println("Kapital:                      " + spieler.getKapital());
+		writer.println("-> davon EK:                  " + spieler.getEK());
+		writer.println("-> davon FK:                  " + spieler.getFK());
+		writer.println("Eigenwerbung:                 " + ((Werbung) o[2]).getKosten());
+		writer.println("Fremdwerbung:                 " + ((Werbung) o[3]).getEinnahmen());
 		writer.println("-----------------------------------------------");
 	}
 }

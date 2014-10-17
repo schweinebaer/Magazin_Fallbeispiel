@@ -18,8 +18,11 @@ public class Spiel {
 	private static String aktuelleEingabe;
 	private static String[] splitAktuelleEingabe;
 	private static Object[] zufallsereignis;
+	private static Ergebnisliste ergebnisliste;
 	
 	public static void main(String[] args) throws IOException {
+		ergebnisliste = new Ergebnisliste();
+		
 		spieler = new Vector();
 		
 		reader = new BufferedReader(new InputStreamReader(System.in));
@@ -113,8 +116,8 @@ public class Spiel {
 				
 				if(aktuellerSpieler.getKapital() < 0.0){
 					writer.println(aktuellerSpieler.getName() + " hat leider nicht mehr genügend Geld.");
-					//hinten an Ergebnisliste anhängen
 					spieler.remove(aktuellerSpieler);
+					ergebnisliste.addSpieler(aktuellerSpieler);
 				} else {
 					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 					
@@ -130,32 +133,36 @@ public class Spiel {
 					}
 					
 					while(!splitAktuelleEingabe[0].equals("FERTIG")){					
-						if(splitAktuelleEingabe[0].equals("HILFE")){
-							hilfe(1);
-						} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
-							System.exit(0);
-						} else {
-							if(splitAktuelleEingabe.length < 2){
-								simulieren(splitAktuelleEingabe[0], 0);
+						try{
+							if(splitAktuelleEingabe[0].equals("HILFE")){
+								hilfe(1);
+							} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
+								System.exit(0);
 							} else {
-								if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-									//richtig machen!!!
-									if(aktuellerSpieler.getMagazin() == null){
-										if(splitAktuelleEingabe[1].equals("München") ||
-										   splitAktuelleEingabe[1].equals("Berlin") ||	
-										   splitAktuelleEingabe[1].equals("Walldorf")){
-											aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
-											writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
+								if(splitAktuelleEingabe.length < 2){
+									simulieren(splitAktuelleEingabe[0], 0);
+								} else {
+									if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
+										//richtig machen!!!
+										if(aktuellerSpieler.getMagazin() == null){
+											if(splitAktuelleEingabe[1].equals("München") ||
+											   splitAktuelleEingabe[1].equals("Berlin") ||	
+											   splitAktuelleEingabe[1].equals("Walldorf")){
+												aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
+												writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
+											} else {
+												writer.println("Invalide Standortwahl.");
+											}
 										} else {
-											writer.println("Invalide Standortwahl.");
+											writer.println("Mehrere Standorte nicht erlaubt.");
 										}
 									} else {
-										writer.println("Mehrere Standorte nicht erlaubt.");
+										simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 									}
-								} else {
-									simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
 								}
 							}
+						} catch(NumberFormatException e){
+							writer.println("Falsche Eingabe. Geben Sie erneut was ein. Unter HILFE finden sie erwiterte Informationen.");
 						}
 						
 						aktuelleEingabe = reader.readLine();
