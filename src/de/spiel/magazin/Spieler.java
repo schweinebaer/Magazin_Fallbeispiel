@@ -74,7 +74,7 @@ public class Spieler {
 	}
 	
 	public void ermittleEK(){
-		
+		ek = kapital - fk;
 	}
 	
 	public double getEK(){

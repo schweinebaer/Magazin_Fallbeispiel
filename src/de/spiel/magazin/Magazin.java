@@ -190,8 +190,32 @@ public class Magazin {
 	public void updateAuflage(int auflage){
 		this.auflage = auflage;
 		//Erlös, Gewinn und Kosten und weitere notwenidge Daten updaten
+		abgesetzteMenge = (int) (auflage * qualitaet);
+		erloes.updateAbgesetzteMagazine(abgesetzteMenge);
+		erloesGesamt = erloes.getGesamtErloes();
+		kosten.updateAbgesetzteMag(abgesetzteMenge);
+		kosten.updateGedruckteMag(auflage);
+		kostenGesamt = kosten.getGesamtKosten();
+		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
+		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
+		umsatz = umsatzMagazin.getUmsatz();
+		kapital += umsatz;
 	}
-
+	
+	public void updateKostenDruck(int kostenDruck){
+		kostenDruck = kostenDruck;
+		
+		this.kosten.updateDruckKosten(kostenDruck);
+		kostenGesamt = kosten.getGesamtKosten();
+		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
+		umsatz = umsatzMagazin.getUmsatz();
+		kapital += umsatz;
+	}
+	
+	public void updatePreis(int preis){
+		
+	}
+	
 	private void aktualisiereWerte(){
 		
 	}
@@ -220,7 +244,7 @@ public class Magazin {
 	
 	public void simulieren(String art, double betrag){
 		if(art.equals("WERBUNG_SCHALTEN")){
-			//nochmal genauer wegen Befehl schauen, da man nicht richtig setzne kann
+			//nochmal genauer wegen Befehl schauen, da man nicht richtig setzen kann
 			//--> Seitenanzahl fehlt; genauer definieren
 		} else if(art.equals("MITARBEITER_EINSTELLEN") || 
 				  art.equals("MITARBEITER_ENTLASSEN") ||

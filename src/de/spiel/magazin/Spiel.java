@@ -34,11 +34,14 @@ public class Spiel {
 		writer.println("Willkommen beim Planspiel!");
 		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein!");
 		
+		//Rundenanzahl abfragen
 		aktuelleEingabe = reader.readLine();
 		
+		//Überprüfen ob Eingabe eine Zahl ist
 		while(!isNumeric(aktuelleEingabe) || Integer.parseInt(aktuelleEingabe) < 5){
 			aktuelleEingabe.toUpperCase();
 			
+			//Programm vorzeitig beenden
 			if(aktuelleEingabe.equals("BEENDEN")){
 				System.exit(0);
 			}
@@ -50,6 +53,7 @@ public class Spiel {
 		maxRunde = Integer.parseInt(aktuelleEingabe);
 		writer.println("Die maximale Rundenanzahl für das Spiel beträgt " + maxRunde + " Runden.");
 		
+		//Spielereingaben
 		aktuelleEingabe = reader.readLine();
 		splitAktuelleEingabe = aktuelleEingabe.split(" ");
 		splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
@@ -78,12 +82,16 @@ public class Spiel {
 			splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 		}
 		
+		//Aktuelle Zinkosnditionen ausgeben
 		writer.println("Der derzeitige Zinssatz für Kredite für alle Spieler liegt bei " + Kredit.getZinsatzNeuaufnahme() + "%.");
 		writer.println("--------------------------------------------------");		
 		
+		//eigentliche Spielhandlungen
 		while(aktuelleRunde < maxRunde){
+			//allgemeines Zufallsereignis für alle Spieler berechnen
 			zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
 			
+			//in der ersten Runde keine Zinsänderungen durchführen lassen
 			if(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 1){
 				writer.println(zufallsereignis[0]);
 				Kredit.updateZinsatz((double) zufallsereignis[2]);
@@ -92,6 +100,7 @@ public class Spiel {
 				Kredit.updateZinsatz(-1 * (double) zufallsereignis[2]);
 			}
 			
+			//Ab der zweiten Runde können auch Zinsänderungen durchgeführt werden
 			if(aktuelleRunde >= 1){
 				//evtl. noch folgende Nebenbedingung
 				// && (zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN"))
@@ -99,8 +108,10 @@ public class Spiel {
 				writer.println("--------------------------------------------------");				
 			}
 			
+			//aktuelle Berechnungen für aktuellen Spieler
 			for(int i = 0; i < spieler.size(); i++){
 				//genaue Berechnungen durchführen!!
+				//ab der zweiten Runde können spielerbasierte Zufallsereignisse eintreffen
 				if(aktuelleRunde > 1){
 					zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
 					
@@ -114,6 +125,7 @@ public class Spiel {
 				
 				aktuellerSpieler = spieler.elementAt(i);
 				
+				//Überprüfen, ob aktueller Spieler noch im Spiel ist hinsichtlich Kapital
 				if(aktuellerSpieler.getKapital() < 0.0){
 					writer.println(aktuellerSpieler.getName() + " hat leider nicht mehr genügend Geld.");
 					spieler.remove(aktuellerSpieler);
@@ -121,10 +133,12 @@ public class Spiel {
 				} else {
 					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 					
+					//Eingaben lesen
 					aktuelleEingabe = reader.readLine();
 					splitAktuelleEingabe = aktuelleEingabe.split(" ");
 					splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 					
+					//Keine Runde aufhören ohne ein Magazin zu erstellen
 					while(splitAktuelleEingabe[0].equals("FERTIG") && aktuellerSpieler.getMagazin() == null){
 						writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
 						aktuelleEingabe = reader.readLine();
@@ -132,6 +146,7 @@ public class Spiel {
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 					}
 					
+					//Eingaben überprüfen und Aktionen in die Wege leiten
 					while(!splitAktuelleEingabe[0].equals("FERTIG")){					
 						try{
 							if(splitAktuelleEingabe[0].equals("HILFE")){
@@ -194,7 +209,7 @@ public class Spiel {
 	}
 	
 	private static void simulierenZufall(String art, double Betrag){
-		//Zufallsereignisse
+		//Zufallsereignisse simulieren
 		if(art.equals("ABSATZPLUS_EINMALIG")){
 			
 		} else if(art.equals("ABSATZMINUS_EINMALIG")){
@@ -221,7 +236,7 @@ public class Spiel {
 	}
 	
 	private static void simulieren(String art, double Betrag){
-		//normale Spielereignisse durch Eingabe des Spielers
+		//normale Spielereignisse simulieren
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){
 				if(aktuellerSpieler.getBericht(aktuelleRunde - 1) != null){
@@ -298,6 +313,7 @@ public class Spiel {
 	}
 	
 	private static void hilfe(int art){
+		//Ausgabe Hilfe --> Befehle etc.
 		if(art == 0){
 			writer.println("---------- HILFE ----------");
 			writer.println("Es stehen folgende Kommandos zur Verfügung (Kommandos in Großbuchstaben, Parameter in Kamelschreibweise)");
@@ -330,6 +346,7 @@ public class Spiel {
 	}
 	
 	private static boolean isNumeric(String z){
+		//Überprüfen, ob Eingabe eine Zahl
 		int zahl = 0;
 		
 		try {
