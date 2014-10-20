@@ -71,6 +71,10 @@ public class Angestellte {
 		}
 	}
 	
+	public void aktualisiereGehalt(double betrag){
+		gehalt *= betrag;
+	}
+	
 	public int[] getBereichsZahlen(){
 		int[] tmp = new int[5];
 		tmp[0] = anzahlBereichA;

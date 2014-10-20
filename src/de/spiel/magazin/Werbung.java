@@ -61,6 +61,12 @@ public class Werbung {
 		}
 	}
 	
+	public void updateFW(double betrag){
+		fwInSeiten *= betrag;
+		einnahmenFWHeft = fwInSeiten * einnahmenFWSeite;
+		einnahmenFWAuflage = auflage * einnahmenFWHeft;
+	}
+	
 	public double getKosten(){
 		return kostenEWGesamt;
 	}

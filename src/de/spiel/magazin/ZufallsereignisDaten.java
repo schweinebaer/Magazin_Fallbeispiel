@@ -31,11 +31,11 @@ public class ZufallsereignisDaten {
 		
 		daten[6][0] = "Rohstoffpreise für die Papierproduktion steigen um 5% in Folge von Preisspekulationen.";
 		daten[6][1] = "ROHSTOFFPREISE_ERHOEHEN";
-		daten[6][2] = 5.0;
+		daten[6][2] = 1.05;
 		
 		daten[7][0] = "Rohstoffpreise für die Produktion von Industriedruckertinte sinken um 5% auf Grund von einem aktuellen Überangebot am Markt.";
 		daten[7][1] = "ROHSTOFFPREISE_SENKEN";
-		daten[7][2] = 5.0;
+		daten[7][2] = 0.95;
 		
 		daten[8][0] = "Großzügige Spende der Autolobby/Waffenlobby/Energielobby eingetroffen: +100.000€.";
 		daten[8][1] = "SPENDE_BEKOMMEN";
@@ -48,19 +48,19 @@ public class ZufallsereignisDaten {
 		
 		daten[10][0] = "Die Tarifverhandlungen mit dem Personal sind zu Ende gegangen. Sie erhalten 5% mehr Gehalt.";
 		daten[10][1] = "TARIFVERHANDLUNG";
-		daten[10][2] = 5.0;
+		daten[10][2] = 1.05;
 
 		daten[11][0] = "Ein unangebrachter und schlecht recherchierter Artikel in ihrem Magazin beschert ihnen 5% Qualitätsverlust bei der nächsten Ausgabe.";
 		daten[11][1] = "QUALITAETSEINBRUCH";
-		daten[11][2] = 5.0;
+		daten[11][2] = 0.95;
 		
 		daten[12][0] = "Einer ihrer besten Journalisten erhält einen wichtigen Journalistenpreis für eine besonders gelungene Titelstory in ihrem Magazin. Die Qualität ihrer nächsten Ausgabe steigt um 10%.";
 		daten[12][1] = "JOURNALISTENPREIS";
-		daten[12][2] = 10.0;
+		daten[12][2] = 1.1;
 		
 		daten[13][0] = "Einer unserer Hauptsponsoren der für 10% der Fremdwerbeeinnahmen verantwortlich ist geht plötzlich insolvent und kann die Werbung in der nächsten Ausgabe nicht bezahlen. Leider konnte so kurzfristig kein Ersatz gefunden werden. Die Einnahmen gehen ihnen verloren.";
 		daten[13][1] = "WERBEEINNAHMEN_MINDERUNG";
-		daten[13][2] = 10.0;
+		daten[13][2] = 0.9;
 	}
 	
 	public Object[] getEreignis(int random){

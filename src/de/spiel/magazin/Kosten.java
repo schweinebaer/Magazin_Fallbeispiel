@@ -6,6 +6,7 @@ public class Kosten {
 	private double kostenDruck;
 	private double kostenPersonal;
 	private double kostenEW;
+	private double kostenZusatz;
 	private double kostenGesamt;
 	
 	public Kosten(int gedruckteMagazine, int abgesetzteMagazine, double druck, double personal, double ew, double kostenGesamt){
@@ -13,6 +14,7 @@ public class Kosten {
 		this.abgesetzteMagazine = abgesetzteMagazine;
 		kostenDruck = druck;
 		kostenPersonal = personal;
+		kostenZusatz = 0;
 		this.kostenGesamt = kostenGesamt;
 	}
 	
@@ -47,6 +49,28 @@ public class Kosten {
 	
 	public void updateAbgesetzteMag(int absatz){
 		abgesetzteMagazine = absatz;
+	}
+	
+	public void speziellesKostenUpdate(String art, double betrag){
+		if(art.equals("ROHSTOFFPREISE_ERHOEHEN") || art.equals("ROHSTOFFPREISE_SENKEN")){
+			kostenGesamt -= kostenDruck;
+			kostenDruck *= betrag;
+			kostenGesamt += kostenDruck;
+		} else if(art.equals("RECHTSSTREIT")){
+			kostenZusatz = betrag;
+			kostenGesamt += kostenZusatz;
+			kostenZusatz = 0;
+		} else if(art.equals("TARIFVERHANDLUNG")){
+			kostenGesamt -= kostenPersonal;
+			kostenPersonal = betrag;
+			kostenGesamt += kostenPersonal;
+		} else {
+			//ignore
+		}
+	}
+	
+	public void aktualisieren(){
+		kostenGesamt = kostenDruck + kostenPersonal + kostenEW;
 	}
 	
 	public double getGesamtKosten(){

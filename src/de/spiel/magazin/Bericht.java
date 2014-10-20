@@ -31,7 +31,7 @@ public class Bericht {
 		writer.println("Anzahl Mitarbeiter Bereich B: " + ((Angestellte) o[1]).getBereichsZahlen()[1]);
 		writer.println("Anzahl Mitarbeiter Bereich C: " + ((Angestellte) o[1]).getBereichsZahlen()[2]);
 		writer.println("Umsatz:                       " + ((Umsatz) o[6]).getUmsatz());
-		writer.println("-> davon Erlös:               " + ((Erlös) o[4]).getGesamtErloes());
+		writer.println("-> davon Erlös:               " + ((Erloes) o[4]).getGesamtErloes());
 		writer.println("-> davon Kosten:              " + ((Kosten) o[5]).getGesamtKosten());
 		writer.println("Kapital:                      " + spieler.getKapital());
 		writer.println("-> davon EK:                  " + spieler.getEK());

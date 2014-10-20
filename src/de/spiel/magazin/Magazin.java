@@ -13,7 +13,7 @@ public class Magazin {
 	private Werbung fremdwerbung;
 	private Marktanteil marktanteil;
 	private int auflage;
-	private Erlös erloes;
+	private Erloes erloes;
 	private Kosten kosten;
 	private Umsatz umsatzMagazin;
 	private double qualitaet;
@@ -76,7 +76,7 @@ public class Magazin {
 		
 		angestellte = new Angestellte((int) o[3], (int) o[4], (double) o[5], qualitaet);
 		
-		erloes = new Erlös((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
+		erloes = new Erloes((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
 		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
 		umsatzMagazin = new Umsatz(erloes.getGesamtErloes(), kosten.getGesamtKosten());
 		
@@ -210,8 +210,12 @@ public class Magazin {
 		}
 	}
 	
-	private void aktualisiereWerte(){
-		
+	public void aktualisiereWerte(){
+		erloes.aktualisieren();
+		kosten.aktualisieren();
+
+		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
+		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
 	}
 	
 	public int getMaxMitarbeiter(int maxMitabeiter) {
@@ -223,6 +227,9 @@ public class Magazin {
 	}
 	
 	public Object[] getAktuelleDaten(){
+		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
+		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
+		
 		Object[] o = new Object[8];
 		o[0] = standort;
 		o[1] = angestellte;
@@ -236,7 +243,30 @@ public class Magazin {
 		return o;
 	}
 	
-	public void simulieren(String art, double betrag){
+	public void simulieren(String art, double betrag, double betrag2){
+		//Zufallsereignisse
+		if(art.equals("ABSATZPLUS_EINMALIG") || art.equals("ABSATZMINUS_EINMALIG")){
+			erloes.speziellesErloeseUpdate(art, betrag);
+		} else if(art.equals("ROHSTOFFPREISE_ERHOEHEN") || art.equals("ROHSTOFFPREISE_SENKEN")){
+			kosten.speziellesKostenUpdate(art, betrag);
+		} else if(art.equals("SPENDE_BEKOMMEN")){
+			erloes.speziellesErloeseUpdate(art, betrag);
+		} else if(art.equals("RECHTSSTREIT")){
+			kosten.speziellesKostenUpdate(art, betrag);
+			erloes.speziellesErloeseUpdate(art, betrag2);
+		} else if(art.equals("TARIFVERHANDLUNG")){
+			angestellte.aktualisiereGehalt(betrag);
+			kosten.speziellesKostenUpdate(art, angestellte.getGehalt() * angestellte.getAnzahlAngestellte());
+		} else if(art.equals("QUALITAETSEINBRUCH") || art.equals("JOURNALISTENPREIS")){
+			qualitaet *= betrag;
+			berechnungAbgesetzteMenge();
+			erloes.updateAbgesetzteMagazine(abgesetzteMenge);
+		} else if(art.equals("WERBEEINNAHMEN_MINDERUNG")){
+			fremdwerbung.updateFW(betrag);
+			erloes.updateFWErloes(fremdwerbung.getEinnahmen());
+		}	
+		
+		//Spielereingaben
 		if(art.equals("WERBUNG_SCHALTEN")){
 			//nochmal genauer wegen Befehl schauen, da man nicht richtig setzen kann
 			//--> Seitenanzahl fehlt; genauer definieren

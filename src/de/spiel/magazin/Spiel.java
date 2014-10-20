@@ -9,6 +9,10 @@ public class Spiel {
 	 * @description Allgemeine Koordination des Spieles auf der Konsole
 	 */
 	
+	//Überprüfen: 
+	// - Fremdwerbung --> vor allem im Bericht, da komische Zhl
+	// - Zufallsereignisse ab Runde 2 --> sie werden nicht angezeigt
+	
 	private static Vector<Spieler> spieler;
 	private static Spieler aktuellerSpieler;
 	private static int aktuelleRunde;
@@ -32,7 +36,7 @@ public class Spiel {
 		spieler.add(new Spieler("Benni", writer));
 		
 		writer.println("Willkommen beim Planspiel!");
-		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein!");
+		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein! Die Mindestrundenanzahl beträgt 5 Runden.");
 		
 		//Rundenanzahl abfragen
 		aktuelleEingabe = reader.readLine();
@@ -54,6 +58,7 @@ public class Spiel {
 		writer.println("Die maximale Rundenanzahl für das Spiel beträgt " + maxRunde + " Runden.");
 		
 		//Spielereingaben
+		writer.println("Bitte fügen Sie mindestens zwei Spieler hinzu.");
 		aktuelleEingabe = reader.readLine();
 		splitAktuelleEingabe = aktuelleEingabe.split(" ");
 		splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
@@ -120,10 +125,19 @@ public class Spiel {
 					}
 					
 					writer.println(zufallsereignis[0]);
-					simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2]);
+					
+					if(zufallsereignis[3] == null){
+						simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2], 0.0);
+					} else {
+						simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2], (double) zufallsereignis[3]);
+					}
 				}
 				
 				aktuellerSpieler = spieler.elementAt(i);
+				
+				if(aktuelleRunde > 1){
+					aktuellerSpieler.getMagazin().aktualisiereWerte();
+				}
 				
 				//Überprüfen, ob aktueller Spieler noch im Spiel ist hinsichtlich Kapital
 				if(aktuellerSpieler.getKapital() < 0.0){
@@ -147,7 +161,7 @@ public class Spiel {
 					}
 					
 					//Eingaben überprüfen und Aktionen in die Wege leiten
-					while(!splitAktuelleEingabe[0].equals("FERTIG")){					
+					while(!splitAktuelleEingabe[0].equals("RUNDE_FERTIG")){					
 						try{
 							if(splitAktuelleEingabe[0].equals("HILFE")){
 								hilfe(1);
@@ -192,7 +206,7 @@ public class Spiel {
 						}
 					}
 					
-					if(splitAktuelleEingabe[0].equals("FERTIG")){
+					if(splitAktuelleEingabe[0].equals("RUNDE_FERTIG")){
 						aktuellerSpieler.addBericht(aktuellerSpieler);
 						aktuellerSpieler.getBericht(aktuelleRunde).generiereAusgabe();
 						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
@@ -208,28 +222,19 @@ public class Spiel {
 		writer.close();
 	}
 	
-	private static void simulierenZufall(String art, double Betrag){
+	private static void simulierenZufall(String art, double betrag, double betrag2){
 		//Zufallsereignisse simulieren
-		if(art.equals("ABSATZPLUS_EINMALIG")){
-			
-		} else if(art.equals("ABSATZMINUS_EINMALIG")){
-			
-		} else if(art.equals("ROHSTOFFPREISE_ERHOEHEN")){
-			
-		} else if(art.equals("ROHSTOFFPREISE_SENKEN")){
-			
-		} else if(art.equals("SPENDE_BEKOMMEN")){
-			
-		} else if(art.equals("RECHTSSTREIT")){
-		
-		} else if(art.equals("TARIFVERHANDLUNG")){
-			
-		} else if(art.equals("QUALITAETSEINBRUCH")){
-			
-		} else if(art.equals("JOURNALISTENPREIS")){
-			
-		} else if(art.equals("WERBEEINNAHMEN_MINDERUNG")){
-			
+		if(art.equals("ABSATZPLUS_EINMALIG") 
+			|| art.equals("ABSATZMINUS_EINMALIG")
+			|| art.equals("ROHSTOFFPREISE_ERHOEHEN")
+			|| art.equals("ROHSTOFFPREISE_SENKEN")
+			|| art.equals("SPENDE_BEKOMMEN")
+			|| art.equals("RECHTSSTREIT")
+			|| art.equals("TARIFVERHANDLUNG")
+			|| art.equals("QUALITAETSEINBRUCH")
+			|| art.equals("JOURNALISTENPREIS")
+			|| art.equals("WERBEEINNAHMEN_MINDERUNG")){
+			aktuellerSpieler.getMagazin().simulieren(art, betrag, betrag2);
 		} else {
 			//ignore
 		}
@@ -287,26 +292,26 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("WERBUNG_SCHALTEN")){
 			//nochmal überprüfen!
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 			} else {
 				writer.println("Es darf keine Werbung mit einem Betrag von 0€ oder weniger geschaltet werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 			} else {
 				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter eingestellt werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_ENTLASSEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 			} else {
 				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter entlassen werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
-			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 		} else if(splitAktuelleEingabe[0].equals("AUFLAGE_SETZEN")){
-			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 		} else {
 			writer.println("Invalide Eingabe. Wiederholen Sie bitte Ihre Eingabe oder suchen Sie die Hilfe unter HILFE auf.");
 		}
@@ -338,8 +343,7 @@ public class Spiel {
 			writer.println("MITARBEITER_SCHULEN investitionsBetrag ---------------- Gegebener Investitionbetrag wird in Schulungen des Personals gesteckt");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
 			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
-			//lieber RUNDE_FERTIG oder so
-			writer.println("FERTIG ------------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
+			writer.println("RUNDE_FERTIG ------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
 			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else {
 			//ignore

@@ -1,17 +1,19 @@
 package de.spiel.magazin;
 
-public class Erlös {
+public class Erloes {
 	private int abgesetzteMagazine;
 	private double preisMagazin;
 	private double erloesVerkauf;
 	private double erloesFW;
+	private double erloesZusatz;
 	private double erloesGesamt;
 	
-	public Erlös(int abgesetzteMagazine, double preisMagazin, double erloesVerkauf, double erloesFW, double erloesGesamt){
+	public Erloes(int abgesetzteMagazine, double preisMagazin, double erloesVerkauf, double erloesFW, double erloesGesamt){
 		this.abgesetzteMagazine = abgesetzteMagazine;
 		this.preisMagazin = preisMagazin;
 		this.erloesVerkauf = erloesGesamt;
 		this.erloesFW = erloesFW;
+		this.erloesZusatz = 0;
 		this.erloesGesamt = erloesGesamt;
 	}
 	
@@ -37,9 +39,38 @@ public class Erlös {
 		erloesGesamt += erloesVerkauf;
 	}
 	
+	public void speziellesErloeseUpdate(String art, double betrag){
+		if(art.equals("ABSATZPLUS_EIMALIG")){
+			erloesZusatz = preisMagazin * betrag;
+			erloesGesamt += erloesZusatz;
+			erloesZusatz = 0;
+		} else if (art.equals("ABSATZMINUS_EINMALIG")){
+			erloesZusatz = preisMagazin * betrag;
+			erloesGesamt -= erloesZusatz;
+			erloesZusatz = 0;
+		} else if(art.equals("SPENDE_BEKOMMEN")){
+			erloesZusatz = betrag;
+			erloesGesamt  += erloesZusatz;
+			erloesZusatz = 0;
+		} else if(art.equals("RECHTSSTREIT")){
+			erloesGesamt -= erloesVerkauf;
+			abgesetzteMagazine += betrag;
+			erloesVerkauf = abgesetzteMagazine * preisMagazin;
+			abgesetzteMagazine -= betrag;
+			erloesGesamt += erloesVerkauf;
+			erloesVerkauf = abgesetzteMagazine * preisMagazin;
+		} else {
+			//ignore
+		}
+	}
+	
 	public void updateFWErloes(double betrag){
 		erloesFW = betrag;
 		erloesGesamt += betrag;
+	}
+	
+	public void aktualisieren(){
+		erloesGesamt = erloesVerkauf + erloesFW;
 	}
 	
 	public double getGesamtErloes(){
