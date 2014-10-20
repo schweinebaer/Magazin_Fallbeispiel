@@ -15,7 +15,6 @@ public class Magazin {
 	private int auflage;
 	private Erlös erloes;
 	private Kosten kosten;
-	private Gewinn gewinn;
 	private Umsatz umsatzMagazin;
 	private double qualitaet;
 	private PrintWriter writer;
@@ -42,11 +41,6 @@ public class Magazin {
 	private final int maxEWAktionen;
 	private double preisProHeft;
 	private final double maxPreisProHeft;
-	private double kostenGesamt;
-	private double erloesVerkauf;
-	private double erloesFW;
-	private double erloesGesamt;
-	private double umsatz;
 	private double kapital;
 
 	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil, PrintWriter writer) {
@@ -56,11 +50,15 @@ public class Magazin {
 		this.marktanteil = marktanteil;
 		this.writer = writer;
 		
+		/*
 		magazinkosten = (double) o[2];
+		*/
 		maxMitarbeiter = (int) o[3];
+		/*
 		mitarbeiter = (int) o[4];
 		gehalt = (double) o[5];
 		kostenMitarbeiter = (double) o[6];
+		*/
 		maxAuflage = (int) o[7];
 		gedruckteMagazine = (int) o[8];
 		abgesetzteMenge = (int) o[9];
@@ -72,16 +70,11 @@ public class Magazin {
 		maxEWAktionen = (int) o[15];
 		preisProHeft = (double) o[16];
 		maxPreisProHeft = (double) o[17];
-		kostenGesamt = (double) o[18];
-		erloesVerkauf = (double) o[19];
-		erloesFW = (double) o[20];
-		erloesGesamt = (double) o[21];
-		umsatz = (double) o[22];
 		kapital = (double) o[23];
 		
 		qualitaetInit();
 		
-		angestellte = new Angestellte((int) o[4], (double) o[5], qualitaet);
+		angestellte = new Angestellte((int) o[3], (int) o[4], (double) o[5], qualitaet);
 		
 		erloes = new Erlös((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
 		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
@@ -167,6 +160,10 @@ public class Magazin {
 		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
 	}
 	
+	public void berechnungAbgesetzteMenge(){
+		abgesetzteMenge = (int) (gedruckteMagazine * qualitaet);
+	}
+	
 	public void updateEW(int ewAktionen){
 		eigenwerbung.updateEW(writer, ewAktionen);
 		kosten.updateEWKosten(eigenwerbung.getKosten());
@@ -192,28 +189,25 @@ public class Magazin {
 		//Erlös, Gewinn und Kosten und weitere notwenidge Daten updaten
 		abgesetzteMenge = (int) (auflage * qualitaet);
 		erloes.updateAbgesetzteMagazine(abgesetzteMenge);
-		erloesGesamt = erloes.getGesamtErloes();
 		kosten.updateAbgesetzteMag(abgesetzteMenge);
 		kosten.updateGedruckteMag(auflage);
-		kostenGesamt = kosten.getGesamtKosten();
 		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
 		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
-		umsatz = umsatzMagazin.getUmsatz();
-		kapital += umsatz;
+		kapital += umsatzMagazin.getUmsatz();
 	}
 	
 	public void updateKostenDruck(int kostenDruck){
-		kostenDruck = kostenDruck;
-		
 		this.kosten.updateDruckKosten(kostenDruck);
-		kostenGesamt = kosten.getGesamtKosten();
 		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
-		umsatz = umsatzMagazin.getUmsatz();
-		kapital += umsatz;
+		kapital += umsatzMagazin.getUmsatz();
 	}
 	
 	public void updatePreis(int preis){
-		
+		if(preis <= maxPreisProHeft && preis >= 0){
+			erloes.updatePreisMagazin(preis);
+		} else {
+			writer.println("Der Preis kann weder negativ noch über dem maximalen Preis von " + maxPreisProHeft + " verkauft werden.");
+		}
 	}
 	
 	private void aktualisiereWerte(){
@@ -254,7 +248,13 @@ public class Magazin {
 			//genauer nachschauen, wie genau mit Angestellten in Qualität handeln!
 		} else if(art.equals("VERKAUFSPREIS_SETZEN")){
 			//noch genauer schauen, was genau gemacht werden muss!!!
-			updateQualitaet();
+			if(betrag <= maxPreisProHeft){
+				preisProHeft = betrag;
+				updateQualitaet();
+				berechnungAbgesetzteMenge();
+				erloes.updateAbgesetzteMagazine(abgesetzteMenge);
+				erloes.updatePreisMagazin(betrag);
+			}
 		} else if(art.equals("AUFLAGE_SETZEN")){
 			updateAuflage((int) betrag);
 		} else {

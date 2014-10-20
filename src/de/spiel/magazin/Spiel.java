@@ -338,6 +338,7 @@ public class Spiel {
 			writer.println("MITARBEITER_SCHULEN investitionsBetrag ---------------- Gegebener Investitionbetrag wird in Schulungen des Personals gesteckt");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
 			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
+			//lieber RUNDE_FERTIG oder so
 			writer.println("FERTIG ------------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
 			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else {

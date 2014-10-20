@@ -4,6 +4,7 @@ public class ZufallsereignisDaten {
 	private final Object[][] daten = new Object[14][4];
 	
 	public ZufallsereignisDaten(){
+		//--> extra Klasse
 		daten[0][0] = "Zinssatz für Kredite steigt um 0,2% an, EZB erhöht den Leitzinssatz.";
 		daten[0][1] = "ZINSSATZ_ERHOEHEN";
 		daten[0][2] = 0.2;

@@ -84,13 +84,17 @@ public class Spieler {
 	
 	public void ermittleFK(){
 		//nochmal überprüfen, da IndexOutOfBounds Exception
-		Kredit k = kredite.firstElement();
-		fk = 0;
-		
-		for(int i = 0; k != null; i++){
-			fk += k.getBetrag();
-			k = kredite.elementAt(i);
-			writer.println(fk);
+		if(!kredite.isEmpty()){
+			Kredit k = kredite.firstElement();
+			fk = 0;
+			
+			for(int i = 0; k != null; i++){
+				fk += k.getBetrag();
+				k = kredite.elementAt(i);
+				writer.println(fk);
+			}
+		} else {
+			fk = 0;
 		}
 	}
 	
