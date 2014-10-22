@@ -174,11 +174,11 @@ public class Spiel {
 									simulieren(splitAktuelleEingabe[0], 0);
 								} else {
 									if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-										//richtig machen!!!
 										if(aktuellerSpieler.getMagazin() == null){
-											if(splitAktuelleEingabe[1].equals("München") ||
-											   splitAktuelleEingabe[1].equals("Berlin") ||	
-											   splitAktuelleEingabe[1].equals("Walldorf")){
+											if(splitAktuelleEingabe[1].equals("München")  
+												|| splitAktuelleEingabe[1].equals("Berlin")   
+												|| splitAktuelleEingabe[1].equals("Walldorf") 
+												|| splitAktuelleEingabe[1].equals("Bonn")){
 												aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, spieler));
 												writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
 											} else {
