@@ -27,9 +27,10 @@ public class StandortDaten {
 	 * 21: double erloesGesamt
 	 * 22: double umsatz
 	 * 23: double kapital
+	 * 24: double kostenFix
 	 */
 	//alt
-	private final static Object[][] daten = new Object[4][24];
+	private final static Object[][] daten = new Object[4][25];
 	
 	//neu
 	private String standort;
@@ -56,6 +57,7 @@ public class StandortDaten {
 	private double erloesGesamt;
 	private double umsatz;
 	private double kapital;
+	private double kostenFix;
 	
 	public StandortDaten(){
 		//alt
@@ -83,6 +85,7 @@ public class StandortDaten {
 		daten[0][21] = 1450000.0;
 		daten[0][22] = -2350000.0;
 		daten[0][23] = 7300000.0;
+		daten[0][24] = 50000.0;
 		
 		daten[1][0] = "Berlin";
 		daten[1][1] = 200000.0;
@@ -108,6 +111,7 @@ public class StandortDaten {
 		daten[1][21] = 1526664.0;
 		daten[1][22] = 185330.8;
 		daten[1][23] = 3200000.0;
+		daten[1][24] = 40000.0;
 		
 		daten[2][0] = "Walldorf";
 		daten[2][1] = 500000.0;
@@ -133,6 +137,7 @@ public class StandortDaten {
 		daten[2][21] = 1970000.0;
 		daten[2][22] = -36000.0;
 		daten[2][23] = 5360000.0;
+		daten[2][24] = 35000.0;
 		
 		daten[3][0] = "Bonn";
 		daten[3][1] = 50000.0;
@@ -158,11 +163,12 @@ public class StandortDaten {
 		daten[3][21] = 1850000.0;
 		daten[3][22] = 142500.0;
 		daten[3][23] = 3600000.0;
+		daten[3][23] = 30000.0;
 	}
 	
 	public StandortDaten(String standort, double preis, double magazinkosten, int maxMitarbeiter, int startMitarbeiter, double startGehaltMitarbeiter, double startKostenMitarbeiter, int maxAuflage, int gedruckteMagazine, int abgesetzteMagazine,
 			double kostenDruck, int fwInSeitenProHeft, int maxSeitenFW, int ewInAktionen, double kostenEW, int maxEWAktionen, double preisProHeft, double maxPreisProHeft, double kostenGesamt, double erloesVerkauf, double erloesFW, double erloesGesamt,
-			double umsatz, double kapital){
+			double umsatz, double kapital, double kostenFix){
 		
 		//neu
 		this.standort = standort;
@@ -189,10 +195,11 @@ public class StandortDaten {
 		this.erloesGesamt = erloesGesamt;
 		this.umsatz = umsatz;
 		this.kapital = kapital;
+		this.kostenFix = kostenFix;
 	}
 	
 	public Object[] getDaten(){
-		Object[] standort = new Standort[24];
+		Object[] standort = new Standort[25];
 		
 		standort[0] = standort;
 		standort[1] = preis;
@@ -218,13 +225,14 @@ public class StandortDaten {
 		standort[21] = erloesGesamt;
 		standort[22] = umsatz;
 		standort[23] = kapital;
+		standort[24] = kostenFix;
 		
 		return standort;
 	}
 	
 	public Object[] getStandorte(int i){
 		//alt
-		Object[] standort = new Standort[24];
+		Object[] standort = new Standort[25];
 		
 		if(i == 1){
 			//München

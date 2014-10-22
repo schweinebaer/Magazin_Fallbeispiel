@@ -42,6 +42,7 @@ public class Magazin {
 	private double preisProHeft;
 	private final double maxPreisProHeft;
 	private double kapital;
+	private double kostenFix;
 
 	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil, PrintWriter writer) {
 		Object[] o = standortDaten;
@@ -77,7 +78,7 @@ public class Magazin {
 		angestellte = new Angestellte((int) o[3], (int) o[4], (double) o[5], qualitaet);
 		
 		erloes = new Erloes((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
-		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[18]);
+		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[24],(double) o[18]);
 		umsatzMagazin = new Umsatz(erloes.getGesamtErloes(), kosten.getGesamtKosten());
 		
 		eigenwerbung = new Werbung(0, (int) o[13], (int) o[15], 0);
@@ -149,6 +150,8 @@ public class Magazin {
 			prozentsatzAngestellte = (1000 - (angestellte.getAnzahlAngestellte() - 1000)) / 1000;
 		}
 		
+		prozentsatzAngestellte += angestellte.getQualitaet();
+		
 		if(preisProHeft >= 3.8 && preisProHeft <= 4.2){
 			prozentsatzPreis = 100.0;
 		} else if(preisProHeft < 3.8 && preisProHeft > 0){
@@ -158,6 +161,10 @@ public class Magazin {
 		}
 		
 		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
+	}
+	
+	public void updateMarktanteil(){
+		marktanteil.berechneAnteilNeu();
 	}
 	
 	public void berechnungAbgesetzteMenge(){
@@ -194,6 +201,10 @@ public class Magazin {
 		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
 		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
 		kapital += umsatzMagazin.getUmsatz();
+	}
+	
+	public int getAbgesetzteMagazine(){
+		return abgesetzteMenge;
 	}
 	
 	public void updateKostenDruck(int kostenDruck){
@@ -245,12 +256,12 @@ public class Magazin {
 	
 	public void simulieren(String art, double betrag, double betrag2){
 		//Zufallsereignisse
-		if(art.equals("ABSATZPLUS_EINMALIG") || art.equals("ABSATZMINUS_EINMALIG")){
+		if(art.equals("ABSATZPLUS_EINMALIG") 
+			|| art.equals("ABSATZMINUS_EINMALIG")
+			|| art.equals("SPENDE_BEKOMMEN")){
 			erloes.speziellesErloeseUpdate(art, betrag);
 		} else if(art.equals("ROHSTOFFPREISE_ERHOEHEN") || art.equals("ROHSTOFFPREISE_SENKEN")){
 			kosten.speziellesKostenUpdate(art, betrag);
-		} else if(art.equals("SPENDE_BEKOMMEN")){
-			erloes.speziellesErloeseUpdate(art, betrag);
 		} else if(art.equals("RECHTSSTREIT")){
 			kosten.speziellesKostenUpdate(art, betrag);
 			erloes.speziellesErloeseUpdate(art, betrag2);
@@ -275,6 +286,8 @@ public class Magazin {
 				  art.equals("MITARBEITER_SCHULEN")){
 			angestellte.simulieren(art, betrag);
 			updateQualitaet();
+			double kostenAngestellte = angestellte.getAnzahlAngestellte() * angestellte.getGehalt() + angestellte.getAnzahlSchulungen() * angestellte.getAnzahlAngestellte() * 39.99;
+			kosten.updatePersonalKosten(kostenAngestellte);
 			//genauer nachschauen, wie genau mit Angestellten in Qualität handeln!
 		} else if(art.equals("VERKAUFSPREIS_SETZEN")){
 			//noch genauer schauen, was genau gemacht werden muss!!!

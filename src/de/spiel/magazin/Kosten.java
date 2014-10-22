@@ -6,14 +6,16 @@ public class Kosten {
 	private double kostenDruck;
 	private double kostenPersonal;
 	private double kostenEW;
+	private double kostenFix;
 	private double kostenZusatz;
 	private double kostenGesamt;
 	
-	public Kosten(int gedruckteMagazine, int abgesetzteMagazine, double druck, double personal, double ew, double kostenGesamt){
+	public Kosten(int gedruckteMagazine, int abgesetzteMagazine, double druck, double personal, double ew, double kostenFix, double kostenGesamt){
 		this.gedruckteMagazine = gedruckteMagazine;
 		this.abgesetzteMagazine = abgesetzteMagazine;
 		kostenDruck = druck;
 		kostenPersonal = personal;
+		this.kostenFix = kostenFix;
 		kostenZusatz = 0;
 		this.kostenGesamt = kostenGesamt;
 	}

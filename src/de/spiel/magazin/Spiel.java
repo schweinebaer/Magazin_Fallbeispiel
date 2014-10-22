@@ -179,7 +179,7 @@ public class Spiel {
 											if(splitAktuelleEingabe[1].equals("München") ||
 											   splitAktuelleEingabe[1].equals("Berlin") ||	
 											   splitAktuelleEingabe[1].equals("Walldorf")){
-												aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
+												aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, spieler));
 												writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
 											} else {
 												writer.println("Invalide Standortwahl.");
@@ -272,7 +272,7 @@ public class Spiel {
 				if(splitAktuelleEingabe[1].equals("München") ||
 				   splitAktuelleEingabe[1].equals("Berlin") ||	
 				   splitAktuelleEingabe[1].equals("Walldorf")){
-					aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(1/spieler.size()));
+					aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, spieler));
 				} else {
 					writer.println("Invalide Standortwahl.");
 				}
@@ -310,6 +310,8 @@ public class Spiel {
 			} else {
 				writer.println("Es können keine 0 oder negative Anzahl an Mitarbeiter entlassen werden.");
 			}
+		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_SCHULEN")){
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], 0.0, 0.0);
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
 			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 		} else if(splitAktuelleEingabe[0].equals("AUFLAGE_SETZEN")){
@@ -342,7 +344,7 @@ public class Spiel {
 			writer.println("WERBUNG_MAGAZIN anteil -------------------------------- Der Werbeanteil im Magazin wird auf anteil Seiten gesetzt");
 			writer.println("MITARBEITER_EINSTELLEN mitarbeiterAnzahl -------------- Stellt mitarbeiterAnzahl Mitarbeiter im Magazin ein");
 			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
-			writer.println("MITARBEITER_SCHULEN investitionsBetrag ---------------- Gegebener Investitionbetrag wird in Schulungen des Personals gesteckt");
+			writer.println("MITARBEITER_SCHULEN ----------------------------------- Mitarbeiter werden um eine Schulungseinheit geschult");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
 			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
 			writer.println("RUNDE_FERTIG ------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");

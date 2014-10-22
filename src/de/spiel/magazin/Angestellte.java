@@ -13,6 +13,7 @@ public class Angestellte {
 	private int anzahlBereichB;
 	private int anzahlBereichC;
 	private double gehalt;
+	private int durchgefuehrteSchulungen;
 	private double qualitaet;
 	
 	public Angestellte(int maxAnzahlGesamt, int anzahlGesamt, double gehalt, double qualitaet){
@@ -26,11 +27,8 @@ public class Angestellte {
 		anzahlBereichB = (int) anzahlGesamt * 1/4;
 		anzahlBereichC = (int) anzahlGesamt * 1/4;
 		this.gehalt = gehalt;
+		durchgefuehrteSchulungen = 0;
 		this.qualitaet = qualitaet;
-	}
-	
-	public void schulen(double investition){
-		
 	}
 	
 	public boolean einstellen(int anzahl){
@@ -71,6 +69,15 @@ public class Angestellte {
 		}
 	}
 	
+	public void schulen(){
+		durchgefuehrteSchulungen++;
+		qualitaet = durchgefuehrteSchulungen * 0.03;
+	}
+	
+	public int getAnzahlSchulungen(){
+		return durchgefuehrteSchulungen;
+	}
+	
 	public void aktualisiereGehalt(double betrag){
 		gehalt *= betrag;
 	}
@@ -107,7 +114,7 @@ public class Angestellte {
 		} else if(art.equals("MITARBEITER_ENTLASSEN")){
 			entlassen((int) betrag);
 		} else if(art.equals("MITARBEITER_SCHULEN")){
-			schulen(betrag);
+			schulen();
 		} else {
 			//ignore
 		}
