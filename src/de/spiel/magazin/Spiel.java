@@ -21,11 +21,13 @@ public class Spiel {
 	private static PrintWriter writer;
 	private static String aktuelleEingabe;
 	private static String[] splitAktuelleEingabe;
-	private static Object[] zufallsereignis;
+	private static Zufallsereignis zufallsereignis;
+	private static Object[] zufallsereignisDaten;
 	private static Ergebnisliste ergebnisliste;
 	
 	public static void main(String[] args) throws IOException {
 		ergebnisliste = new Ergebnisliste();
+		zufallsereignis = new Zufallsereignis();
 		
 		spieler = new Vector();
 		
@@ -94,15 +96,15 @@ public class Spiel {
 		//eigentliche Spielhandlungen
 		while(aktuelleRunde < maxRunde){
 			//allgemeines Zufallsereignis für alle Spieler berechnen
-			zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
+			zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
 			
 			//in der ersten Runde keine Zinsänderungen durchführen lassen
-			if(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 1){
-				writer.println(zufallsereignis[0]);
-				Kredit.updateZinsatz((double) zufallsereignis[2]);
-			} else if(zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN") && aktuelleRunde > 1){
-				writer.println(zufallsereignis[0]);
-				Kredit.updateZinsatz(-1 * (double) zufallsereignis[2]);
+			if(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 1){
+				writer.println(zufallsereignisDaten[0]);
+				Kredit.updateZinsatz((double) zufallsereignisDaten[2]);
+			} else if(zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN") && aktuelleRunde > 1){
+				writer.println(zufallsereignisDaten[0]);
+				Kredit.updateZinsatz(-1 * (double) zufallsereignisDaten[2]);
 			}
 			
 			//Ab der zweiten Runde können auch Zinsänderungen durchgeführt werden
@@ -116,23 +118,6 @@ public class Spiel {
 			//aktuelle Berechnungen für aktuellen Spieler
 			for(int i = 0; i < spieler.size(); i++){
 				//genaue Berechnungen durchführen!!
-				//ab der zweiten Runde können spielerbasierte Zufallsereignisse eintreffen
-				if(aktuelleRunde > 1){
-					zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
-					
-					while(zufallsereignis[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignis[1].equals("ZINSSATZ_VERKLEINERN")){
-						zufallsereignis = Zufallsereignis.berechneZufallsEreignis();
-					}
-					
-					writer.println(zufallsereignis[0]);
-					
-					if(zufallsereignis[3] == null){
-						simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2], 0.0);
-					} else {
-						simulierenZufall((String) zufallsereignis[1], (double) zufallsereignis[2], (double) zufallsereignis[3]);
-					}
-				}
-				
 				aktuellerSpieler = spieler.elementAt(i);
 				
 				if(aktuelleRunde > 1){
@@ -146,6 +131,23 @@ public class Spiel {
 					ergebnisliste.addSpieler(aktuellerSpieler);
 				} else {
 					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
+					
+					//ab der zweiten Runde können spielerbasierte Zufallsereignisse eintreffen
+					if(aktuelleRunde > 1){
+						zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
+						
+						while(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN")){
+							zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
+						}
+						
+						writer.println(zufallsereignisDaten[0]);
+						
+						if(zufallsereignisDaten[3] == null){
+							simulierenZufall((String) zufallsereignisDaten[1], (double) zufallsereignisDaten[2], 0.0);
+						} else {
+							simulierenZufall((String) zufallsereignisDaten[1], (double) zufallsereignisDaten[2], (double) zufallsereignisDaten[3]);
+						}
+					}
 					
 					//Eingaben lesen
 					aktuelleEingabe = reader.readLine();

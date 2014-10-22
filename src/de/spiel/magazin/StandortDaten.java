@@ -28,10 +28,37 @@ public class StandortDaten {
 	 * 22: double umsatz
 	 * 23: double kapital
 	 */
-	
+	//alt
 	private final static Object[][] daten = new Object[4][24];
-
+	
+	//neu
+	private String standort;
+	private double preis;
+	private double magazinkosten;
+	private int maxMitarbeiter;
+	private int startMitarbeiter;
+	private double startGehaltMitarbeiter;
+	private double startKostenMitarbeiter;
+	private int maxAuflage;
+	private int gedruckteMagazine;
+	private int abgesetzteMagazine;
+	private double kostenDruck;
+	private int fwInSeitenProHeft;
+	private int maxSeitenFW;
+	private int ewInAktionen;
+	private double kostenEW;
+	private int maxEWAktionen;
+	private double preisProHeft;
+	private double maxPreisProHeft;
+	private double kostenGesamt;
+	private double erloesVerkauf;
+	private double erloesFW;
+	private double erloesGesamt;
+	private double umsatz;
+	private double kapital;
+	
 	public StandortDaten(){
+		//alt
 		daten[0][0] = "München";
 		daten[0][1] = 500000.0;
 		daten[0][2] = 5000.0;
@@ -133,7 +160,70 @@ public class StandortDaten {
 		daten[3][23] = 3600000.0;
 	}
 	
+	public StandortDaten(String standort, double preis, double magazinkosten, int maxMitarbeiter, int startMitarbeiter, double startGehaltMitarbeiter, double startKostenMitarbeiter, int maxAuflage, int gedruckteMagazine, int abgesetzteMagazine,
+			double kostenDruck, int fwInSeitenProHeft, int maxSeitenFW, int ewInAktionen, double kostenEW, int maxEWAktionen, double preisProHeft, double maxPreisProHeft, double kostenGesamt, double erloesVerkauf, double erloesFW, double erloesGesamt,
+			double umsatz, double kapital){
+		
+		//neu
+		this.standort = standort;
+		this.preis = preis;
+		this.magazinkosten = magazinkosten;
+		this.maxMitarbeiter = maxMitarbeiter;
+		this.startMitarbeiter = startMitarbeiter;
+		this.startGehaltMitarbeiter = startGehaltMitarbeiter;
+		this.startKostenMitarbeiter = startKostenMitarbeiter;
+		this.maxAuflage = maxAuflage;
+		this.gedruckteMagazine = gedruckteMagazine;
+		this.abgesetzteMagazine = abgesetzteMagazine;
+		this.kostenDruck = kostenDruck;
+		this.fwInSeitenProHeft = fwInSeitenProHeft;
+		this.maxSeitenFW = maxSeitenFW;
+		this.ewInAktionen = ewInAktionen;
+		this.kostenEW = kostenEW;
+		this.maxEWAktionen = maxEWAktionen;
+		this.preisProHeft = preisProHeft;
+		this.maxPreisProHeft = maxPreisProHeft;
+		this.kostenGesamt= kostenGesamt;
+		this.erloesVerkauf = erloesVerkauf;
+		this.erloesFW = erloesFW;
+		this.erloesGesamt = erloesGesamt;
+		this.umsatz = umsatz;
+		this.kapital = kapital;
+	}
+	
+	public Object[] getDaten(){
+		Object[] standort = new Standort[24];
+		
+		standort[0] = standort;
+		standort[1] = preis;
+		standort[2] = magazinkosten;
+		standort[3] = maxMitarbeiter;
+		standort[4] = startMitarbeiter;
+		standort[5] = startGehaltMitarbeiter;
+		standort[6] = startKostenMitarbeiter;
+		standort[7] = maxAuflage;
+		standort[8] = gedruckteMagazine;
+		standort[9] = abgesetzteMagazine;
+		standort[10] = kostenDruck;
+		standort[11] = fwInSeitenProHeft;
+		standort[12] = maxSeitenFW;
+		standort[13] = ewInAktionen;
+		standort[14] = kostenEW;
+		standort[15] = maxEWAktionen;
+		standort[16] = preisProHeft;
+		standort[17] = maxPreisProHeft;
+		standort[18] = kostenGesamt;
+		standort[19] = erloesVerkauf;
+		standort[20] = erloesFW;
+		standort[21] = erloesGesamt;
+		standort[22] = umsatz;
+		standort[23] = kapital;
+		
+		return standort;
+	}
+	
 	public Object[] getStandorte(int i){
+		//alt
 		Object[] standort = new Standort[24];
 		
 		if(i == 1){

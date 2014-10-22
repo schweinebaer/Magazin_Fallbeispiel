@@ -1,10 +1,17 @@
 package de.spiel.magazin;
 
 public class ZufallsereignisDaten {
+	//alt!
 	private final Object[][] daten = new Object[14][4];
 	
+	//aktuell
+	private String ausgabeText;
+	private String befehl;
+	private double wert1;
+	private double wert2;
+	
 	public ZufallsereignisDaten(){
-		//--> extra Klasse
+		//--> extra Klasse --> alt!!!
 		daten[0][0] = "Zinssatz für Kredite steigt um 0,2% an, EZB erhöht den Leitzinssatz.";
 		daten[0][1] = "ZINSSATZ_ERHOEHEN";
 		daten[0][2] = 0.2;
@@ -63,7 +70,31 @@ public class ZufallsereignisDaten {
 		daten[13][2] = 0.9;
 	}
 	
+	public ZufallsereignisDaten(String ausgabeText, String befehl, double wert1, double wert2){
+		//aktuell
+		this.ausgabeText = ausgabeText;
+		this.befehl = befehl;
+		this.wert1 = wert1;
+		this.wert2 = wert2;
+	}
+	
+	public Object[] getEreignis(){
+		//aktuell
+		Object[] ereignis = new Object[4];
+		
+		ereignis[0] = ausgabeText;
+		ereignis[1] = befehl;
+		ereignis[2] = wert1;
+		
+		if(wert2 != 0.0){
+			ereignis[3] = wert2;
+		}
+		
+		return null;
+	}
+	
 	public Object[] getEreignis(int random){
+		//alt!!
 		Object[] ereignis = new Object[4];
 		
 		if((random - 1) == 9){
