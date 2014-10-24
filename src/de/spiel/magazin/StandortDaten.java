@@ -199,35 +199,35 @@ public class StandortDaten {
 	}
 	
 	public Object[] getDaten(){
-		Object[] standort = new Standort[25];
+		Object[] standortDaten = new Standort[25];
 		
-		standort[0] = standort;
-		standort[1] = preis;
-		standort[2] = magazinkosten;
-		standort[3] = maxMitarbeiter;
-		standort[4] = startMitarbeiter;
-		standort[5] = startGehaltMitarbeiter;
-		standort[6] = startKostenMitarbeiter;
-		standort[7] = maxAuflage;
-		standort[8] = gedruckteMagazine;
-		standort[9] = abgesetzteMagazine;
-		standort[10] = kostenDruck;
-		standort[11] = fwInSeitenProHeft;
-		standort[12] = maxSeitenFW;
-		standort[13] = ewInAktionen;
-		standort[14] = kostenEW;
-		standort[15] = maxEWAktionen;
-		standort[16] = preisProHeft;
-		standort[17] = maxPreisProHeft;
-		standort[18] = kostenGesamt;
-		standort[19] = erloesVerkauf;
-		standort[20] = erloesFW;
-		standort[21] = erloesGesamt;
-		standort[22] = umsatz;
-		standort[23] = kapital;
-		standort[24] = kostenFix;
+		standortDaten[0] = standort;
+		standortDaten[1] = preis;
+		standortDaten[2] = magazinkosten;
+		standortDaten[3] = maxMitarbeiter;
+		standortDaten[4] = startMitarbeiter;
+		standortDaten[5] = startGehaltMitarbeiter;
+		standortDaten[6] = startKostenMitarbeiter;
+		standortDaten[7] = maxAuflage;
+		standortDaten[8] = gedruckteMagazine;
+		standortDaten[9] = abgesetzteMagazine;
+		standortDaten[10] = kostenDruck;
+		standortDaten[11] = fwInSeitenProHeft;
+		standortDaten[12] = maxSeitenFW;
+		standortDaten[13] = ewInAktionen;
+		standortDaten[14] = kostenEW;
+		standortDaten[15] = maxEWAktionen;
+		standortDaten[16] = preisProHeft;
+		standortDaten[17] = maxPreisProHeft;
+		standortDaten[18] = kostenGesamt;
+		standortDaten[19] = erloesVerkauf;
+		standortDaten[20] = erloesFW;
+		standortDaten[21] = erloesGesamt;
+		standortDaten[22] = umsatz;
+		standortDaten[23] = kapital;
+		standortDaten[24] = kostenFix;
 		
-		return standort;
+		return standortDaten;
 	}
 	
 	public Object[] getStandorte(int i){

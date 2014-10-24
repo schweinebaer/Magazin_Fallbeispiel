@@ -179,7 +179,19 @@ public class Spiel {
 												|| splitAktuelleEingabe[1].equals("Berlin")   
 												|| splitAktuelleEingabe[1].equals("Walldorf") 
 												|| splitAktuelleEingabe[1].equals("Bonn")){
-												aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, spieler));
+												
+												if(splitAktuelleEingabe[1].equals("München")){
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(1))[9] ,spieler));
+												} else if(splitAktuelleEingabe[1].equals("Berlin")){
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(2))[9] ,spieler));
+												} else if(splitAktuelleEingabe[1].equals("Walldorf")){
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(3))[9] ,spieler));
+												} else if(splitAktuelleEingabe[1].equals("Bonn")){
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(4))[9] ,spieler));
+												} else {
+													//ignore
+												}
+												
 												writer.println("Magazin in " + splitAktuelleEingabe[1] + " eröffnet.");
 											} else {
 												writer.println("Invalide Standortwahl.");
@@ -269,10 +281,21 @@ public class Spiel {
 			}
 		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
 			if(aktuellerSpieler.getMagazin() == null){
-				if(splitAktuelleEingabe[1].equals("München") ||
-				   splitAktuelleEingabe[1].equals("Berlin") ||	
-				   splitAktuelleEingabe[1].equals("Walldorf")){
-					aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, spieler));
+				if(splitAktuelleEingabe[1].equals("München") 
+					|| splitAktuelleEingabe[1].equals("Berlin") 
+					|| splitAktuelleEingabe[1].equals("Walldorf")
+					|| splitAktuelleEingabe[1].equals("Bonn")){
+					if(splitAktuelleEingabe[1].equals("München")){
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(1))[9] ,spieler));
+					} else if(splitAktuelleEingabe[1].equals("Berlin")){
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(2))[9] ,spieler));
+					} else if(splitAktuelleEingabe[1].equals("Walldorf")){
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(3))[9] ,spieler));
+					} else if(splitAktuelleEingabe[1].equals("Bonn")){
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(4))[9] ,spieler));
+					} else {
+						//ignore
+					}
 				} else {
 					writer.println("Invalide Standortwahl.");
 				}
