@@ -90,7 +90,7 @@ public class ZufallsereignisDaten {
 			ereignis[3] = wert2;
 		}
 		
-		return null;
+		return ereignis;
 	}
 	
 	public Object[] getEreignis(int random){
