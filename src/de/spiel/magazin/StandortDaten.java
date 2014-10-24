@@ -199,7 +199,7 @@ public class StandortDaten {
 	}
 	
 	public Object[] getDaten(){
-		Object[] standortDaten = new Standort[25];
+		Object[] standortDaten = new Object[25];
 		
 		standortDaten[0] = standort;
 		standortDaten[1] = preis;

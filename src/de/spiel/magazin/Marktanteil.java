@@ -7,14 +7,12 @@ public class Marktanteil {
 	private int abgesetzteMagazine;
 	private static int gesamtAbgesetzteMagazine;
 	
-	public Marktanteil(Spieler s, int abgesetzteMagazine, Vector<Spieler> spieler){
+	public Marktanteil(){
+		
+	}
+	
+	public void updateAbgesetzteMengeSpieler(int abgesetzteMagazine){
 		this.abgesetzteMagazine = abgesetzteMagazine;
-		
-		for(int i = 0; i < spieler.capacity(); i++){
-			gesamtAbgesetzteMagazine += spieler.get(i).getMagazin().getAbgesetzteMagazine();
-		}
-		
-		anteil = abgesetzteMagazine / gesamtAbgesetzteMagazine;
 	}
 	
 	public static void updateAbgesetzteMengeGesamt(Vector<Spieler> spieler){

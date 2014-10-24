@@ -26,7 +26,7 @@ public class Spiel {
 	private static Ergebnisliste ergebnisliste;
 	
 	public static void main(String[] args) throws IOException {
-		ergebnisliste = new Ergebnisliste();
+		ergebnisliste = new Ergebnisliste(writer);
 		zufallsereignis = new Zufallsereignis();
 		
 		spieler = new Vector();
@@ -128,7 +128,7 @@ public class Spiel {
 				if(aktuellerSpieler.getKapital() < 0.0){
 					writer.println(aktuellerSpieler.getName() + " hat leider nicht mehr genügend Geld.");
 					spieler.remove(aktuellerSpieler);
-					ergebnisliste.addSpieler(aktuellerSpieler);
+					ergebnisliste.addSpieler(aktuellerSpieler, aktuelleRunde, null);
 				} else {
 					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 					
@@ -181,13 +181,13 @@ public class Spiel {
 												|| splitAktuelleEingabe[1].equals("Bonn")){
 												
 												if(splitAktuelleEingabe[1].equals("München")){
-													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(1))[9] ,spieler));
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 												} else if(splitAktuelleEingabe[1].equals("Berlin")){
-													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(2))[9] ,spieler));
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 												} else if(splitAktuelleEingabe[1].equals("Walldorf")){
-													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(3))[9] ,spieler));
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 												} else if(splitAktuelleEingabe[1].equals("Bonn")){
-													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(4))[9] ,spieler));
+													aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 												} else {
 													//ignore
 												}
@@ -227,10 +227,49 @@ public class Spiel {
 						writer.println("-----------------------------------------------");
 					}
 				}
+				
+				if(aktuelleRunde > 1){
+					Marktanteil.updateAbgesetzteMengeGesamt(spieler);
+					Spieler tmp;
+					
+					for(int j = 0; i < spieler.size(); j++){
+						tmp = spieler.get(j);
+						tmp.getMagazin().updateMarktanteil();
+					}
+				}
 			}
-
+			
+			if(aktuelleRunde == 1){
+				Marktanteil.updateAbgesetzteMengeGesamt(spieler);
+				Spieler tmp;
+				
+				for(int i = 0; i < spieler.size(); i++){
+					tmp = spieler.get(i);
+					tmp.getMagazin().updateMarktanteil();
+				}
+			}
+			
 			aktuelleRunde++;
 		}
+		
+		while(!spieler.isEmpty()){
+			Spieler tmp1;
+			Spieler tmp2;
+			
+			tmp1 = spieler.get(0);
+			
+			for(int i = 1; i < spieler.size(); i++){
+				tmp2 = spieler.get(i);
+				
+				if(tmp2.getMagazin().getMarktanteil().getAnteil() < tmp2.getMagazin().getMarktanteil().getAnteil()){
+					tmp1 = tmp2;
+				}
+			}
+			
+			ergebnisliste.addSpieler(tmp1, aktuelleRunde, tmp1.getMagazin().getMarktanteil());
+		}
+		
+		ergebnisliste.ausgabeListe();
 		
 		reader.close();
 		writer.close();
@@ -286,13 +325,13 @@ public class Spiel {
 					|| splitAktuelleEingabe[1].equals("Walldorf")
 					|| splitAktuelleEingabe[1].equals("Bonn")){
 					if(splitAktuelleEingabe[1].equals("München")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(1))[9] ,spieler));
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 					} else if(splitAktuelleEingabe[1].equals("Berlin")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(2))[9] ,spieler));
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 					} else if(splitAktuelleEingabe[1].equals("Walldorf")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(3))[9] ,spieler));
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 					} else if(splitAktuelleEingabe[1].equals("Bonn")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil(aktuellerSpieler, (int) (Standort.getStandort(4))[9] ,spieler));
+						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1], new Marktanteil());
 					} else {
 						//ignore
 					}

@@ -164,7 +164,12 @@ public class Magazin {
 	}
 	
 	public void updateMarktanteil(){
+		marktanteil.updateAbgesetzteMengeSpieler(abgesetzteMenge);
 		marktanteil.berechneAnteilNeu();
+	}
+	
+	public Marktanteil getMarktanteil(){
+		return marktanteil;
 	}
 	
 	public void berechnungAbgesetzteMenge(){
