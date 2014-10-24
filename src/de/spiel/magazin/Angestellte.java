@@ -41,6 +41,7 @@ public class Angestellte {
 			anzahlBereichA += (int) anzahl * 2/4;
 			anzahlBereichB += (int) anzahl * 1/4;
 			anzahlBereichC += (int) anzahl * 1/4;
+			System.out.println("Sie haben "+anzahl+" Mitarbeiter eingestellt.");
 			return true;
 		} else {
 			return false;
