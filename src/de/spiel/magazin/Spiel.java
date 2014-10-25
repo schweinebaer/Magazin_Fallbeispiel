@@ -343,13 +343,13 @@ public class Spiel {
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], rundeBetrag(Double.parseDouble(splitAktuelleEingabe[1])));
 			} else {
 				writer.println("Es kann kein Kredit in der Höhe von 0€ oder weniger aufgenommen werden.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_TILGEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
-				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]));
+				aktuellerSpieler.simulieren(splitAktuelleEingabe[0], rundeBetrag(Double.parseDouble(splitAktuelleEingabe[1])));
 			} else {
 				writer.println("Es kann kein Kredit mit einem negativen oder 0€ - Betrag getilgt werden.");
 			}			
@@ -381,7 +381,7 @@ public class Spiel {
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_SCHULEN")){
 			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], 0.0, 0.0);
 		} else if(splitAktuelleEingabe[0].equals("VERKAUFSPREIS_SETZEN")){
-			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
+			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], rundeBetrag(Double.parseDouble(splitAktuelleEingabe[1])), 0.0);
 		} else if(splitAktuelleEingabe[0].equals("AUFLAGE_SETZEN")){
 			aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 		} else {
@@ -434,4 +434,15 @@ public class Spiel {
 		
 		return true;
 	}
+	
+    private static double rundeBetrag(double betrag){ 
+      double round = Math.round(betrag*10000); 
+      
+      round = round / 10000; 
+      round = Math.round(round*1000); 
+      round = round / 1000; 
+      round = Math.round(round*100); 
+      
+      return round / 100; 
+    }
 }

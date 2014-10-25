@@ -28,10 +28,21 @@ public class Marktanteil {
 	}
 	
 	public void berechneAnteilNeu(){
-		anteil = abgesetzteMagazine / gesamtAbgesetzteMagazine;
+		anteil = rundeBetrag(abgesetzteMagazine / gesamtAbgesetzteMagazine);
 	}
 	
 	public double getAnteil(){
 		return anteil;
 	}
+	
+	private double rundeBetrag(double betrag){ 
+	      double round = Math.round(betrag*10000); 
+	      
+	      round = round / 10000; 
+	      round = Math.round(round*1000); 
+	      round = round / 1000; 
+	      round = Math.round(round*100); 
+	      
+	      return round / 100; 
+	 }
 }

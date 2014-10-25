@@ -45,7 +45,7 @@ public class Kosten {
 	public void updateGedruckteMag(int auflage){
 		gedruckteMagazine = auflage;
 		kostenGesamt -= kostenDruck;
-		kostenDruck = auflage * 0.2;
+		kostenDruck = rundeBetrag(auflage * 0.2);
 		kostenGesamt += kostenDruck;
 	}
 	
@@ -57,6 +57,7 @@ public class Kosten {
 		if(art.equals("ROHSTOFFPREISE_ERHOEHEN") || art.equals("ROHSTOFFPREISE_SENKEN")){
 			kostenGesamt -= kostenDruck;
 			kostenDruck *= betrag;
+			kostenDruck = rundeBetrag(kostenDruck);
 			kostenGesamt += kostenDruck;
 		} else if(art.equals("RECHTSSTREIT")){
 			kostenZusatz = betrag;
@@ -89,4 +90,15 @@ public class Kosten {
 		
 		return d;
 	}
+	
+	private double rundeBetrag(double betrag){ 
+	      double round = Math.round(betrag*10000); 
+	      
+	      round = round / 10000; 
+	      round = Math.round(round*1000); 
+	      round = round / 1000; 
+	      round = Math.round(round*100); 
+	      
+	      return round / 100; 
+	 }
 }

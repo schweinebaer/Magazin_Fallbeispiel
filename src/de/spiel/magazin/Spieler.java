@@ -39,21 +39,21 @@ public class Spieler {
 		}
 	}
 	
-	public void setMagazin(String standort, Marktanteil marktanteil){
+	public void setMagazin(String standort){
 		Object[] o;
 		
 		if(standort.equals("München")){
 			o = Standort.getStandort(1);
-			magazin = new Magazin(new Standort(1), o, marktanteil, writer);
+			magazin = new Magazin(new Standort(1), o, writer);
 		} else if(standort.equals("Berlin")){
 			o = Standort.getStandort(2);
-			magazin = new Magazin(new Standort(2), o, marktanteil, writer);
+			magazin = new Magazin(new Standort(2), o, writer);
 		} else if(standort.equals("Walldorf")){
 			o = Standort.getStandort(3);
-			magazin = new Magazin(new Standort(3), o, marktanteil, writer);
+			magazin = new Magazin(new Standort(3), o, writer);
 		} else if(standort.equals("Bonn")){
 			o = Standort.getStandort(4);
-			magazin = new Magazin(new Standort(4), o, marktanteil, writer);
+			magazin = new Magazin(new Standort(4), o, writer);
 		}
 	}
 	

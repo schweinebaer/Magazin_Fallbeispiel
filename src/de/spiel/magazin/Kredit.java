@@ -23,7 +23,7 @@ public class Kredit {
 	}
 	
 	public void berechnungPeriode(){
-		kreditbetrag = kreditbetrag + kreditbetrag * zinssatz;
+		kreditbetrag = rundeBetrag(kreditbetrag + kreditbetrag * zinssatz);
 	}
 	
 	public double getBetrag(){
@@ -37,4 +37,15 @@ public class Kredit {
 	public static double getZinsatzNeuaufnahme(){
 		return zinssatzNeuaufnahme;
 	}
+	
+	private double rundeBetrag(double betrag){ 
+	      double round = Math.round(betrag*10000); 
+	      
+	      round = round / 10000; 
+	      round = Math.round(round*1000); 
+	      round = round / 1000; 
+	      round = Math.round(round*100); 
+	      
+	      return round / 100; 
+	 }
 }

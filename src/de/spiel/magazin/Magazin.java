@@ -44,11 +44,11 @@ public class Magazin {
 	private double kapital;
 	private double kostenFix;
 
-	public Magazin(Standort standort, Object[] standortDaten, Marktanteil marktanteil, PrintWriter writer) {
+	public Magazin(Standort standort, Object[] standortDaten, PrintWriter writer) {
 		Object[] o = standortDaten;
 		
 		this.standort = standort;
-		this.marktanteil = marktanteil;
+		marktanteil = new Marktanteil();
 		this.writer = writer;
 		
 		/*
@@ -122,7 +122,7 @@ public class Magazin {
 			prozentsatzPreis = (4.2 - (preisProHeft - 4.2)) / 4.2;
 		}
 		
-		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
+		qualitaet = rundeBetrag((prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4);
 	}
 	
 	public void updateQualitaet(){
@@ -261,6 +261,9 @@ public class Magazin {
 	
 	public void simulieren(String art, double betrag, double betrag2){
 		//Zufallsereignisse
+		betrag = rundeBetrag(betrag);
+		betrag2 = rundeBetrag(betrag2);
+		
 		if(art.equals("ABSATZPLUS_EINMALIG") 
 			|| art.equals("ABSATZMINUS_EINMALIG")
 			|| art.equals("SPENDE_BEKOMMEN")){
@@ -310,4 +313,15 @@ public class Magazin {
 			//ignore
 		}
 	}
+	
+	private double rundeBetrag(double betrag){ 
+	      double round = Math.round(betrag*10000); 
+	      
+	      round = round / 10000; 
+	      round = Math.round(round*1000); 
+	      round = round / 1000; 
+	      round = Math.round(round*100); 
+	      
+	      return round / 100; 
+	 }
 }

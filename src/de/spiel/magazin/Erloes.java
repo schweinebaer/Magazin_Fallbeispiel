@@ -20,14 +20,14 @@ public class Erloes {
 	public void updateAbgesetzteMagazine(int anzahl){
 		erloesGesamt -= erloesVerkauf;
 		abgesetzteMagazine = anzahl;
-		erloesVerkauf = anzahl * preisMagazin;
+		erloesVerkauf = rundeBetrag(anzahl * preisMagazin);
 		erloesGesamt += erloesVerkauf;
 	}
 	
 	public void updatePreisMagazin(double preis){
 		erloesGesamt -= erloesVerkauf;
 		preisMagazin = preis;
-		erloesVerkauf = abgesetzteMagazine * preis;
+		erloesVerkauf = rundeBetrag(abgesetzteMagazine * preis);
 		erloesGesamt += erloesVerkauf;
 	}
 	
@@ -35,7 +35,7 @@ public class Erloes {
 		erloesGesamt -= erloesVerkauf;
 		abgesetzteMagazine = anzahl;
 		preisMagazin = preis;
-		erloesVerkauf = anzahl * preis;
+		erloesVerkauf = rundeBetrag(anzahl * preis);
 		erloesGesamt += erloesVerkauf;
 	}
 	
@@ -55,10 +55,10 @@ public class Erloes {
 		} else if(art.equals("RECHTSSTREIT")){
 			erloesGesamt -= erloesVerkauf;
 			abgesetzteMagazine += betrag;
-			erloesVerkauf = abgesetzteMagazine * preisMagazin;
+			erloesVerkauf = rundeBetrag(abgesetzteMagazine * preisMagazin);
 			abgesetzteMagazine -= betrag;
 			erloesGesamt += erloesVerkauf;
-			erloesVerkauf = abgesetzteMagazine * preisMagazin;
+			erloesVerkauf = rundeBetrag(abgesetzteMagazine * preisMagazin);
 		} else {
 			//ignore
 		}
@@ -86,4 +86,15 @@ public class Erloes {
 		
 		return tmp;
 	}
+	
+	private double rundeBetrag(double betrag){ 
+	      double round = Math.round(betrag*10000); 
+	      
+	      round = round / 10000; 
+	      round = Math.round(round*1000); 
+	      round = round / 1000; 
+	      round = Math.round(round*100); 
+	      
+	      return round / 100; 
+	 }
 }
