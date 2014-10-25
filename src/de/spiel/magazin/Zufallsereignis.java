@@ -7,7 +7,7 @@ public class Zufallsereignis {
 	public Zufallsereignis(){
 		daten = new ZufallsereignisDaten[14];
 		
-		daten[0] = new ZufallsereignisDaten("Zinssatz für Kredite steigt um 0,2% an, EZB erhöht den Leitzinssatz.", "ZINSSATZ_ERHOEHEN", 0.2, 0.0);
+		daten[0] = new ZufallsereignisDaten("Zinssatz für Kredite steigt um 0,2% an, EZB erhöht den Leitzinssatz.", "ZINSSATZ_ERHOEHEN", 0.2, 0.1);
 		daten[1] = new ZufallsereignisDaten("Zinssatz für Kredite steigt um 0,5% an, EZB erhöht den Leitzinssatz.", "ZINSSATZ_ERHOEHEN", 0.5, 0.0);
 		daten[2] = new ZufallsereignisDaten("Zinssatz für Kredite fällt um 0,2%; EZB senkt den Leitzinssatz.", "ZINSSATZ_VERKLEINERN", 0.2, 0.0);
 		daten[3] = new ZufallsereignisDaten("Zinssatz für Kredite fällt um 0,2%; EZB senkt den Leitzinssatz.", "ZINSSATZ_VERKLEINERN", 0.5, 0.0);
