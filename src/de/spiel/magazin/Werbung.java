@@ -77,16 +77,16 @@ public class Werbung {
 	
 	public void ausgabeKonditionen(PrintWriter writer){
 		if(art.equals("Eigenwerbung")){
-			writer.println("Art der Werbung:           " + art);
-			writer.println("Anzahl Aktionen:           " + ewAktionen);
-			writer.println("Maximale Anzahl Aktionen:  " + maxEWAktionen);
-			writer.println("Gesamtkosten Eigenwerbung: " + kostenEWGesamt);
+			writer.println("Art der Werbung:              " + art);
+			writer.println("-> Anzahl Aktionen:           " + ewAktionen);
+			writer.println("-> Maximale Anzahl Aktionen:  " + maxEWAktionen);
+			writer.println("-> Gesamtkosten Eigenwerbung: " + kostenEWGesamt);
 		} else {
-			writer.println("Art der Werbung:           " + art);
-			writer.println("Anzahl Seiten:             " + fwInSeiten);
-			writer.println("Einnahmen FW pro Seite:    " + einnahmenFWSeite);
-			writer.println("Einnahmen FW pro Heft:     " + einnahmenFWHeft);
-			writer.println("Gesamteinnahmen FW:        " + einnahmenFWAuflage);
+			writer.println("Art der Werbung:              " + art);
+			writer.println("-> Anzahl Seiten:             " + fwInSeiten);
+			writer.println("-> Einnahmen FW pro Seite:    " + einnahmenFWSeite);
+			writer.println("-> Einnahmen FW pro Heft:     " + einnahmenFWHeft);
+			writer.println("-> Gesamteinnahmen FW:        " + einnahmenFWAuflage);
 		}
 	}
 }

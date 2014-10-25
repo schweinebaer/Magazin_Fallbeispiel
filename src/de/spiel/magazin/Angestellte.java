@@ -9,9 +9,6 @@ public class Angestellte {
 	private int anzahlGesamt;
 	private int anzahlHR;
 	private int anzahlJournalisten;
-	private int anzahlBereichA;
-	private int anzahlBereichB;
-	private int anzahlBereichC;
 	private double gehalt;
 	private int durchgefuehrteSchulungen;
 	private double qualitaet;
@@ -23,9 +20,6 @@ public class Angestellte {
 		anzahlHR = (int) anzahlGesamt * 1/6;
 		anzahlJournalisten = (int) anzahlGesamt * 5/6;
 		
-		anzahlBereichA = (int) anzahlGesamt * 2/4;
-		anzahlBereichB = (int) anzahlGesamt * 1/4;
-		anzahlBereichC = (int) anzahlGesamt * 1/4;
 		this.gehalt = gehalt;
 		durchgefuehrteSchulungen = 0;
 		this.qualitaet = qualitaet;
@@ -38,9 +32,6 @@ public class Angestellte {
 			anzahlHR += (int) anzahl * 1/6;
 			anzahlJournalisten += (int) anzahl * 5/6;
 			
-			anzahlBereichA += (int) anzahl * 2/4;
-			anzahlBereichB += (int) anzahl * 1/4;
-			anzahlBereichC += (int) anzahl * 1/4;
 			System.out.println("Sie haben "+anzahl+" Mitarbeiter eingestellt.");
 			return true;
 		} else {
@@ -54,19 +45,11 @@ public class Angestellte {
 			
 			anzahlHR = 0;
 			anzahlJournalisten = 0;
-			
-			anzahlBereichA = 0;
-			anzahlBereichB = 0;
-			anzahlBereichC = 0;
 		} else {
 			anzahlGesamt -= anzahl;
 			
 			anzahlHR -= (int) anzahl * 1/6;
 			anzahlJournalisten -= (int) anzahl * 5/6;
-			
-			anzahlBereichA -= (int) anzahl * 2/4;
-			anzahlBereichB -= (int) anzahl * 1/4;
-			anzahlBereichC -= (int) anzahl * 1/4;
 		}
 	}
 	
@@ -84,12 +67,9 @@ public class Angestellte {
 	}
 	
 	public int[] getBereichsZahlen(){
-		int[] tmp = new int[5];
-		tmp[0] = anzahlBereichA;
-		tmp[1] = anzahlBereichB;
-		tmp[2] = anzahlBereichC;
-		tmp[3] = anzahlHR;
-		tmp[4] = anzahlJournalisten;
+		int[] tmp = new int[2];
+		tmp[0] = anzahlHR;
+		tmp[1] = anzahlJournalisten;
 		return tmp;
 	}
 	

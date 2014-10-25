@@ -354,11 +354,17 @@ public class Spiel {
 				writer.println("Es kann kein Kredit mit einem negativen oder 0€ - Betrag getilgt werden.");
 			}			
 		} else if(splitAktuelleEingabe[0].equals("WERBUNG_SCHALTEN")){
-			//nochmal überprüfen!
+			//nochmal überprüfen! --> hinsichtlich ob Zahl mit Nachkommastellen oder nicht
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
 				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
 			} else {
 				writer.println("Es darf keine Werbung mit einem Betrag von 0€ oder weniger geschaltet werden.");
+			}
+		} else if(splitAktuelleEingabe[0].equals("WERBUNG_MAGAZIN")){
+			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0 && Double.parseDouble(splitAktuelleEingabe[1]) <= 151){
+				aktuellerSpieler.getMagazin().simulieren(splitAktuelleEingabe[0], Double.parseDouble(splitAktuelleEingabe[1]), 0.0);
+			} else {
+				writer.println("Kein valider Werbeanteil für das Magazin. Bitte geben Sie einen Wert zwischen 1 und 150 ein.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("MITARBEITER_EINSTELLEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){
@@ -402,8 +408,8 @@ public class Spiel {
 			writer.println("MAGAZIN_EROEFFNEN standortName ------------------------ Erzeugt ein Magazin am angegebenen Standort mit der entsprechend Mitarbeiteranzahl");
 			writer.println("KREDIT_AUFNEHMEN betrag ------------------------------- Nimmt einen Kredit in der angegebenen Höhe auf");
 			writer.println("KREDIT_TILGEN betrag ---------------------------------- Tilgt einen Kredit in der angegebenen Höhe");
-			writer.println("WERBUNG_SCHALTEN betrag ------------------------------- Schaltet Werbung für das Magazin");
-			writer.println("WERBUNG_MAGAZIN anteil -------------------------------- Der Werbeanteil im Magazin wird auf anteil Seiten gesetzt");
+			writer.println("WERBUNG_SCHALTEN aktion ------------------------------- Setzt den Anteil der Werbeaktionen für das Magazin auf aktion Aktionen zu je 10.000€");
+			writer.println("WERBUNG_MAGAZIN anteil -------------------------------- Der Werbeanteil im Magazin wird auf anteil Seiten gesetzt (12.500€ pro Seite)");
 			writer.println("MITARBEITER_EINSTELLEN mitarbeiterAnzahl -------------- Stellt mitarbeiterAnzahl Mitarbeiter im Magazin ein");
 			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
 			writer.println("MITARBEITER_SCHULEN ----------------------------------- Mitarbeiter werden um eine Schulungseinheit geschult");

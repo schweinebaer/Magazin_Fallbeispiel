@@ -284,8 +284,9 @@ public class Magazin {
 		
 		//Spielereingaben
 		if(art.equals("WERBUNG_SCHALTEN")){
-			//nochmal genauer wegen Befehl schauen, da man nicht richtig setzen kann
-			//--> Seitenanzahl fehlt; genauer definieren
+			eigenwerbung.updateEW(writer, (int) betrag);
+		} else if(art.equals("WERBUNG_MAGAZIN")){
+			fremdwerbung.updateFW(writer, (int) betrag, auflage);
 		} else if(art.equals("MITARBEITER_EINSTELLEN") || 
 				  art.equals("MITARBEITER_ENTLASSEN") ||
 				  art.equals("MITARBEITER_SCHULEN")){
