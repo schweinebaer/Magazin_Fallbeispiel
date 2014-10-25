@@ -3,30 +3,30 @@ package de.spiel.magazin;
 public class StandortDaten {
 	/*
 	 * Was ist was (genau diese Reihenfolge):
-	 * 0: String standort
-	 * 1: double preis
-	 * 2: double magazinkosten
-	 * 3: int maxMitarbeiter
-	 * 4: int startMitarbeiter
-	 * 5: double startGehaltMitarbeiter
-	 * 6: double startKostenMitarbeiter
-	 * 7: int maxAuflage
-	 * 8: int gedruckteMagazine
-	 * 9: int abgesetzteMagazine
-	 * 10: double kostenDruck
-	 * 11: int fwInSeitenProHeft
-	 * 12: int maxSeitenFW
-	 * 13: int ewInAktionen
-	 * 14: double kostenEW
-	 * 15: int maxEWAktionen
-	 * 16: double preisProHeft
-	 * 17: double maxPreisProHeft
-	 * 18: double kostenGesamt
-	 * 19: double erloesVerkauf
-	 * 20: double erloesFW
-	 * 21: double erloesGesamt
-	 * 22: double umsatz
-	 * 23: double kapital
+	 * 0: String standort +
+	 * 1: double preis -> Was für ein Preis? -
+	 * 2: double magazinkosten -
+	 * 3: int maxMitarbeiter +
+	 * 4: int startMitarbeiter +
+	 * 5: double startGehaltMitarbeiter +
+	 * 6: double startKostenMitarbeiter +
+	 * 7: int maxAuflage +
+	 * 8: int gedruckteMagazine +
+	 * 9: int abgesetzteMagazine +
+	 * 10: double kostenDruck +
+	 * 11: int fwInSeitenProHeft +
+	 * 12: int maxSeitenFW +
+	 * 13: int ewInAktionen +
+	 * 14: double kostenEW +
+	 * 15: int maxEWAktionen +
+	 * 16: double preisProHeft +
+	 * 17: double maxPreisProHeft +
+	 * 18: double kostenGesamt +
+	 * 19: double erloesVerkauf +
+	 * 20: double erloesFW +
+	 * 21: double erloesGesamt +
+	 * 22: double umsatz +
+	 * 23: double kapital +
 	 * 24: double kostenFix
 	 */
 	//alt
