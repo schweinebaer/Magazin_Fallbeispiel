@@ -6,6 +6,7 @@ import java.util.Vector;
 public class Standort {
 	private String name;
 	private double preis;
+	private double fixKosten;
 	
 	//alt
 	private static StandortDaten anfangswerteStandorte = new StandortDaten();
@@ -33,6 +34,7 @@ public class Standort {
 		try {
 			name = (String) o[0];
 			preis = (double) o[1];
+			fixKosten = (double) o[24];
 		} catch (NullPointerException e) {
 			//ignore
 		}
@@ -74,5 +76,8 @@ public class Standort {
 	
 	public String getOrt(){
 		return name;
+	}
+	public double getFixkosten(){
+		return fixKosten;
 	}
 }
