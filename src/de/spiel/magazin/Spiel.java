@@ -303,7 +303,7 @@ public class Spiel {
 		}
 	}
 	
-	private static void simulieren(String art, double Betrag){
+	private static void simulieren(String art, double betrag){
 		//normale Spielereignisse simulieren
 		if(splitAktuelleEingabe[0].equals("BERICHT")){
 			if(splitAktuelleEingabe.length < 2){

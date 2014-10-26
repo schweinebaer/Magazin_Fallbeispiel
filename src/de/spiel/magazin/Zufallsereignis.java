@@ -1,7 +1,6 @@
 package de.spiel.magazin;
 
 public class Zufallsereignis {
-	private static ZufallsereignisDaten daten2 = new ZufallsereignisDaten(); 
 	private ZufallsereignisDaten[] daten;
 	
 	public Zufallsereignis(){
@@ -30,18 +29,6 @@ public class Zufallsereignis {
 		while(ereignis == null){
 			ereignisRandomZahl = (int) (Math.random() * (14 - 1) + 1);
 			ereignis = daten[ereignisRandomZahl].getEreignis();
-		}
-		
-		return ereignis;
-	}
-	
-	public static Object[] berechneZufallsEreignis2(){
-		int ereignisRandomZahl = (int) (Math.random() * (14 - 1) + 1);
-		Object[] ereignis = daten2.getEreignis(ereignisRandomZahl);
-		
-		while(ereignis[0].equals("WRONG_RANDOM")){
-			ereignisRandomZahl = (int) (Math.random() * (14 - 1) + 1);
-			ereignis = daten2.getEreignis(ereignisRandomZahl);
 		}
 		
 		return ereignis;
