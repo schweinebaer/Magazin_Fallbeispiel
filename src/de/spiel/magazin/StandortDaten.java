@@ -2,6 +2,11 @@ package de.spiel.magazin;
 
 public class StandortDaten {
 	/*
+	 * @author Pascal Pronobis
+	 * @description Datenhaltung Standort
+	 */
+	
+	/*
 	 * Was ist was (genau diese Reihenfolge):
 	 * 0: String standort +
 	 * 1: double preis -> Was für ein Preis? -

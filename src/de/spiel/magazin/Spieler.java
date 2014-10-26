@@ -8,6 +8,11 @@ import de.spiel.magazin.Kredit;
 import de.spiel.magazin.Magazin;
 
 public class Spieler {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Koordination der allgemeinen Spielerinformatinen wie Kapital und Magazin 
+	 */
+	
 	//private Standort standort;
 	private int mitarbeiter;
 	private String name;

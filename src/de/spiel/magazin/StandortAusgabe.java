@@ -3,6 +3,11 @@ package de.spiel.magazin;
 import java.io.PrintWriter;
 
 public class StandortAusgabe {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Ausgabe des jeweiligen Standortes 
+	 */
+	
 	public static void ausgabeStandortStartwerte(Object[] o, int standortNr, PrintWriter writer){
 		writer.println("----- Standort " + standortNr + " -----");
 		writer.println("Standort:                		" + o[0]);

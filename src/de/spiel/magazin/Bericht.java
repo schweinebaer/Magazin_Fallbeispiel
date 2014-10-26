@@ -3,6 +3,11 @@ package de.spiel.magazin;
 import java.io.PrintWriter;
 
 public class Bericht {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Situationsbericht eines Spielers
+	 */
+	
 	private Spieler spieler;
 	private Magazin magazin;
 	private Standort standort;

@@ -8,6 +8,11 @@ import java.io.PrintWriter;
  */
 
 public class Magazin {
+	/*
+	 * @author Pascal Pronobis
+	 * @description allgemeine Koordination des Magazins inkl. Datenhaltung 
+	 */
+	
 	private Standort standort;
 	private Werbung eigenwerbung;
 	private Werbung fremdwerbung;

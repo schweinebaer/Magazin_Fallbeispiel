@@ -1,6 +1,11 @@
 package de.spiel.magazin;
 
 public class Kosten {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Koordination der Kosten, die pro Periode auf das Magazin anfallen 
+	 */
+	
 	private int gedruckteMagazine;
 	private int abgesetzteMagazine;
 	private double kostenDruck;

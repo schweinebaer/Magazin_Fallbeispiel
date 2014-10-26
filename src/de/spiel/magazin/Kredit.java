@@ -3,6 +3,11 @@ package de.spiel.magazin;
 import java.io.PrintWriter;
 
 public class Kredit {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Koordination der Kredite
+	 */
+	
 	// noch einbauen: FK nicht mehr als 300% des EK sein
 	private double kreditbetrag;
 	private double zinssatz;

@@ -3,6 +3,11 @@ package de.spiel.magazin;
 import java.util.Vector;
 
 public class Marktanteil {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Marktanteil der jeweiligen Magazinen 
+	 */
+	
 	private double anteil;
 	private int abgesetzteMagazine;
 	private static int gesamtAbgesetzteMagazine;

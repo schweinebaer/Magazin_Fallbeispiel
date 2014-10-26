@@ -1,6 +1,11 @@
 package de.spiel.magazin;
 
 public class ErgebnislisteDaten {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Daten des jeweiligen Spielers, welcher an die Liste angefügt wird 
+	 */
+	
 	private Spieler s;
 	private int runde;
 	private Marktanteil marktanteil;

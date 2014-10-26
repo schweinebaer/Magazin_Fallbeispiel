@@ -4,6 +4,11 @@ import java.io.PrintWriter;
 import java.util.Vector;
 
 public class ErgebnislisteAusgabe {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Ausgabe des Spielergebnisses
+	 */
+	
 	public void ausgabeErgebnis(PrintWriter writer, Vector<Spieler> spielerListe, Vector<Integer> spielerRunden, Vector<Marktanteil> spielerMarktanteile) {
 		writer.println("------Ergebnis------");
 		writer.println("-----------------------------------------------");

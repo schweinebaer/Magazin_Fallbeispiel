@@ -4,6 +4,11 @@ import java.util.Vector;
 
 
 public class Standort {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Allgemeine Koordination des Standortes 
+	 */
+	
 	private String name;
 	private double preis;
 	private double fixKosten;

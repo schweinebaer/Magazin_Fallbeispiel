@@ -1,6 +1,11 @@
 package de.spiel.magazin;
 
 public class ZufallsereignisDaten {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Datenhaltung Zufallsereignis  
+	 */
+	
 	private String ausgabeText;
 	private String befehl;
 	private double wert1;

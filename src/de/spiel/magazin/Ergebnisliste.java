@@ -4,6 +4,11 @@ import java.io.PrintWriter;
 import java.util.Vector;
 
 public class Ergebnisliste {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Ergebnisliste Koordination
+	 */
+	
 	private Object[] ergebnisliste;
 	private Vector<Spieler> spielerListe;
 	private Vector<Integer> spielerRunden;

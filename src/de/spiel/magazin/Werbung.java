@@ -3,6 +3,11 @@ package de.spiel.magazin;
 import java.io.PrintWriter;
 
 public class Werbung {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Koordination von Eigen- und Fremdwerbung 
+	 */
+	
 	private String art;
 	
 	private int ewAktionen;

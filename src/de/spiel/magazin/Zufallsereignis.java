@@ -1,6 +1,11 @@
 package de.spiel.magazin;
 
 public class Zufallsereignis {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Koordination Zufallsereignis   
+	 */
+	
 	private ZufallsereignisDaten[] daten;
 	
 	public Zufallsereignis(){

@@ -1,6 +1,11 @@
 package de.spiel.magazin;
 
 public class Umsatz {
+	/*
+	 * @author Pascal Pronobis
+	 * @description Eigentlich Erlösklasse --> Umsatz und Erlös wurden vertauscht  
+	 */
+	
 	private double erloes;
 	private double kosten;
 	private double umsatz;

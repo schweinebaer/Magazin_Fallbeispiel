@@ -3,6 +3,7 @@ package de.spiel.magazin;
 public class Angestellte {
 	/*
 	 * @author Pascal Pronobis
+	 * @description Generelle Koordination der Angestellten eines Magazins 
 	 */
 	
 	private int maxAnzahlGesamt;
