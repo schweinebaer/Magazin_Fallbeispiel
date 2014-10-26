@@ -80,7 +80,7 @@ public class Magazin {
 		
 		qualitaetInit();
 		
-		angestellte = new Angestellte((int) o[3], (int) o[4], (double) o[5], qualitaet);
+		angestellte = new Angestellte(writer, (int) o[3], (int) o[4], (double) o[5], qualitaet);
 		
 		erloes = new Erloes((int) o[9], (double) o[16], (double) o[19], (double) o[20], (double) o[21]);
 		kosten = new Kosten((int) o[8], (int) o[9], (double) o[10], (double) o[6], (double) o[14], (double) o[24],(double) o[18]);

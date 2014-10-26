@@ -1,5 +1,7 @@
 package de.spiel.magazin;
 
+import java.io.PrintWriter;
+
 public class Angestellte {
 	/*
 	 * @author Pascal Pronobis
@@ -13,8 +15,11 @@ public class Angestellte {
 	private double gehalt;
 	private int durchgefuehrteSchulungen;
 	private double qualitaet;
+	private PrintWriter writer;
 	
-	public Angestellte(int maxAnzahlGesamt, int anzahlGesamt, double gehalt, double qualitaet){
+	public Angestellte(PrintWriter writer, int maxAnzahlGesamt, int anzahlGesamt, double gehalt, double qualitaet){
+		this.writer = writer;
+		
 		this.maxAnzahlGesamt = maxAnzahlGesamt;
 		this.anzahlGesamt = anzahlGesamt;
 		
@@ -33,9 +38,10 @@ public class Angestellte {
 			anzahlHR += (int) anzahl * 1/6;
 			anzahlJournalisten += (int) anzahl * 5/6;
 			
-			System.out.println("Sie haben "+anzahl+" Mitarbeiter eingestellt.");
+			writer.println("Sie haben " + anzahl + " Mitarbeiter eingestellt.");
 			return true;
 		} else {
+			writer.println("Es konnten keine Mitarbeiter eingestellt werden. Überprüfen Sie Ihre Eingabe.");
 			return false;
 		}
 	}
@@ -46,11 +52,14 @@ public class Angestellte {
 			
 			anzahlHR = 0;
 			anzahlJournalisten = 0;
+			writer.println("Sie haben " + (anzahl - (anzahlGesamt - anzahl)) + " Mitarbeiter entlassen.");
 		} else {
 			anzahlGesamt -= anzahl;
 			
 			anzahlHR -= (int) anzahl * 1/6;
 			anzahlJournalisten -= (int) anzahl * 5/6;
+			
+			writer.println("Sie haben " + anzahl + " Mitarbeiter entlassen.");
 		}
 	}
 	
@@ -58,6 +67,7 @@ public class Angestellte {
 		if(durchgefuehrteSchulungen >= 0 && durchgefuehrteSchulungen < 5){
 			durchgefuehrteSchulungen++;
 			qualitaet = durchgefuehrteSchulungen * 0.03;
+			writer.println("Sie haben Ihre Mitarbeiter um eine Aktion geschult.");
 		} else {
 			System.out.println("Sie haben bereits maximal geschult");
 		}
@@ -93,10 +103,6 @@ public class Angestellte {
 	public void simulieren(String art, double betrag){
 		if(art.equals("MITARBEITER_EINSTELLEN")){
 			boolean tmp = einstellen((int) betrag);
-			
-			if(!tmp){
-				//Konsolenausgabe
-			}
 		} else if(art.equals("MITARBEITER_ENTLASSEN")){
 			entlassen((int) betrag);
 		} else if(art.equals("MITARBEITER_SCHULEN")){
