@@ -26,7 +26,6 @@ public class Spiel {
 	private static Ergebnisliste ergebnisliste;
 	
 	public static void main(String[] args) throws IOException {
-		ergebnisliste = new Ergebnisliste(writer);
 		zufallsereignis = new Zufallsereignis();
 		
 		spieler = new Vector();
@@ -89,7 +88,10 @@ public class Spiel {
 			splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 		}
 		
-		//Aktuelle Zinkosnditionen ausgeben
+		//Ergebnisliste anlegen auf Basis der Spielerzahl
+		ergebnisliste = new Ergebnisliste(writer, spieler.size());
+		
+		//Aktuelle Zinsoknditionen ausgeben
 		writer.println("Der derzeitige Zinssatz für Kredite für alle Spieler liegt bei " + Kredit.getZinsatzNeuaufnahme() + "%.");
 		writer.println("--------------------------------------------------");		
 		
@@ -99,10 +101,10 @@ public class Spiel {
 			zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
 			
 			//in der ersten Runde keine Zinsänderungen durchführen lassen
-			if(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 1){
+			if(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") && aktuelleRunde > 0){
 				writer.println(zufallsereignisDaten[0]);
 				Kredit.updateZinsatz((double) zufallsereignisDaten[2]);
-			} else if(zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN") && aktuelleRunde > 1){
+			} else if(zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN") && aktuelleRunde > 0){
 				writer.println(zufallsereignisDaten[0]);
 				Kredit.updateZinsatz(-1 * (double) zufallsereignisDaten[2]);
 			}
@@ -120,7 +122,7 @@ public class Spiel {
 				//genaue Berechnungen durchführen!!
 				aktuellerSpieler = spieler.elementAt(i);
 				
-				if(aktuelleRunde > 1){
+				if(aktuelleRunde > 0){
 					aktuellerSpieler.getMagazin().aktualisiereWerte();
 				}
 				
@@ -133,10 +135,10 @@ public class Spiel {
 					writer.println("Nächste Aktionen für " + aktuellerSpieler.getName());
 					
 					//ab der zweiten Runde können spielerbasierte Zufallsereignisse eintreffen
-					if(aktuelleRunde > 1){
+					if(aktuelleRunde > 0){
 						zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
 						
-						while(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN")){
+						while(zufallsereignisDaten[1].equals("ZINSSATZ_ERHOEHEN") || zufallsereignisDaten[1].equals("ZINSSATZ_VERKLEINERN") || zufallsereignisDaten == null){
 							zufallsereignisDaten = zufallsereignis.berechneZufallsEreignis();
 						}
 						
@@ -221,6 +223,12 @@ public class Spiel {
 					}
 					
 					if(splitAktuelleEingabe[0].equals("RUNDE_FERTIG")){
+						if(aktuelleRunde > 0){
+							Marktanteil.updateAbgesetzteMengeGesamt(spieler);
+						}
+						
+						aktuellerSpieler.getMagazin().aktualisiereWerte();
+						aktuellerSpieler.updateKapital();
 						aktuellerSpieler.addBericht(aktuellerSpieler);
 						aktuellerSpieler.getBericht(aktuelleRunde).generiereAusgabe();
 						writer.println("Runde von " + aktuellerSpieler.getName() + " beendet.");
@@ -228,25 +236,25 @@ public class Spiel {
 					}
 				}
 				
-				if(aktuelleRunde > 1){
+				if(aktuelleRunde > 0){
 					Marktanteil.updateAbgesetzteMengeGesamt(spieler);
-					Spieler tmp;
+					/*Spieler tmp;
 					
-					for(int j = 0; i < spieler.size(); j++){
+					for(int j = 0; (j < spieler.size()) && spieler.elementAt(j) != null; j++){
 						tmp = spieler.get(j);
 						tmp.getMagazin().updateMarktanteil();
-					}
+					}*/
 				}
 			}
 			
-			if(aktuelleRunde == 1){
+			if(aktuelleRunde == 0){
 				Marktanteil.updateAbgesetzteMengeGesamt(spieler);
-				Spieler tmp;
+				/*Spieler tmp;
 				
 				for(int i = 0; i < spieler.size(); i++){
 					tmp = spieler.get(i);
 					tmp.getMagazin().updateMarktanteil();
-				}
+				}*/
 			}
 			
 			aktuelleRunde++;
@@ -265,6 +273,8 @@ public class Spiel {
 					tmp1 = tmp2;
 				}
 			}
+			
+			spieler.remove(tmp1);
 			
 			ergebnisliste.addSpieler(tmp1, aktuelleRunde, tmp1.getMagazin().getMarktanteil());
 		}

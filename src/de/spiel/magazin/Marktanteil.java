@@ -16,19 +16,19 @@ public class Marktanteil {
 	}
 	
 	public static void updateAbgesetzteMengeGesamt(Vector<Spieler> spieler){
-		gesamtAbgesetzteMagazine = 0;
+		Marktanteil.gesamtAbgesetzteMagazine = 0;
 		
-		for(int i = 0; i < spieler.capacity(); i++){
-			gesamtAbgesetzteMagazine += spieler.get(i).getMagazin().getAbgesetzteMagazine();
+		for(int i = 0; (i < spieler.size()) && spieler.elementAt(i) != null; i++){
+			Marktanteil.gesamtAbgesetzteMagazine += spieler.elementAt(i).getMagazin().getAbgesetzteMagazine();
 		}
 		
-		for(int i = 0; i < spieler.capacity(); i++){
-			spieler.get(i).getMagazin().updateMarktanteil();
+		for(int i = 0; (i < spieler.size()) && spieler.elementAt(i) != null; i++){
+			spieler.elementAt(i).getMagazin().updateMarktanteil();
 		}
 	}
 	
 	public void berechneAnteilNeu(){
-		anteil = rundeBetrag(abgesetzteMagazine / gesamtAbgesetzteMagazine);
+		anteil = rundeBetrag(abgesetzteMagazine / Marktanteil.gesamtAbgesetzteMagazine);
 	}
 	
 	public double getAnteil(){

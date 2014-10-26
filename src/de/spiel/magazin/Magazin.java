@@ -161,6 +161,8 @@ public class Magazin {
 		}
 		
 		qualitaet = (prozentsatzEW + prozentsatzFW + prozentsatzAngestellte + prozentsatzPreis) / 4;
+		
+		berechnungAbgesetzteMenge();
 	}
 	
 	public void updateMarktanteil(){
@@ -170,10 +172,6 @@ public class Magazin {
 	
 	public Marktanteil getMarktanteil(){
 		return marktanteil;
-	}
-	
-	public void berechnungAbgesetzteMenge(){
-		abgesetzteMenge = (int) (gedruckteMagazine * qualitaet);
 	}
 	
 	public void updateEW(int ewAktionen){
@@ -206,6 +204,10 @@ public class Magazin {
 		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
 		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
 		kapital += umsatzMagazin.getUmsatz();
+	}
+	
+	public void berechnungAbgesetzteMenge(){
+		abgesetzteMenge = (int) (gedruckteMagazine * qualitaet);
 	}
 	
 	public int getAbgesetzteMagazine(){
@@ -299,7 +301,6 @@ public class Magazin {
 			kosten.updatePersonalKosten(kostenAngestellte);
 			//genauer nachschauen, wie genau mit Angestellten in Qualität handeln!
 		} else if(art.equals("VERKAUFSPREIS_SETZEN")){
-			//noch genauer schauen, was genau gemacht werden muss!!!
 			if(betrag <= maxPreisProHeft){
 				preisProHeft = betrag;
 				updateQualitaet();
@@ -312,6 +313,10 @@ public class Magazin {
 		} else {
 			//ignore
 		}
+	}
+
+	public double getUmsatz() {
+		return umsatzMagazin.getUmsatz();
 	}
 	
 	private double rundeBetrag(double betrag){ 

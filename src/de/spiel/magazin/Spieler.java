@@ -24,6 +24,7 @@ public class Spieler {
 		this.writer = writer;
 		kredite = new Vector();
 		berichte = new Vector();
+		ek = 5000000.0;
 		kapital = 5000000.0;
 	}
 	
@@ -69,7 +70,26 @@ public class Spieler {
 		}
 	}
 	
+	public void erhoeheKapitalUm(double kapitalErhoehung){
+		kapital += kapitalErhoehung;
+	}
+	
+	public void minimiereKapitalUm(double kapitalMinderung){
+		kapital -= kapitalMinderung;
+	}
+	
+	public void updateKapital(){
+		kapital -= ek;
+		ek += (magazin.getUmsatz());
+		kapital += ek;
+	}
+	
+	public void ermittleKapital(){
+		kapital = ek + fk;
+	}
+	
 	public double getKapital(){
+		ermittleKapital();
 		return kapital;
 	}
 	
@@ -83,14 +103,19 @@ public class Spieler {
 	}
 	
 	public void ermittleFK(){
-		//nochmal überprüfen, da IndexOutOfBounds Exception
 		if(!kredite.isEmpty()){
 			Kredit k = kredite.firstElement();
 			fk = 0;
 			
-			for(int i = 0; k != null; i++){
+			for(int i = 1; k != null; i++){
 				fk += k.getBetrag();
-				k = kredite.elementAt(i);
+				
+				try {
+					k = kredite.elementAt(i);
+				} catch(Exception e){
+					k = null;
+				}
+				
 				writer.println(fk);
 			}
 		} else {
@@ -125,13 +150,5 @@ public class Spieler {
 		} else {
 			//ignore
 		}
-	}
-	
-	public void erhoeheKapitalUm(double kapitalErhoehung){
-		kapital += kapitalErhoehung;
-	}
-	
-	public void minimiereKapitalUm(double kapitalMinderung){
-		kapital -= kapitalMinderung;
 	}
 }

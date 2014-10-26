@@ -77,7 +77,7 @@ public class Kosten {
 	}
 	
 	public double getGesamtKosten(){
-		return kostenGesamt;
+		return rundeBetrag(kostenGesamt);
 	}
 	
 	public double[] getKosten(){

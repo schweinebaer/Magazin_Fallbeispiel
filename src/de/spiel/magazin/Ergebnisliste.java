@@ -10,9 +10,13 @@ public class Ergebnisliste {
 	private Vector<Marktanteil> spielerMarktanteile;
 	private PrintWriter writer;
 	private ErgebnislisteAusgabe ausgabeErgebnis;
+	private ErgebnislisteDaten[] daten;
+	private int zeigerArrayDaten;
 	
-	public Ergebnisliste(PrintWriter writer){
+	public Ergebnisliste(PrintWriter writer, int anzahlSpieler){
 		this.writer = writer;
+		daten = new ErgebnislisteDaten[anzahlSpieler];
+		zeigerArrayDaten = 0;
 		ergebnisliste = new Object[3];
 		spielerListe = new Vector();
 		spielerRunden = new Vector();
@@ -21,20 +25,18 @@ public class Ergebnisliste {
 	}
 	
 	public void addSpieler(Spieler s, int runde, Marktanteil marktanteil){
+		daten[zeigerArrayDaten] = new ErgebnislisteDaten(s, runde, marktanteil);
+		zeigerArrayDaten++;
+		
+		/*
 		spielerListe.add(s);
 		spielerRunden.add(runde);
 		spielerMarktanteile.add(marktanteil);
+		*/
 	}
 	
 	public void ausgabeListe(){
-		ausgabeErgebnis.ausgabeErgebnis(writer, spielerListe, spielerRunden, spielerMarktanteile);
-	}
-	
-	public Object[] getErgebnis(){
-		ergebnisliste[0] = spielerListe;
-		ergebnisliste[1] = spielerRunden;
-		ergebnisliste[2] = spielerMarktanteile;
-		
-		return ergebnisliste;
+		ausgabeErgebnis.ausgabeErgebnis(writer, daten);
+		//ausgabeErgebnis.ausgabeErgebnis(writer, spielerListe, spielerRunden, spielerMarktanteile);
 	}
 }

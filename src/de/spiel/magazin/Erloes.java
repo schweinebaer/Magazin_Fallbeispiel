@@ -74,7 +74,7 @@ public class Erloes {
 	}
 	
 	public double getGesamtErloes(){
-		return erloesGesamt;
+		return rundeBetrag(erloesGesamt);
 	}
 	
 	public double[] getErloese(){

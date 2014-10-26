@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.util.Vector;
 
 public class ErgebnislisteAusgabe {
-
 	public void ausgabeErgebnis(PrintWriter writer, Vector<Spieler> spielerListe, Vector<Integer> spielerRunden, Vector<Marktanteil> spielerMarktanteile) {
 		writer.println("------Ergebnis------");
 		writer.println("-----------------------------------------------");
@@ -25,6 +24,30 @@ public class ErgebnislisteAusgabe {
 			}
 			
 			writer.print(spielerRunden.get(i));
+		}
+	}
+
+	public void ausgabeErgebnis(PrintWriter writer, ErgebnislisteDaten[] daten) {
+		writer.println("------Ergebnis------");
+		writer.println("-----------------------------------------------");
+		writer.println("Platz ---- Spieler ---- Marktanteil ---- bis Runde");
+		
+		Marktanteil tmp;
+		
+		for(int i = (daten.length - 1); i >= 0; i--){
+			tmp = daten[i].getMarktanteil();
+			
+			writer.print("  " + (daten.length - i) + "         ");
+			writer.print(daten[i].getSpieler().getName() + "         ");
+			
+			if(tmp != null){
+				writer.print("   " + tmp.getAnteil() + "%      ");
+			} else {
+				writer.print("   0%      ");
+			}
+			
+			writer.print("   " + daten[i].getRunde());
+			writer.println();
 		}
 	}
 }
