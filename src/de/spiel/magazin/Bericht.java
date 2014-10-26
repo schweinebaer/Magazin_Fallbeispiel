@@ -43,9 +43,9 @@ public class Bericht {
 		writer.println("Anzahl Mitarbeiter gesamt:               " + ((Angestellte) o[1]).getAnzahlAngestellte());
 		writer.println("Anzahl Mitarbeiter Bereich HR:           " + ((Angestellte) o[1]).getBereichsZahlen()[0]);
 		writer.println("Anzahl Mitarbeiter Bereich Journalisten: " + ((Angestellte) o[1]).getBereichsZahlen()[1]);
-		writer.println("Umsatz:                                  " + ((Umsatz) o[6]).getUmsatz() + "€");
-		writer.println("-> davon Erlös:                          " + ((Erloes) o[4]).getGesamtErloes() + "€");
-		writer.println("-> davon Kosten:                         " + ((Kosten) o[5]).getGesamtKosten() + "€");
+		writer.println("Gewinn/Verlust:                          " + ((Umsatz) o[6]).getUmsatz() + "€");
+		writer.println("->  Umsatz:                              " + ((Erloes) o[4]).getGesamtErloes() + "€");
+		writer.println("->  Kosten:                              " + ((Kosten) o[5]).getGesamtKosten() + "€");
 		writer.println("   -> davon Fixkosten:                   " + ((Standort) o[0]).getFixkosten() + "€");
 		writer.println("Kapital:                                 " + rundeBetrag(spieler.getKapital()) + "€");
 		writer.println("-> davon EK:                             " + rundeBetrag(spieler.getEK()) + "€");

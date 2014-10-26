@@ -6,7 +6,7 @@ public class Angestellte {
 	 */
 	
 	private int maxAnzahlGesamt;
-	private int anzahlGesamt;
+	private double anzahlGesamt;
 	private int anzahlHR;
 	private int anzahlJournalisten;
 	private double gehalt;
@@ -17,9 +17,9 @@ public class Angestellte {
 		this.maxAnzahlGesamt = maxAnzahlGesamt;
 		this.anzahlGesamt = anzahlGesamt;
 		
-		anzahlHR = (int) anzahlGesamt * 1/6;
-		anzahlJournalisten = (int) anzahlGesamt * 5/6;
-		
+		anzahlHR = (int) Math.round(this.anzahlGesamt * 1/6);
+		anzahlJournalisten = (int) Math.round(this.anzahlGesamt * 5/6);
+
 		this.gehalt = gehalt;
 		durchgefuehrteSchulungen = 0;
 		this.qualitaet = qualitaet;
@@ -80,7 +80,7 @@ public class Angestellte {
 	}
 	
 	public int getAnzahlAngestellte(){
-		return anzahlGesamt;
+		return (int) anzahlGesamt;
 	}
 	
 	public double getGehalt(){
