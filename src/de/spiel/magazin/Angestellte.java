@@ -54,13 +54,11 @@ public class Angestellte {
 	}
 	
 	public void schulen(){
-		if(durchgefuehrteSchulungen >= 6){
-			durchgefuehrteSchulungen++;
-		} else if(durchgefuehrteSchulungen >= 0 && durchgefuehrteSchulungen < 6){
+		if(durchgefuehrteSchulungen >= 0 && durchgefuehrteSchulungen < 5){
 			durchgefuehrteSchulungen++;
 			qualitaet = durchgefuehrteSchulungen * 0.03;
 		} else {
-			//ignore
+			System.out.println("Sie haben bereits maximal geschult");
 		}
 	}
 	

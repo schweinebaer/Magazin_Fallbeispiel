@@ -46,6 +46,7 @@ public class Werbung {
 		} else {
 			this.ewAktionen = ewAktionen;
 			kostenEWGesamt = ewAktionen * kostenEWAktion;
+			writer.println("Die Anzahl der Aktionen wurde auf "+this.ewAktionen+" festegelget");
 		}
 	}
 
@@ -58,6 +59,7 @@ public class Werbung {
 			this.fwInSeiten = fwInSeiten;
 			einnahmenFWHeft = fwInSeiten * einnahmenFWSeite;
 			einnahmenFWAuflage = auflage * einnahmenFWHeft;
+			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf "+this.fwInSeiten+" festegelget");
 		}
 	}
 	
