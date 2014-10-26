@@ -206,7 +206,7 @@ public class Spiel {
 									}
 								}
 							}
-						} catch(NumberFormatException e){
+						} catch(Exception e){
 							writer.println("Falsche Eingabe. Geben Sie erneut was ein. Unter HILFE finden sie erwiterte Informationen.");
 						}
 						
