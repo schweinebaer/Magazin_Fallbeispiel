@@ -49,7 +49,7 @@ public class Werbung {
 		} else {
 			this.ewAktionen = ewAktionen;
 			kostenEWGesamt = ewAktionen * kostenEWAktion;
-			writer.println("Die Anzahl der Aktionen wurde auf "+this.ewAktionen+" festegelget");
+			writer.println("Die Anzahl der Aktionen wurde auf "+this.ewAktionen+" festgelegt");
 		}
 	}
 
@@ -61,7 +61,7 @@ public class Werbung {
 			this.auflage = auflage;
 			this.fwInSeiten = fwInSeiten;
 			einnahmenFW = fwInSeiten * einnahmenFWSeite;
-			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf "+this.fwInSeiten+" festegelget");
+			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf "+this.fwInSeiten+" festgelegt");
 		}
 	}
 	

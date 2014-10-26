@@ -8,10 +8,9 @@ public class Kredit {
 	 * @description Koordination der Kredite
 	 */
 	
-	// noch einbauen: FK nicht mehr als 300% des EK sein
 	private double kreditbetrag;
 	private double zinssatz;
-	private static double zinssatzNeuaufnahme = 5.0;
+	private static double zinssatzNeuaufnahme = 10.0;
 	
 	public Kredit(double betrag){
 		kreditbetrag = betrag;
