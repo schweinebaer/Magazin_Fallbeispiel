@@ -407,7 +407,6 @@ public class Spiel {
 			writer.println("HILFE ------------------------------------------------- Zeigt eine Liste aller Kommandos an");
 			writer.println("SPIELER_HINZUFUEGEN nameDesSpielers ------------------- Fügt einen neuen Spieler mit dem entsprechenden Namen hinzu");
 			writer.println("SPIELER_FERTIG ---------------------------------------- Beendet die Eingabe der Spieler");
-			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else if (art == 1){
 			writer.println("---------- HILFE ----------");
 			writer.println("Es stehen folgende Kommandos zur Verfügung (Kommandos in Großbuchstaben, Parameter in Kamelschreibweise)");
@@ -424,9 +423,8 @@ public class Spiel {
 			writer.println("MITARBEITER_ENTLASSEN mitarbeiterAnzahl --------------- Entlässt mitarbeiterAnzahl Mitarbeiter aus dem Magazin");
 			writer.println("MITARBEITER_SCHULEN ----------------------------------- Mitarbeiter werden um eine Schulungseinheit geschult");
 			writer.println("VERKAUFSPREIS_SETZEN preis ---------------------------- Setzt den Preis für das Magazin");
-			writer.println("AUFLAGE_SETZEN ---------------------------------------- Setzt die Auflage für das Magazin");
+			writer.println("AUFLAGE_SETZEN auflage -------------------------------- Setzt die Auflage für das Magazin auf auflage");
 			writer.println("RUNDE_FERTIG ------------------------------------------ Beendet das Treffen der Entscheidungen und lässt den nächsten Spieler dran");
-			writer.println("BEENDEN ----------------------------------------------- Beendet das Programm vorzeitig (ohne Spielstandabspeicherung und ohne Darstellung der letzten Stände)");
 		} else {
 			//ignore
 		}
