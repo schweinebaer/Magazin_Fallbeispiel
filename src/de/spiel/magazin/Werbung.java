@@ -19,8 +19,7 @@ public class Werbung {
 	private int maxSeitenFW;
 	private int auflage;
 	private final double einnahmenFWSeite = 12500;
-	private double einnahmenFWHeft;
-	private double einnahmenFWAuflage;
+	private double einnahmenFW;
 	
 	public Werbung(int typ, int anteil, int maxAnteil, int auflage){
 		//WISCHTISCH: runden auf 2 Nachkommastellen: Math.round(100.0 * (anteilSeiten / 150)) / 100.0
@@ -37,8 +36,7 @@ public class Werbung {
 			fwInSeiten = anteil;
 			maxSeitenFW = maxAnteil;
 			this.auflage = auflage;
-			einnahmenFWHeft = fwInSeiten * einnahmenFWSeite;
-			einnahmenFWAuflage = auflage * einnahmenFWHeft;
+			einnahmenFW = fwInSeiten * einnahmenFWSeite;
 		} else {
 			//ignore
 		}
@@ -62,16 +60,14 @@ public class Werbung {
 		} else {
 			this.auflage = auflage;
 			this.fwInSeiten = fwInSeiten;
-			einnahmenFWHeft = fwInSeiten * einnahmenFWSeite;
-			einnahmenFWAuflage = auflage * einnahmenFWHeft;
+			einnahmenFW = fwInSeiten * einnahmenFWSeite;
 			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf "+this.fwInSeiten+" festegelget");
 		}
 	}
 	
 	public void updateFW(double betrag){
 		fwInSeiten *= betrag;
-		einnahmenFWHeft = fwInSeiten * einnahmenFWSeite;
-		einnahmenFWAuflage = auflage * einnahmenFWHeft;
+		einnahmenFW = fwInSeiten * einnahmenFWSeite;
 	}
 	
 	public double getKosten(){
@@ -79,7 +75,7 @@ public class Werbung {
 	}
 	
 	public double getEinnahmen(){
-		return einnahmenFWAuflage;
+		return einnahmenFW;
 	}
 	
 	public void ausgabeKonditionen(PrintWriter writer){
@@ -92,8 +88,7 @@ public class Werbung {
 			writer.println("-> Art der Werbung:              	" + art);
 			writer.println("   -> Anzahl Seiten:             	" + fwInSeiten);
 			writer.println("   -> Einnahmen FW pro Seite:    	" + einnahmenFWSeite);
-			writer.println("   -> Einnahmen FW pro Heft:     	" + einnahmenFWHeft);
-			writer.println("   -> Gesamteinnahmen FW:        	" + einnahmenFWAuflage);
+			writer.println("   -> Gesamteinnahmen FW:        	" + einnahmenFW);
 		}
 	}
 }

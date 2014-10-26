@@ -9,10 +9,6 @@ public class Spiel {
 	 * @description Allgemeine Koordination des Spieles auf der Konsole
 	 */
 	
-	//Überprüfen: 
-	// - Fremdwerbung --> vor allem im Bericht, da komische Zhl
-	// - Zufallsereignisse ab Runde 2 --> sie werden nicht angezeigt
-	
 	private static Vector<Spieler> spieler;
 	private static Spieler aktuellerSpieler;
 	private static int aktuelleRunde;
@@ -32,9 +28,6 @@ public class Spiel {
 		
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		writer = new PrintWriter(System.out, true);
-		
-		spieler.add(new Spieler("Pascal", writer));
-		spieler.add(new Spieler("Benni", writer));
 		
 		writer.println("Willkommen beim Planspiel!");
 		writer.println("Bitte geben Sie eine maximale Rundenanzahl ein! Die Mindestrundenanzahl beträgt 5 Runden.");
@@ -157,7 +150,7 @@ public class Spiel {
 					splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 					
 					//Keine Runde aufhören ohne ein Magazin zu erstellen
-					while(splitAktuelleEingabe[0].equals("FERTIG") && aktuellerSpieler.getMagazin() == null){
+					while(splitAktuelleEingabe[0].equals("RUNDE_FERTIG") && aktuellerSpieler.getMagazin() == null){
 						writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
 						aktuelleEingabe = reader.readLine();
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
@@ -171,6 +164,10 @@ public class Spiel {
 								hilfe(1);
 							} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
 								System.exit(0);
+							} else if(splitAktuelleEingabe[0].equals("VORZEITIG_BEENDEN")){
+								aktuelleRunde = maxRunde;
+								i = spieler.size() + 1;
+								break;
 							} else {
 								if(splitAktuelleEingabe.length < 2){
 									simulieren(splitAktuelleEingabe[0], 0);
@@ -214,7 +211,7 @@ public class Spiel {
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 						
-						while(splitAktuelleEingabe[0].equals("FERTIG") && aktuellerSpieler.getMagazin() == null){
+						while(splitAktuelleEingabe[0].equals("RUNDE_FERTIG") && aktuellerSpieler.getMagazin() == null){
 							writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
 							aktuelleEingabe = reader.readLine();
 							splitAktuelleEingabe = aktuelleEingabe.split(" ");

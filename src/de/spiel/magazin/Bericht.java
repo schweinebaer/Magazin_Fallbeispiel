@@ -42,7 +42,7 @@ public class Bericht {
 		writer.println("Standort:                                " + ((Standort) o[0]).getOrt());
 
 		if(spieler.getMagazin().getMarktanteil().getAnteil() != 0){
-			writer.println("Marktanteil des Magazins:                " + spieler.getMagazin().getMarktanteil().getAnteil());
+			writer.println("Marktanteil des Magazins:                " + spieler.getMagazin().getMarktanteil().getAnteil() + "%");
 		}
 		
 		writer.println("Anzahl Mitarbeiter gesamt:               " + ((Angestellte) o[1]).getAnzahlAngestellte());
@@ -52,9 +52,9 @@ public class Bericht {
 		writer.println("->  Umsatz:                              " + ((Erloes) o[4]).getGesamtErloes() + "€");
 		writer.println("->  Kosten:                              " + ((Kosten) o[5]).getGesamtKosten() + "€");
 		writer.println("   -> davon Fixkosten:                   " + ((Standort) o[0]).getFixkosten() + "€");
-		writer.println("Kapital:                                 " + rundeBetrag(spieler.getKapital()) + "€");
-		writer.println("-> davon EK:                             " + rundeBetrag(spieler.getEK()) + "€");
-		writer.println("-> davon FK:                             " + rundeBetrag(spieler.getFK()) + "€");
+		writer.println("Kapital:                                 " + rundeBetrag(kapital) + "€");
+		writer.println("-> davon EK:                             " + rundeBetrag(ek) + "€");
+		writer.println("-> davon FK:                             " + rundeBetrag(fk) + "€");
 		writer.println("Werbung:                 			     ");
 		((Werbung) o[2]).ausgabeKonditionen(writer);
 		((Werbung) o[3]).ausgabeKonditionen(writer);
