@@ -29,11 +29,9 @@ public class Magazin {
 	private double prozentsatzAngestellte;
 	private double prozentsatzPreis;
 	
-	private double magazinkosten;
+	
 	private final int maxMitarbeiter;
 	private int mitarbeiter;
-	private double gehalt;
-	private double kostenMitarbeiter;
 	private Angestellte angestellte;
 	private final int maxAuflage;
 	private int gedruckteMagazine;
@@ -56,15 +54,7 @@ public class Magazin {
 		marktanteil = new Marktanteil();
 		this.writer = writer;
 		
-		/*
-		magazinkosten = (double) o[2];
-		*/
 		maxMitarbeiter = (int) o[3];
-		/*
-		mitarbeiter = (int) o[4];
-		gehalt = (double) o[5];
-		kostenMitarbeiter = (double) o[6];
-		*/
 		maxAuflage = (int) o[7];
 		gedruckteMagazine = (int) o[8];
 		abgesetzteMenge = (int) o[9];
@@ -200,15 +190,20 @@ public class Magazin {
 	}
 	
 	public void updateAuflage(int auflage){
-		this.auflage = auflage;
-		//Erlös, Gewinn und Kosten und weitere notwenidge Daten updaten
-		abgesetzteMenge = (int) (auflage * qualitaet);
-		erloes.updateAbgesetzteMagazine(abgesetzteMenge);
-		kosten.updateAbgesetzteMag(abgesetzteMenge);
-		kosten.updateGedruckteMag(auflage);
-		umsatzMagazin.updateErloes(erloes.getGesamtErloes());
-		umsatzMagazin.updateKosten(kosten.getGesamtKosten());
-		kapital += umsatzMagazin.getUmsatz();
+		if(auflage > 0 && auflage <= this.maxAuflage){
+			this.auflage = auflage;
+			//Erlös, Gewinn und Kosten und weitere notwenidge Daten updaten
+			abgesetzteMenge = (int) (auflage * qualitaet);
+			erloes.updateAbgesetzteMagazine(abgesetzteMenge);
+			kosten.updateAbgesetzteMag(abgesetzteMenge);
+			kosten.updateGedruckteMag(auflage);
+			umsatzMagazin.updateErloes(erloes.getGesamtErloes());
+			umsatzMagazin.updateKosten(kosten.getGesamtKosten());
+			kapital += umsatzMagazin.getUmsatz();	
+		} else {
+			//Fehlermeldung --> nicht valide Auflage
+			writer.println("Bitte geben sie mindestens 1 und max. " + maxAuflage + " Magazine als Auflage");
+		}
 	}
 	
 	public void berechnungAbgesetzteMenge(){
