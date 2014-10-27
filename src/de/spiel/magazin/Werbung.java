@@ -20,9 +20,7 @@ public class Werbung {
 	private final double einnahmenFWSeite = 12500;
 	private double einnahmenFW;
 	
-	public Werbung(int typ, int anteil, int maxAnteil, int auflage){
-		//WISCHTISCH: runden auf 2 Nachkommastellen: Math.round(100.0 * (anteilSeiten / 150)) / 100.0
-		
+	public Werbung(int typ, int anteil, int maxAnteil, int auflage){		
 		if(typ == 0){
 			//EW
 			art = "Eigenwerbung";
