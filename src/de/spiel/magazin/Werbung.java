@@ -17,7 +17,6 @@ public class Werbung {
 	
 	private int fwInSeiten;
 	private int maxSeitenFW;
-	private int auflage;
 	private final double einnahmenFWSeite = 12500;
 	private double einnahmenFW;
 	
@@ -35,7 +34,6 @@ public class Werbung {
 			art = "Fremdwerbung";
 			fwInSeiten = anteil;
 			maxSeitenFW = maxAnteil;
-			this.auflage = auflage;
 			einnahmenFW = fwInSeiten * einnahmenFWSeite;
 		} else {
 			//ignore
@@ -49,7 +47,7 @@ public class Werbung {
 		} else {
 			this.ewAktionen = ewAktionen;
 			kostenEWGesamt = ewAktionen * kostenEWAktion;
-			writer.println("Die Anzahl der Aktionen wurde auf "+this.ewAktionen+" festgelegt");
+			writer.println("Die Anzahl der Aktionen wurde auf " + ewAktionen + " festgelegt.");
 		}
 	}
 
@@ -58,10 +56,9 @@ public class Werbung {
 			writer.println("Kein Update der Konditionen der Fremdwerbung möglich, da der Seitenanteil höher ist als der maxmimal mögliche Seitenanteil.");
 			writer.println("Bitte geben Sie einen Wert für die Seiten kleiner oder gleich " + maxSeitenFW + " an.");
 		} else {
-			this.auflage = auflage;
 			this.fwInSeiten = fwInSeiten;
 			einnahmenFW = fwInSeiten * einnahmenFWSeite;
-			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf "+this.fwInSeiten+" festgelegt");
+			writer.println("Die Anzahl der Seiten für Fremdwerbung im  Magazin wurde auf " + fwInSeiten + " festgelegt.");
 		}
 	}
 	
