@@ -161,14 +161,19 @@ public class Spiel {
 					while(!splitAktuelleEingabe[0].equals("RUNDE_FERTIG")){					
 						try{
 							if(splitAktuelleEingabe[0].equals("HILFE")){
+								//Hilfe ausgeben
 								hilfe(1);
 							} else if(splitAktuelleEingabe[0].equals("BEENDEN")){
+								//Programm ohne Abspeicherung der Daten beenden
 								System.exit(0);
 							} else if(splitAktuelleEingabe[0].equals("VORZEITIG_BEENDEN")){
+								//Runden überspringen und direkt zur Ergebnisliste springen
 								aktuelleRunde = maxRunde;
 								i = spieler.size() + 1;
 								break;
 							} else {
+								//je nachdem ob ein Magazin eröffnet werden soll oder eine andere Aktion durchgeführt werden soll
+								//wird speziell simuliert
 								if(splitAktuelleEingabe.length < 2){
 									simulieren(splitAktuelleEingabe[0], 0);
 								} else {
@@ -207,10 +212,13 @@ public class Spiel {
 							writer.println("Falsche Eingabe. Geben Sie erneut was ein. Unter HILFE finden sie erwiterte Informationen.");
 						}
 						
+						//nächste Eingabe holen
 						aktuelleEingabe = reader.readLine();
 						splitAktuelleEingabe = aktuelleEingabe.split(" ");
 						splitAktuelleEingabe[0] = splitAktuelleEingabe[0].toUpperCase();
 						
+						//solange die Eingabe die Beendigung der Spielerrunde andeutet und der Spieler noch kein Magazin hat,
+						//soll weiter abgefragt werden, was gemacht werden soll
 						while(splitAktuelleEingabe[0].equals("RUNDE_FERTIG") && aktuellerSpieler.getMagazin() == null){
 							writer.println("Es ist noch kein Magazin erstellt. Bitte erst richtig fertig spielen!");
 							aktuelleEingabe = reader.readLine();
@@ -219,11 +227,14 @@ public class Spiel {
 						}
 					}
 					
+					//nach dem Durchlauf fertig ist
 					if(splitAktuelleEingabe[0].equals("RUNDE_FERTIG")){
+						//Marktanteile aktualisieren
 						if(aktuelleRunde > 0){
 							Marktanteil.updateAbgesetzteMengeGesamt(spieler);
 						}
 						
+						//weitere spielerspezifische Punkte aktualisieren
 						aktuellerSpieler.getMagazin().aktualisiereWerte();
 						aktuellerSpieler.updateKapital();
 						aktuellerSpieler.addBericht(aktuellerSpieler);
@@ -245,6 +256,7 @@ public class Spiel {
 			aktuelleRunde++;
 		}
 		
+		//wenn alle Runden durchgespielt wurden, soll die Ergebnisliste erstellt werden
 		while(!spieler.isEmpty()){
 			Spieler tmp1;
 			Spieler tmp2;
@@ -264,6 +276,7 @@ public class Spiel {
 			ergebnisliste.addSpieler(tmp1, aktuelleRunde, tmp1.getMagazin().getMarktanteil());
 		}
 		
+		//und danach soll die Liste ausgegeben werden
 		ergebnisliste.ausgabeListe();
 		
 		reader.close();
@@ -406,13 +419,14 @@ public class Spiel {
 	}
 	
     private static double rundeBetrag(double betrag){ 
-      double round = Math.round(betrag*10000); 
+    	//Zahl auf zwei Nachkommazahlen runden
+    	double round = Math.round(betrag*10000); 
+    	
+    	round = round / 10000; 
+    	round = Math.round(round*1000); 
+    	round = round / 1000; 
+    	round = Math.round(round*100); 
       
-      round = round / 10000; 
-      round = Math.round(round*1000); 
-      round = round / 1000; 
-      round = Math.round(round*100); 
-      
-      return round / 100; 
+    	return round / 100; 
     }
 }
