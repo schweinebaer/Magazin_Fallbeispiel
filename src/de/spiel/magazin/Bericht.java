@@ -8,6 +8,7 @@ public class Bericht {
 	 * @description Situationsbericht eines Spielers
 	 */
 	
+	//Allgemeine Daten, die zu einem Bericht gespeichert werden müssen
 	private Spieler spieler;
 	private Magazin magazin;
 	private Standort standort;
@@ -22,22 +23,24 @@ public class Bericht {
 	private double fk;
 
 	public Bericht(Spieler s, PrintWriter writer){
-		//Werte richtig abspeichern, damit man auch alte Geschäftsberichte abrufen kann
+		//Werte abspeichern
 		this.writer = writer;
 		spieler = s;
-		
-		o = spieler.getMagazin().getAktuelleDaten();
 		
 		kapital = s.getKapital();
 		ek = s.getEK();
 		fk = s.getFK();
 		
+		//wenn ein Bericht abgerufen wird, wenn noch kein Magazin eröffnet wurde
 		if(spieler.getMagazin() == null){
 			this.writer.println("Noch kein Magazin eröffnet.");
+		} else {
+			o = spieler.getMagazin().getAktuelleDaten();
 		}
 	}
 	
 	public void generiereAusgabe(){
+		//Ausgabe generieren
 		writer.println("------ Bericht für " + spieler.getName() + " ------");
 		writer.println("Standort:                                " + ((Standort) o[0]).getOrt());
 
@@ -62,13 +65,14 @@ public class Bericht {
 	}
 	
 	private double rundeBetrag(double betrag){ 
-	      double round = Math.round(betrag*10000); 
+	    //auf 2 Nachkommastellen runden  
+		double round = Math.round(betrag*10000); 
 	      
-	      round = round / 10000; 
-	      round = Math.round(round*1000); 
-	      round = round / 1000; 
-	      round = Math.round(round*100); 
+	    round = round / 10000; 
+	    round = Math.round(round*1000); 
+	    round = round / 1000; 
+	    round = Math.round(round*100); 
 	      
-	      return round / 100; 
-	    }
+	    return round / 100; 
+	}
 }

@@ -235,23 +235,11 @@ public class Spiel {
 				
 				if(aktuelleRunde > 0){
 					Marktanteil.updateAbgesetzteMengeGesamt(spieler);
-					/*Spieler tmp;
-					
-					for(int j = 0; (j < spieler.size()) && spieler.elementAt(j) != null; j++){
-						tmp = spieler.get(j);
-						tmp.getMagazin().updateMarktanteil();
-					}*/
 				}
 			}
 			
 			if(aktuelleRunde == 0){
 				Marktanteil.updateAbgesetzteMengeGesamt(spieler);
-				/*Spieler tmp;
-				
-				for(int i = 0; i < spieler.size(); i++){
-					tmp = spieler.get(i);
-					tmp.getMagazin().updateMarktanteil();
-				}*/
 			}
 			
 			aktuelleRunde++;
@@ -266,7 +254,7 @@ public class Spiel {
 			for(int i = 1; i < spieler.size(); i++){
 				tmp2 = spieler.get(i);
 				
-				if(tmp2.getMagazin().getMarktanteil().getAnteil() < tmp2.getMagazin().getMarktanteil().getAnteil()){
+				if(tmp2.getMagazin().getMarktanteil().getAnteil() < tmp1.getMagazin().getMarktanteil().getAnteil()){
 					tmp1 = tmp2;
 				}
 			}
@@ -324,29 +312,6 @@ public class Spiel {
 			for(int i = 1; i <= 4; i++){
 				Object[] o = Standort.getStandort(i);
 				StandortAusgabe.ausgabeStandortStartwerte(o, i, writer);
-			}
-		} else if(splitAktuelleEingabe[0].equals("MAGAZIN_EROEFFNEN")){
-			if(aktuellerSpieler.getMagazin() == null){
-				if(splitAktuelleEingabe[1].equals("München") 
-					|| splitAktuelleEingabe[1].equals("Berlin") 
-					|| splitAktuelleEingabe[1].equals("Walldorf")
-					|| splitAktuelleEingabe[1].equals("Bonn")){
-					if(splitAktuelleEingabe[1].equals("München")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1]);
-					} else if(splitAktuelleEingabe[1].equals("Berlin")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1]);
-					} else if(splitAktuelleEingabe[1].equals("Walldorf")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1]);
-					} else if(splitAktuelleEingabe[1].equals("Bonn")){
-						aktuellerSpieler.setMagazin(splitAktuelleEingabe[1]);
-					} else {
-						//ignore
-					}
-				} else {
-					writer.println("Invalide Standortwahl.");
-				}
-			} else {
-				writer.println("Mehrere Standorte nicht erlaubt.");
 			}
 		} else if(splitAktuelleEingabe[0].equals("KREDIT_AUFNEHMEN")){
 			if(Double.parseDouble(splitAktuelleEingabe[1]) > 0){

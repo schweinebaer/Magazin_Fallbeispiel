@@ -28,7 +28,7 @@ public class StandortAusgabe {
 		writer.println("Max. Eigenwerbung in Aktionen:		" + o[15]);
 		writer.println("Verkaufspreis pro Heft:			" + o[16] + "€");
 		writer.println("Max. Verkaufspreis pro Heft: 		" + o[17] + "€");
-		writer.println("Fixkosten:						" + o[24] + "€");
+		writer.println("Fixkosten:                              " + o[24] + "€");
 		writer.println("Gesamtkosten des Magazins:		" + o[18] + "€");
 		writer.println("Erlös aus Magazinverkauf: 		" + o[19] + "€");
 		writer.println("Erlös aus Fremdwerbung:			" + o[20] + "€");
