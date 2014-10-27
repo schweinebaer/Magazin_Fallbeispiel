@@ -12,6 +12,11 @@ import de.spiel.magazin.Standort;
 import de.spiel.magazin.StandortDaten;
 
 public class Test_Standort_GetStandort {
+	
+	/*
+	 * @author Benedikt Breitschopf
+	 * @description JUnit Test über getStandort Methode 
+	 */
 
 	/*
 	 * @Before public void setUp() throws Exception { 

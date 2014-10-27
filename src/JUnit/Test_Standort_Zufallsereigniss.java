@@ -12,9 +12,11 @@ import de.spiel.magazin.Zufallsereignis;
 
 
 public class Test_Standort_Zufallsereigniss {
-	
-
-	
+	/*
+	 * @author Benedikt Breitschopf
+	 * @description JUnit Test über Zufallsereigniss Methode 
+	 * 				muss angepasst werden
+	 */
 
 
 	@Before
