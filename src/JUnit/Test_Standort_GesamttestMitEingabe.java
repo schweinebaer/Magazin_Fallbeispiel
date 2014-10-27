@@ -15,6 +15,11 @@ import org.junit.Test;
 import de.spiel.magazin.Spieler;
 
 public class Test_Standort_GesamttestMitEingabe {
+	
+	/*
+	 * @author Benedikt Breitschopf
+	 * @description JUnit Test Gesamt. Nicht fertig! 
+	 */
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
